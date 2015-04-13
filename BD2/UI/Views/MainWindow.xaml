@@ -1,0 +1,25 @@
+﻿<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:UI.Converters"
+        xmlns:classes="clr-namespace:UI.Classes"
+        xmlns:views="clr-namespace:UI.Views"
+        Title="MainWindow"
+        Height="350"
+        Width="525">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Administrator">
+                <views:AdministratorWindow >
+                    
+                </views:AdministratorWindow>
+            </TabItem>
+            
+            <TabItem Header="Evaluator">
+                <views:EvaluatorWindow >
+                    
+                </views:EvaluatorWindow>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

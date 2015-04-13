@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="UI.Components.BasicList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:UI.Converters"
+             xmlns:classes="clr-namespace:UI.Classes"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:enums="clr-namespace:UI.Components.Enums"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <xctk:BusyIndicator IsBusy="{Binding IsBusy}">
+
+        <xctk:BusyIndicator.BusyContentTemplate>
+            <DataTemplate>
+                <StackPanel Margin="4">
+                    <TextBlock Text="Loading.."></TextBlock>
+                </StackPanel >
+            </DataTemplate>
+        </xctk:BusyIndicator.BusyContentTemplate>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Row="0"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      ItemsSource="{Binding DisplayCollection}"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      SelectionMode="Single"
+                      CanUserDeleteRows="False"
+                      ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      AutoGenerateColumns="True"
+                      CanUserResizeColumns="True">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit"
+                                  Command="{Binding ContextMenuCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}" />
+                        <MenuItem Header="New"
+                                  Command="{Binding ContextMenuCommand}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom">
+                <Label Content="Page"></Label>
+                <Label Content="{Binding ActualPage}"></Label>
+                <Label Content="/"></Label>
+                <Label Content="{Binding AmountOfPages}"></Label>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Refresh"
+                            Command="{Binding NavigationCommand}"
+                            CommandParameter="{x:Static enums:ListsButtonEnum.Refresh}"></Button>
+                    <Button Content="Previous"
+                            Command="{Binding NavigationCommand}"
+                            CommandParameter="{x:Static enums:ListsButtonEnum.Previous}"></Button>
+                    <Button Content="Next"
+                            Command="{Binding NavigationCommand}"
+                            CommandParameter="{x:Static enums:ListsButtonEnum.Next}"></Button>
+                </StackPanel>
+            </StackPanel>
+
+
+
+        </Grid>
+    </xctk:BusyIndicator>
+</UserControl>

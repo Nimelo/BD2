@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="UI.Views.AdministratorWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:UI.Converters"
+             xmlns:classes="clr-namespace:UI.Classes"
+             xmlns:components="clr-namespace:UI.Components"
+             mc:Ignorable="d"
+             d:DesignHeight="150"
+             d:DesignWidth="150">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Add New Person"
+                      Command="{Binding MenuCommand}">
+                
+            </MenuItem>
+        </Menu>
+        <components:BasicList Grid.Row="1"
+            DataContext="{Binding BasicListViewModel}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch">
+
+        </components:BasicList>
+    </Grid>
+</UserControl>

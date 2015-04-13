@@ -1,20 +1,102 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD2", "BD2\BD2.csproj", "{F82BFBB3-393E-4358-948A-4AA2A3831937}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{60AD820D-F402-4780-BC77-0F9ECBC170B0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA} = {EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{62E396C6-5765-4ECA-9DE5-FF92B269EF63}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\aktorzy.txt = Documents\aktorzy.txt
+		Documents\BD2.eap = Documents\BD2.eap
+		Documents\BD2.png = Documents\BD2.png
+		ResourcesWebSides.txt = ResourcesWebSides.txt
+		..\..\..\..\Desktop\scenariusz_v.1.0e _poprawione.docx = ..\..\..\..\Desktop\scenariusz_v.1.0e _poprawione.docx
+		Documents\scenariusz_v.1.0e.docx = Documents\scenariusz_v.1.0e.docx
+		Documents\scenariusz_v.1.1.docx = Documents\scenariusz_v.1.1.docx
+		Documents\TODO sprint3.txt = Documents\TODO sprint3.txt
+		Documents\Wymagania funkcjonalne.txt = Documents\Wymagania funkcjonalne.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateRating", "WPF_TEST\CandidateRating.csproj", "{43529182-E12F-4F05-BB80-151EE6AD0429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{25D123A0-7ED9-4912-ADED-A9703EA91074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTests", "ConsoleTests\ConsoleTests.csproj", "{8EC24D10-37D3-4FDD-A11A-EF2CBAF61D54}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA} = {EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{A8396F10-7169-4908-B434-A9EDDA667676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConsoleTests", "DatabaseConsoleTests\DatabaseConsoleTests.csproj", "{6E68AC43-7EE9-47A1-9B79-FD96F65A60EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServices", "WCFServices\WCFServices.csproj", "{EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mrnimelo.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = UI\\UI.csproj
+		SccProjectName1 = UI
+		SccLocalPath1 = UI
+		SccProjectUniqueName2 = WPF_TEST\\CandidateRating.csproj
+		SccProjectName2 = WPF_TEST
+		SccLocalPath2 = WPF_TEST
+		SccProjectUniqueName3 = Database\\Database.csproj
+		SccProjectName3 = Database
+		SccLocalPath3 = Database
+		SccProjectUniqueName4 = ConsoleTests\\ConsoleTests.csproj
+		SccProjectName4 = ConsoleTests
+		SccLocalPath4 = ConsoleTests
+		SccProjectUniqueName5 = Common\\Common.csproj
+		SccProjectName5 = Common
+		SccLocalPath5 = Common
+		SccProjectUniqueName6 = DatabaseConsoleTests\\DatabaseConsoleTests.csproj
+		SccProjectName6 = DatabaseConsoleTests
+		SccLocalPath6 = DatabaseConsoleTests
+		SccProjectUniqueName7 = WCFServices\\WCFServices.csproj
+		SccProjectName7 = WCFServices
+		SccLocalPath7 = WCFServices
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F82BFBB3-393E-4358-948A-4AA2A3831937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F82BFBB3-393E-4358-948A-4AA2A3831937}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F82BFBB3-393E-4358-948A-4AA2A3831937}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F82BFBB3-393E-4358-948A-4AA2A3831937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60AD820D-F402-4780-BC77-0F9ECBC170B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60AD820D-F402-4780-BC77-0F9ECBC170B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60AD820D-F402-4780-BC77-0F9ECBC170B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60AD820D-F402-4780-BC77-0F9ECBC170B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43529182-E12F-4F05-BB80-151EE6AD0429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43529182-E12F-4F05-BB80-151EE6AD0429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43529182-E12F-4F05-BB80-151EE6AD0429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43529182-E12F-4F05-BB80-151EE6AD0429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25D123A0-7ED9-4912-ADED-A9703EA91074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D123A0-7ED9-4912-ADED-A9703EA91074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D123A0-7ED9-4912-ADED-A9703EA91074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D123A0-7ED9-4912-ADED-A9703EA91074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EC24D10-37D3-4FDD-A11A-EF2CBAF61D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EC24D10-37D3-4FDD-A11A-EF2CBAF61D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EC24D10-37D3-4FDD-A11A-EF2CBAF61D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EC24D10-37D3-4FDD-A11A-EF2CBAF61D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8396F10-7169-4908-B434-A9EDDA667676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8396F10-7169-4908-B434-A9EDDA667676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8396F10-7169-4908-B434-A9EDDA667676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8396F10-7169-4908-B434-A9EDDA667676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E68AC43-7EE9-47A1-9B79-FD96F65A60EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E68AC43-7EE9-47A1-9B79-FD96F65A60EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E68AC43-7EE9-47A1-9B79-FD96F65A60EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E68AC43-7EE9-47A1-9B79-FD96F65A60EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB5AD4B6-37C6-4CAA-B815-C567BD7F2EBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

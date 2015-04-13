@@ -1,0 +1,6 @@
+1) Teczke z dokumentami
+2) UML'e
+3) Skrypt z SQL
+4) Przyk³adowe dane
+5) Framework 
+23.03

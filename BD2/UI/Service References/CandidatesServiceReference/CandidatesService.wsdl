@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CandidatesService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common.Enums" />
+      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Database" />
+      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICandidatesService_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAmountOfRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfRecords" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAmountOfRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateById" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidatesByPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidatesByPage" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidatesByPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidatesByPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Modify_InputMessage">
+    <wsdl:part name="parameters" element="tns:Modify" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Modify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Add_InputMessage">
+    <wsdl:part name="parameters" element="tns:Add" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_Add_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetNotUsedSkillsNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotUsedSkillsNames" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetNotUsedSkillsNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotUsedSkillsNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetNotUsedSoftSkillsNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotUsedSoftSkillsNames" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetNotUsedSoftSkillsNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotUsedSoftSkillsNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_SaveSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSkill" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_SaveSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_AddSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSkill" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_AddSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateBySkillEvaluationId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateBySkillEvaluationId" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateBySkillEvaluationId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateBySkillEvaluationIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_SaveSoftSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSoftSkill" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_SaveSoftSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSoftSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_AddSoftSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSoftSkill" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_AddSoftSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSoftSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateBySoftSkillEvaluationId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateBySoftSkillEvaluationId" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateBySoftSkillEvaluationId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateBySoftSkillEvaluationIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICandidatesService">
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/Ping" message="tns:ICandidatesService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBaseService/PingResponse" message="tns:ICandidatesService_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAmountOfRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecords" message="tns:ICandidatesService_GetAmountOfRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecordsResponse" message="tns:ICandidatesService_GetAmountOfRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateById" message="tns:ICandidatesService_GetCandidateById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateByIdResponse" message="tns:ICandidatesService_GetCandidateById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidatesByPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPage" message="tns:ICandidatesService_GetCandidatesByPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPageResponse" message="tns:ICandidatesService_GetCandidatesByPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Save" message="tns:ICandidatesService_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/SaveResponse" message="tns:ICandidatesService_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Delete" message="tns:ICandidatesService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/DeleteResponse" message="tns:ICandidatesService_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Modify">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Modify" message="tns:ICandidatesService_Modify_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/ModifyResponse" message="tns:ICandidatesService_Modify_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Add">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Add" message="tns:ICandidatesService_Add_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/AddResponse" message="tns:ICandidatesService_Add_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotUsedSkillsNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNames" message="tns:ICandidatesService_GetNotUsedSkillsNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNamesResponse" message="tns:ICandidatesService_GetNotUsedSkillsNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotUsedSoftSkillsNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNames" message="tns:ICandidatesService_GetNotUsedSoftSkillsNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNamesResponse" message="tns:ICandidatesService_GetNotUsedSoftSkillsNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/SaveSkill" message="tns:ICandidatesService_SaveSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/SaveSkillResponse" message="tns:ICandidatesService_SaveSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/AddSkill" message="tns:ICandidatesService_AddSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/AddSkillResponse" message="tns:ICandidatesService_AddSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateBySkillEvaluationId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySkillEvaluationId" message="tns:ICandidatesService_GetCandidateBySkillEvaluationId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySkillEvaluationIdResponse" message="tns:ICandidatesService_GetCandidateBySkillEvaluationId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSoftSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/SaveSoftSkill" message="tns:ICandidatesService_SaveSoftSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/SaveSoftSkillResponse" message="tns:ICandidatesService_SaveSoftSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSoftSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/AddSoftSkill" message="tns:ICandidatesService_AddSoftSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/AddSoftSkillResponse" message="tns:ICandidatesService_AddSoftSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateBySoftSkillEvaluationId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId" message="tns:ICandidatesService_GetCandidateBySoftSkillEvaluationId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationIdResponse" message="tns:ICandidatesService_GetCandidateBySoftSkillEvaluationId_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICandidatesService" type="tns:ICandidatesService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://tempuri.org/IBaseService/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAmountOfRecords">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetAmountOfRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateById">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidatesByPage">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidatesByPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Modify">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/Modify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotUsedSkillsNames">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotUsedSoftSkillsNames">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSkill">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/SaveSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSkill">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/AddSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateBySkillEvaluationId">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateBySkillEvaluationId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSoftSkill">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/SaveSoftSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSoftSkill">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/AddSoftSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateBySoftSkillEvaluationId">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CandidatesService">
+    <wsdl:port name="BasicHttpBinding_ICandidatesService" binding="tns:BasicHttpBinding_ICandidatesService">
+      <soap:address location="http://localhost:47521/CandidatesService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

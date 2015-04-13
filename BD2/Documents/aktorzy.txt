@@ -1,0 +1,5 @@
+Aktorzy wystêpuj¹cy w systemie:
+- Administrator - zarz¹dzanie u¿ytkownikami systemu, przydziela uprawnienia u¿ytkownikom, usuwa, dodaje, akceptuje rejestracjê
+- Kierownik dzia³u rekrutacji - ocena klientów, podejmowanie decyzji oraz podawanie uzasadnienia
+- Asystentka - kontakt z klientem, sprawdza czy klient z³o¿y³ wszystkie wymagane dokumenty (pierwszy etap), w razie potrzeby odsy³a aplikacjê klienta z proœb¹ o uzupe³nienie
+- Klient (Czyli ten bezrobotny) - rejestruje siê, sk³ada skany dokumentów, uzupe³nia dane swojego profilu

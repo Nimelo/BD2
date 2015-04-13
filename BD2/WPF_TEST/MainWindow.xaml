@@ -1,0 +1,60 @@
+﻿<Window x:Class="WPF_TEST.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Label Content="Imię&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="92,10,0,0" TextWrapping="Wrap" Text="Imię" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Nazwisko&#xA;" HorizontalAlignment="Left" Margin="27,34,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="92,38,0,0" TextWrapping="Wrap" Text="Nazwisko&#xA;" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Kreatywność&#xA;" HorizontalAlignment="Left" Margin="85,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <ComboBox HorizontalAlignment="Left" Margin="167,196,0,0" VerticalAlignment="Top" Width="45" SelectionChanged="ComboBox_SelectionChanged" RenderTransformOrigin="1.067,0.636">
+            <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="3" HorizontalAlignment="Left" Width="118" Selected="ComboBoxItem_Selected"/>
+            <ComboBoxItem Content="4" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="5" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="6" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label Content="Wiedza specjalistyczna&#xA;" HorizontalAlignment="Left" Margin="32,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <ComboBox HorizontalAlignment="Left" Margin="167,99,0,0" VerticalAlignment="Top" Width="45" SelectionChanged="ComboBox_SelectionChanged" RenderTransformOrigin="0.556,-1.045">
+            <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="3" HorizontalAlignment="Left" Width="118" Selected="ComboBoxItem_Selected"/>
+            <ComboBoxItem Content="4" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="5" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="6" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Button Content="Cofnij" HorizontalAlignment="Left" Margin="137,238,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Uaktualnij" HorizontalAlignment="Left" Margin="32,238,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click"/>
+        <Label Content="Pesel&#xA;" HorizontalAlignment="Left" Margin="50,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="92,66,0,0" TextWrapping="Wrap" Text="Pesel&#xA;" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Doświadczenie&#xA;" HorizontalAlignment="Left" Margin="73,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <ComboBox HorizontalAlignment="Left" Margin="167,132,0,0" VerticalAlignment="Top" Width="45" SelectionChanged="ComboBox_SelectionChanged" RenderTransformOrigin="1.067,0.636">
+            <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="3" HorizontalAlignment="Left" Width="118" Selected="ComboBoxItem_Selected"/>
+            <ComboBoxItem Content="4" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="5" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="6" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label Content="Kompetencje&#xA;" HorizontalAlignment="Left" Margin="82,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <ComboBox HorizontalAlignment="Left" Margin="167,163,0,0" VerticalAlignment="Top" Width="45" SelectionChanged="ComboBox_SelectionChanged" RenderTransformOrigin="1.067,0.636">
+            <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="3" HorizontalAlignment="Left" Width="118" Selected="ComboBoxItem_Selected"/>
+            <ComboBoxItem Content="4" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="5" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="6" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label Content="Decyzja&#xA;" HorizontalAlignment="Left" Margin="228,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <ComboBox HorizontalAlignment="Left" Margin="283,11,0,0" VerticalAlignment="Top" Width="224" SelectionChanged="ComboBox_SelectionChanged" RenderTransformOrigin="0.556,-1.045">
+            <ComboBoxItem Content="Przyjęty" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Odrzucony" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Brak decyzji" HorizontalAlignment="Left" Width="118" Selected="ComboBoxItem_Selected"/>
+        </ComboBox>
+        <Label Content="Uzasadnienie decyzji&#xA;" HorizontalAlignment="Left" Margin="228,34,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.316,5.769"/>
+        <TextBox HorizontalAlignment="Left" Height="88" Margin="228,66,0,0" TextWrapping="Wrap" Text="Uzasadnienie" VerticalAlignment="Top" Width="279"/>
+        <TextBox HorizontalAlignment="Left" Height="95" Margin="228,163,0,0" TextWrapping="Wrap" Text="Odpowiedź" VerticalAlignment="Top" Width="279"/>
+    </Grid>
+</Window>

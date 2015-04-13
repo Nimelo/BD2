@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Database.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseStoreContainer">
+    <EntitySet Name="Persons" EntityType="Database.Store.Persons" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Database.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Candidates" EntityType="Database.Store.Candidates" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Documents" EntityType="Database.Store.Documents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Skills" EntityType="Database.Store.Skills" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Evaluations" EntityType="Database.Store.Evaluations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Decisions" EntityType="Database.Store.Decisions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RecruitmentStages" EntityType="Database.Store.RecruitmentStages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoftSkills" EntityType="Database.Store.SoftSkills" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoftSkillsEvaluations" EntityType="Database.Store.SoftSkillsEvaluations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SkillsEvaluations" EntityType="Database.Store.SkillsEvaluations" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PersonUser" Association="Database.Store.PersonUser">
+      <End Role="Person" EntitySet="Persons" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="PersonCandidate" Association="Database.Store.PersonCandidate">
+      <End Role="Person" EntitySet="Persons" />
+      <End Role="Candidate" EntitySet="Candidates" />
+    </AssociationSet>
+    <AssociationSet Name="CandidateDocument" Association="Database.Store.CandidateDocument">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="CandidateDecision" Association="Database.Store.CandidateDecision">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Decision" EntitySet="Decisions" />
+    </AssociationSet>
+    <AssociationSet Name="EvaluationSkillsEvaluation" Association="Database.Store.EvaluationSkillsEvaluation">
+      <End Role="Evaluation" EntitySet="Evaluations" />
+      <End Role="SkillsEvaluation" EntitySet="SkillsEvaluations" />
+    </AssociationSet>
+    <AssociationSet Name="EvaluationSoftSkillsEvaluation" Association="Database.Store.EvaluationSoftSkillsEvaluation">
+      <End Role="Evaluation" EntitySet="Evaluations" />
+      <End Role="SoftSkillsEvaluation" EntitySet="SoftSkillsEvaluations" />
+    </AssociationSet>
+    <AssociationSet Name="CandidateEvaluation" Association="Database.Store.CandidateEvaluation">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="Evaluation" EntitySet="Evaluations" />
+    </AssociationSet>
+    <AssociationSet Name="CandidateRecruitmentStage" Association="Database.Store.CandidateRecruitmentStage">
+      <End Role="Candidate" EntitySet="Candidates" />
+      <End Role="RecruitmentStage" EntitySet="RecruitmentStages" />
+    </AssociationSet>
+    <AssociationSet Name="SkillsEvaluationSkill" Association="Database.Store.SkillsEvaluationSkill">
+      <End Role="SkillsEvaluation" EntitySet="SkillsEvaluations" />
+      <End Role="Skill" EntitySet="Skills" />
+    </AssociationSet>
+    <AssociationSet Name="SoftSkillsEvaluationSoftSkill" Association="Database.Store.SoftSkillsEvaluationSoftSkill">
+      <End Role="SoftSkillsEvaluation" EntitySet="SoftSkillsEvaluations" />
+      <End Role="SoftSkill" EntitySet="SoftSkills" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Persons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SurName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pesel" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="tinyint" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Candidates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CandidateId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Extension" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="tinyint" Nullable="false" />
+    <Property Name="File" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skills">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Evaluations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsEvaluated" Type="bit" Nullable="false" />
+    <Property Name="Candidate_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Decisions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="tinyint" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Reason" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CandidateId" Type="int" Nullable="false" />
+    <Property Name="Company" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecruitmentStages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mark" Type="tinyint" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Stage" Type="tinyint" Nullable="false" />
+    <Property Name="CandidateId" Type="int" Nullable="false" />
+    <Property Name="IsCurrent" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SoftSkills">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SoftSkillsEvaluations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mark" Type="tinyint" Nullable="false" />
+    <Property Name="EvaluationId" Type="int" Nullable="false" />
+    <Property Name="SoftSkillId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SkillsEvaluations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mark" Type="tinyint" Nullable="false" />
+    <Property Name="EvaluationId" Type="int" Nullable="false" />
+    <Property Name="SkillId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PersonUser">
+    <End Role="Person" Type="Database.Store.Persons" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Database.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonCandidate">
+    <End Role="Person" Type="Database.Store.Persons" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Candidate" Type="Database.Store.Candidates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Candidate">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CandidateDocument">
+    <End Role="Candidate" Type="Database.Store.Candidates" Multiplicity="1" />
+    <End Role="Document" Type="Database.Store.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="CandidateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CandidateDecision">
+    <End Role="Candidate" Type="Database.Store.Candidates" Multiplicity="1" />
+    <End Role="Decision" Type="Database.Store.Decisions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Decision">
+        <PropertyRef Name="CandidateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EvaluationSkillsEvaluation">
+    <End Role="Evaluation" Type="Database.Store.Evaluations" Multiplicity="1" />
+    <End Role="SkillsEvaluation" Type="Database.Store.SkillsEvaluations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evaluation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SkillsEvaluation">
+        <PropertyRef Name="EvaluationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EvaluationSoftSkillsEvaluation">
+    <End Role="Evaluation" Type="Database.Store.Evaluations" Multiplicity="1" />
+    <End Role="SoftSkillsEvaluation" Type="Database.Store.SoftSkillsEvaluations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evaluation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoftSkillsEvaluation">
+        <PropertyRef Name="EvaluationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CandidateEvaluation">
+    <End Role="Candidate" Type="Database.Store.Candidates" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Evaluation" Type="Database.Store.Evaluations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Evaluation">
+        <PropertyRef Name="Candidate_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CandidateRecruitmentStage">
+    <End Role="Candidate" Type="Database.Store.Candidates" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RecruitmentStage" Type="Database.Store.RecruitmentStages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RecruitmentStage">
+        <PropertyRef Name="CandidateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SkillsEvaluationSkill">
+    <End Role="SkillsEvaluation" Type="Database.Store.SkillsEvaluations" Multiplicity="*" />
+    <End Role="Skill" Type="Database.Store.Skills" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SkillsEvaluation">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SoftSkillsEvaluationSoftSkill">
+    <End Role="SoftSkillsEvaluation" Type="Database.Store.SoftSkillsEvaluations" Multiplicity="*" />
+    <End Role="SoftSkill" Type="Database.Store.SoftSkills" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="SoftSkill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoftSkillsEvaluation">
+        <PropertyRef Name="SoftSkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Database" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DatabaseContainer" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Persons" EntityType="Database.Person" />
+          <EntitySet Name="Users" EntityType="Database.User" />
+          <AssociationSet Name="PersonUser" Association="Database.PersonUser">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Candidates" EntityType="Database.Candidate" />
+          <EntitySet Name="Documents" EntityType="Database.Document" />
+          <AssociationSet Name="PersonCandidate" Association="Database.PersonCandidate">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="Candidate" EntitySet="Candidates" />
+          </AssociationSet>
+          <AssociationSet Name="CandidateDocument" Association="Database.CandidateDocument">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <EntitySet Name="Skills" EntityType="Database.Skill" />
+          <EntitySet Name="Evaluations" EntityType="Database.Evaluation" />
+          <EntitySet Name="Decisions" EntityType="Database.Decision" />
+          <AssociationSet Name="CandidateDecision" Association="Database.CandidateDecision">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="Decision" EntitySet="Decisions" />
+          </AssociationSet>
+          <EntitySet Name="RecruitmentStages" EntityType="Database.RecruitmentStage" />
+          <EntitySet Name="SoftSkills" EntityType="Database.SoftSkill" />
+          <EntitySet Name="SoftSkillsEvaluations" EntityType="Database.SoftSkillsEvaluation" />
+          <EntitySet Name="SkillsEvaluations" EntityType="Database.SkillsEvaluation" />
+          <AssociationSet Name="EvaluationSkillsEvaluation" Association="Database.EvaluationSkillsEvaluation">
+            <End Role="Evaluation" EntitySet="Evaluations" />
+            <End Role="SkillsEvaluation" EntitySet="SkillsEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="EvaluationSoftSkillsEvaluation" Association="Database.EvaluationSoftSkillsEvaluation">
+            <End Role="Evaluation" EntitySet="Evaluations" />
+            <End Role="SoftSkillsEvaluation" EntitySet="SoftSkillsEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="CandidateEvaluation" Association="Database.CandidateEvaluation">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="Evaluation" EntitySet="Evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="CandidateRecruitmentStage" Association="Database.CandidateRecruitmentStage">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="RecruitmentStage" EntitySet="RecruitmentStages" />
+          </AssociationSet>
+          <AssociationSet Name="SkillsEvaluationSkill" Association="Database.SkillsEvaluationSkill">
+            <End Role="SkillsEvaluation" EntitySet="SkillsEvaluations" />
+            <End Role="Skill" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="SoftSkillsEvaluationSoftSkill" Association="Database.SoftSkillsEvaluationSoftSkill">
+            <End Role="SoftSkillsEvaluation" EntitySet="SoftSkillsEvaluations" />
+            <End Role="SoftSkill" EntitySet="SoftSkills" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="SurName" Type="String" Nullable="false" />
+          <Property Name="Mail" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Pesel" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Database.PersonUser" FromRole="Person" ToRole="User" />
+          <NavigationProperty Name="Candidate" Relationship="Database.PersonCandidate" FromRole="Person" ToRole="Candidate" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Role" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Database.PersonUser" FromRole="User" ToRole="Person" />
+        </EntityType>
+        <Association Name="PersonUser">
+          <End Type="Database.Person" Role="Person" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Database.User" Role="User" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Candidate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Person" Relationship="Database.PersonCandidate" FromRole="Candidate" ToRole="Person" />
+          <NavigationProperty Name="Document" Relationship="Database.CandidateDocument" FromRole="Candidate" ToRole="Document" />
+          <NavigationProperty Name="Decision" Relationship="Database.CandidateDecision" FromRole="Candidate" ToRole="Decision" />
+          <NavigationProperty Name="Evaluation" Relationship="Database.CandidateEvaluation" FromRole="Candidate" ToRole="Evaluation" />
+          <NavigationProperty Name="RecruitmentStage" Relationship="Database.CandidateRecruitmentStage" FromRole="Candidate" ToRole="RecruitmentStage" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Candidate" Relationship="Database.CandidateDocument" FromRole="Document" ToRole="Candidate" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Extension" Type="String" Nullable="false" />
+          <Property Name="Type" Type="Byte" Nullable="false" />
+          <Property Name="File" Type="Binary" Nullable="false" />
+        </EntityType>
+        <Association Name="PersonCandidate">
+          <End Type="Database.Person" Role="Person" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Database.Candidate" Role="Candidate" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CandidateDocument">
+          <End Type="Database.Candidate" Role="Candidate" Multiplicity="1" />
+          <End Type="Database.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CandidateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evaluation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsEvaluated" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SkillsEvaluation" Relationship="Database.EvaluationSkillsEvaluation" FromRole="Evaluation" ToRole="SkillsEvaluation" />
+          <NavigationProperty Name="SoftSkillsEvaluation" Relationship="Database.EvaluationSoftSkillsEvaluation" FromRole="Evaluation" ToRole="SoftSkillsEvaluation" />
+          <NavigationProperty Name="Candidate" Relationship="Database.CandidateEvaluation" FromRole="Evaluation" ToRole="Candidate" />
+        </EntityType>
+        <EntityType Name="Decision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Byte" Nullable="false" />
+          <Property Name="Answer" Type="String" Nullable="true" />
+          <Property Name="Reason" Type="String" Nullable="true" />
+          <NavigationProperty Name="Candidate" Relationship="Database.CandidateDecision" FromRole="Decision" ToRole="Candidate" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="Company" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="CandidateDecision">
+          <End Type="Database.Candidate" Role="Candidate" Multiplicity="1" />
+          <End Type="Database.Decision" Role="Decision" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Decision">
+              <PropertyRef Name="CandidateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RecruitmentStage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mark" Type="Byte" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="true" />
+          <Property Name="Stage" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Candidate" Relationship="Database.CandidateRecruitmentStage" FromRole="RecruitmentStage" ToRole="Candidate" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="IsCurrent" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SoftSkill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SoftSkillsEvaluation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mark" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Evaluation" Relationship="Database.EvaluationSoftSkillsEvaluation" FromRole="SoftSkillsEvaluation" ToRole="Evaluation" />
+          <Property Name="EvaluationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SoftSkill" Relationship="Database.SoftSkillsEvaluationSoftSkill" FromRole="SoftSkillsEvaluation" ToRole="SoftSkill" />
+          <Property Name="SoftSkillId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SkillsEvaluation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mark" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Evaluation" Relationship="Database.EvaluationSkillsEvaluation" FromRole="SkillsEvaluation" ToRole="Evaluation" />
+          <Property Name="EvaluationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Skill" Relationship="Database.SkillsEvaluationSkill" FromRole="SkillsEvaluation" ToRole="Skill" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="EvaluationSkillsEvaluation">
+          <End Type="Database.Evaluation" Role="Evaluation" Multiplicity="1" >
+          </End>
+          <End Type="Database.SkillsEvaluation" Role="SkillsEvaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkillsEvaluation">
+              <PropertyRef Name="EvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EvaluationSoftSkillsEvaluation">
+          <End Type="Database.Evaluation" Role="Evaluation" Multiplicity="1" >
+          </End>
+          <End Type="Database.SoftSkillsEvaluation" Role="SoftSkillsEvaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SoftSkillsEvaluation">
+              <PropertyRef Name="EvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CandidateEvaluation">
+          <End Type="Database.Candidate" Role="Candidate" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Database.Evaluation" Role="Evaluation" Multiplicity="1" >
+          </End>
+        </Association>
+        <Association Name="CandidateRecruitmentStage">
+          <End Type="Database.Candidate" Role="Candidate" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Database.RecruitmentStage" Role="RecruitmentStage" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecruitmentStage">
+              <PropertyRef Name="CandidateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkillsEvaluationSkill">
+          <End Type="Database.SkillsEvaluation" Role="SkillsEvaluation" Multiplicity="*" />
+          <End Type="Database.Skill" Role="Skill" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkillsEvaluation">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SoftSkillsEvaluationSoftSkill">
+          <End Type="Database.SoftSkillsEvaluation" Role="SoftSkillsEvaluation" Multiplicity="*" />
+          <End Type="Database.SoftSkill" Role="SoftSkill" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="SoftSkill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SoftSkillsEvaluation">
+              <PropertyRef Name="SoftSkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseStoreContainer" CdmEntityContainer="DatabaseContainer">
+    <EntitySetMapping Name="Persons">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Person)">
+        <MappingFragment StoreEntitySet="Persons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Candidates">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Candidate)">
+        <MappingFragment StoreEntitySet="Candidates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Document)">
+        <MappingFragment StoreEntitySet="Documents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="File" ColumnName="File" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skills">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Skill)">
+        <MappingFragment StoreEntitySet="Skills">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Evaluations">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Evaluation)">
+        <MappingFragment StoreEntitySet="Evaluations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsEvaluated" ColumnName="IsEvaluated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Decisions">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Decision)">
+        <MappingFragment StoreEntitySet="Decisions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecruitmentStages">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.RecruitmentStage)">
+        <MappingFragment StoreEntitySet="RecruitmentStages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Stage" ColumnName="Stage" />
+          <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+          <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoftSkills">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.SoftSkill)">
+        <MappingFragment StoreEntitySet="SoftSkills">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoftSkillsEvaluations">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.SoftSkillsEvaluation)">
+        <MappingFragment StoreEntitySet="SoftSkillsEvaluations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="EvaluationId" ColumnName="EvaluationId" />
+          <ScalarProperty Name="SoftSkillId" ColumnName="SoftSkillId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SkillsEvaluations">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.SkillsEvaluation)">
+        <MappingFragment StoreEntitySet="SkillsEvaluations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="EvaluationId" ColumnName="EvaluationId" />
+          <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PersonUser" TypeName="Database.PersonUser" StoreEntitySet="Users">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonCandidate" TypeName="Database.PersonCandidate" StoreEntitySet="Candidates">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="Candidate">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CandidateEvaluation" TypeName="Database.CandidateEvaluation" StoreEntitySet="Evaluations">
+      <EndProperty Name="Candidate">
+        <ScalarProperty Name="Id" ColumnName="Candidate_Id" />
+      </EndProperty>
+      <EndProperty Name="Evaluation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

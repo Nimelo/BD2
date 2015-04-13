@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{60AD820D-F402-4780-BC77-0F9ECBC170B0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UI</RootNamespace>
+    <AssemblyName>UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Classes\ListsDataDevelopers\DocumentsListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\FakeAbstractListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\FakeSoftSkillsListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\FakeSkillsListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\FakeDocumentsListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\CandidateListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\SkillsListDataDeveloper.cs" />
+    <Compile Include="Classes\Templates\SkillListViewTemplate.cs" />
+    <Compile Include="Classes\Templates\SoftSkillEvaluationListViewTemplate.cs" />
+    <Compile Include="Classes\Templates\SkillEvaluationListViewTemplate.cs" />
+    <Compile Include="Classes\Templates\DocumentListViewTemplate.cs" />
+    <Compile Include="Classes\Templates\CandidateListViewTemplate.cs" />
+    <Compile Include="Components\Detailed\SkillDetails.xaml.cs">
+      <DependentUpon>SkillDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Detailed\SoftSkillEvaluation.xaml.cs">
+      <DependentUpon>SoftSkillEvaluation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Detailed\SkillEvaluation.xaml.cs">
+      <DependentUpon>SkillEvaluation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Detailed\CandidateDetails.xaml.cs">
+      <DependentUpon>CandidateDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Detailed\PersonUserDetails.xaml.cs">
+      <DependentUpon>PersonUserDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ViewModels\AbstractDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\Detailed\SkillDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\Detailed\SoftSkillEvaluationDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\Detailed\SkillEvaluationDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\Detailed\PersonDetailsViewModel.cs" />
+    <Compile Include="Service References\CandidatesServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DictionaryServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EvaluatorWindowViewModel.cs" />
+    <Compile Include="Views\EvaluatorWindow.xaml.cs">
+      <DependentUpon>EvaluatorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdministratorWindow.xaml.cs">
+      <DependentUpon>AdministratorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Column.cs" />
+    <Compile Include="Classes\ColumnConfig.cs" />
+    <Compile Include="Classes\GridViewSort.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\AbstractListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\PersonListDataDeveloper.cs" />
+    <Compile Include="Classes\RelayCommand.cs" />
+    <Compile Include="Classes\Templates\PersonListViewTemplate.cs" />
+    <Compile Include="Components\AbstractDetailsComponent.cs" />
+    <Compile Include="Components\BasicDetailsControl.xaml.cs">
+      <DependentUpon>BasicDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\BasicList.xaml.cs">
+      <DependentUpon>BasicList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Enums\ListsButtonEnum.cs" />
+    <Compile Include="Components\ViewModels\BasicListViewModel.cs" />
+    <Compile Include="Components\ViewModels\Detailed\CandidateDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\BasicDetailsControlViewModel.cs" />
+    <Compile Include="Converters\ConfigToDynamicGridViewConverter.cs" />
+    <Compile Include="Components\Enums\DetailsWindowButtonsEnum.cs" />
+    <Compile Include="Components\Enums\DetailsWindowModes.cs" />
+    <Compile Include="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Converters\TemplateConverter.cs" />
+    <Compile Include="Interfaces\IDetailsWindow.cs" />
+    <Compile Include="Managers\TaskManager.cs" />
+    <Compile Include="Managers\WindowManager.cs" />
+    <Compile Include="Service References\PersonsServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Template.cs" />
+    <Compile Include="ViewModels\AdministratorWindowViewModel.cs" />
+    <Page Include="Components\Detailed\SkillDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\Detailed\SoftSkillEvaluation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\Detailed\SkillEvaluation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\Detailed\CandidateDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\Detailed\PersonUserDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EvaluatorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AdministratorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\BasicDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\BasicList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Database.Candidate.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\CandidatesServiceReference\CandidatesService.wsdl" />
+    <None Include="Service References\CandidatesServiceReference\CandidatesService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CandidatesServiceReference\CandidatesService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CandidatesServiceReference\CandidatesService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CandidatesServiceReference\CandidatesService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CandidatesServiceReference\CandidatesService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CandidatesServiceReference\UI.CandidatesServiceReference.Candidate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DictionaryServiceReference\DictionaryService.wsdl" />
+    <None Include="Service References\DictionaryServiceReference\DictionaryService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DictionaryServiceReference\DictionaryService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DictionaryServiceReference\DictionaryService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DictionaryServiceReference\UI.DictionaryServiceReference.Skill.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DictionaryServiceReference\UI.DictionaryServiceReference.SoftSkill.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PersonsServiceReference\PersonsService.wsdl" />
+    <None Include="Service References\PersonsServiceReference\PersonsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PersonsServiceReference\PersonsService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PersonsServiceReference\PersonsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PersonsServiceReference\UI.PersonsServiceReference.Person.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\ListsDataDevelopers\Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\Xceed.Wpf.AvalonDock.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Xceed.Wpf.AvalonDock.Themes.Aero.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Xceed.Wpf.AvalonDock.Themes.Metro.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Xceed.Wpf.AvalonDock.Themes.VS2010.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Xceed.Wpf.DataGrid.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Xceed.Wpf.Toolkit.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Service References\DictionaryServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\DictionaryServiceReference\configuration.svcinfo" />
+    <None Include="Service References\DictionaryServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\DictionaryServiceReference\DictionaryService.disco" />
+    <None Include="Service References\CandidatesServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CandidatesServiceReference\configuration.svcinfo" />
+    <None Include="Service References\CandidatesServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\CandidatesServiceReference\CandidatesService.disco" />
+    <None Include="Service References\PersonsServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\PersonsServiceReference\configuration.svcinfo" />
+    <None Include="Service References\PersonsServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\PersonsServiceReference\PersonsService.disco" />
+    <Resource Include="Resources\edit_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CandidatesServiceReference\" />
+    <WCFMetadataStorage Include="Service References\DictionaryServiceReference\" />
+    <WCFMetadataStorage Include="Service References\PersonsServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{a8396f10-7169-4908-b434-a9edda667676}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

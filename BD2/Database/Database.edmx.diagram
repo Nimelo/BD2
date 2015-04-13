@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c52c6066df3144868339a5b91e3e70f7" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="Database.Person" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="Database.User" Width="1.5" PointX="4.125" PointY="1.5" />
+        <AssociationConnector Association="Database.PersonUser" />
+        <EntityTypeShape EntityType="Database.Candidate" Width="1.5" PointX="8.125" PointY="1.75" />
+        <EntityTypeShape EntityType="Database.Document" Width="1.5" PointX="12.375" PointY="0.75" />
+        <AssociationConnector Association="Database.PersonCandidate" />
+        <AssociationConnector Association="Database.CandidateDocument" />
+        <EntityTypeShape EntityType="Database.Skill" Width="1.5" PointX="7.75" PointY="8" />
+        <EntityTypeShape EntityType="Database.Evaluation" Width="1.5" PointX="6" PointY="2.125" />
+        <EntityTypeShape EntityType="Database.Decision" Width="1.5" PointX="12.375" PointY="3.875" />
+        <AssociationConnector Association="Database.CandidateDecision" />
+        <EntityTypeShape EntityType="Database.RecruitmentStage" Width="1.5" PointX="10.125" PointY="5.25" />
+        <EntityTypeShape EntityType="Database.SoftSkill" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="Database.SoftSkillsEvaluation" Width="1.5" PointX="3.5" PointY="4.5" />
+        <EntityTypeShape EntityType="Database.SkillsEvaluation" Width="1.5" PointX="5.5" PointY="5.875" />
+        <AssociationConnector Association="Database.EvaluationSkillsEvaluation" />
+        <AssociationConnector Association="Database.EvaluationSoftSkillsEvaluation" />
+        <AssociationConnector Association="Database.CandidateEvaluation" />
+        <AssociationConnector Association="Database.CandidateRecruitmentStage" />
+        <AssociationConnector Association="Database.SkillsEvaluationSkill" />
+        <AssociationConnector Association="Database.SoftSkillsEvaluationSoftSkill" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
