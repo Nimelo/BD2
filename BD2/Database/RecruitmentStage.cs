@@ -15,6 +15,7 @@ namespace Database
     
     [DataContract(IsReference = true)]
     [KnownType(typeof(Candidate))]
+    [KnownType(typeof(Stage))]
     
     public partial class RecruitmentStage
     {
@@ -25,13 +26,15 @@ namespace Database
     	[DataMember]
         public string Comment { get; set; }
     	[DataMember]
-        public byte Stage { get; set; }
-    	[DataMember]
         public int CandidateId { get; set; }
     	[DataMember]
         public bool IsCurrent { get; set; }
+    	[DataMember]
+        public int StageId { get; set; }
     
     	[DataMember]
         public virtual Candidate Candidate { get; set; }
+    	[DataMember]
+        public virtual Stage Stage { get; set; }
     }
 }

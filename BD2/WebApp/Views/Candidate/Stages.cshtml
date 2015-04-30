@@ -1,0 +1,32 @@
+﻿@model WebApp.CandidateWebServiceReference.Candidate
+
+@{
+    ViewBag.Title = "Stages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Stages</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Mark</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in @Model.RecruitmentStage)
+        {
+            <tr>
+                <td>
+                    @item.Stage.Name
+                </td>
+                <td>
+                    @item.Mark
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+

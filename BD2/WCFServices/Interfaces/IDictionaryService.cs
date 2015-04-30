@@ -43,5 +43,29 @@ namespace WCFServices
 
         [OperationContract]
         void DeleteSoftSkill(SoftSkill skill);
+
+
+        [OperationContract]
+        int SaveStage(Stage stage);
+
+        [OperationContract]
+        void DeleteStage(Stage stage);
+
+        [OperationContract]
+        int GetAmountOfStages();
+
+        [OperationContract]
+        List<Stage> GetStagesByPage(int pageNumber);
+
+        [OperationContract]
+
+        Stage GetStageById(long id);
+
+        [OperationContract]
+        List<string> GetStagesNames();
+        [OperationContract]
+        int GetStagePriorityByStageName(string name);
+
+
     }
 }

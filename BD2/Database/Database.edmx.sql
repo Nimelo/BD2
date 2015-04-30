@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/12/2015 17:10:30
+-- Date Created: 04/15/2015 11:43:33
 -- Generated from EDMX file: C:\Users\Mateusz\Documents\Visual Studio 2013\Projects\BD2\Database\Database.edmx
 -- --------------------------------------------------
 
@@ -17,17 +17,8 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_PersonUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonCandidate]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Candidates] DROP CONSTRAINT [FK_PersonCandidate];
-GO
 IF OBJECT_ID(N'[dbo].[FK_CandidateDocument]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Documents] DROP CONSTRAINT [FK_CandidateDocument];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CandidateDecision]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Decisions] DROP CONSTRAINT [FK_CandidateDecision];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EvaluationSkillsEvaluation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SkillsEvaluations] DROP CONSTRAINT [FK_EvaluationSkillsEvaluation];
@@ -41,11 +32,23 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CandidateRecruitmentStage]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RecruitmentStages] DROP CONSTRAINT [FK_CandidateRecruitmentStage];
 GO
+IF OBJECT_ID(N'[dbo].[FK_SkillsEvaluationSkill]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SkillsEvaluations] DROP CONSTRAINT [FK_SkillsEvaluationSkill];
+GO
 IF OBJECT_ID(N'[dbo].[FK_SoftSkillsEvaluationSoftSkill]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SoftSkillsEvaluations] DROP CONSTRAINT [FK_SoftSkillsEvaluationSoftSkill];
 GO
-IF OBJECT_ID(N'[dbo].[FK_SkillsEvaluationSkill]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SkillsEvaluations] DROP CONSTRAINT [FK_SkillsEvaluationSkill];
+IF OBJECT_ID(N'[dbo].[FK_RecruitmentStageStage]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RecruitmentStages] DROP CONSTRAINT [FK_RecruitmentStageStage];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CandidateDecision]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Candidates] DROP CONSTRAINT [FK_CandidateDecision];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonCandidate]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Candidates] DROP CONSTRAINT [FK_PersonCandidate];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Persons] DROP CONSTRAINT [FK_PersonUser];
 GO
 
 -- --------------------------------------------------
@@ -85,6 +88,9 @@ GO
 IF OBJECT_ID(N'[dbo].[SkillsEvaluations]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SkillsEvaluations];
 GO
+IF OBJECT_ID(N'[dbo].[Stage]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Stage];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -98,7 +104,8 @@ CREATE TABLE [dbo].[Persons] (
     [Mail] nvarchar(max)  NOT NULL,
     [Phone] nvarchar(max)  NOT NULL,
     [Address] nvarchar(max)  NOT NULL,
-    [Pesel] nvarchar(max)  NOT NULL
+    [Pesel] nvarchar(max)  NOT NULL,
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -107,15 +114,15 @@ CREATE TABLE [dbo].[Users] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Login] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
-    [Role] tinyint  NOT NULL,
-    [Person_Id] int  NOT NULL
+    [Role] tinyint  NOT NULL
 );
 GO
 
 -- Creating table 'Candidates'
 CREATE TABLE [dbo].[Candidates] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Person_Id] int  NOT NULL
+    [Person_Id] int  NOT NULL,
+    [Decision_Id] int  NOT NULL
 );
 GO
 
@@ -150,9 +157,7 @@ CREATE TABLE [dbo].[Decisions] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] tinyint  NOT NULL,
     [Answer] nvarchar(max)  NULL,
-    [Reason] nvarchar(max)  NULL,
-    [CandidateId] int  NOT NULL,
-    [Company] nvarchar(max)  NOT NULL
+    [Reason] nvarchar(max)  NULL
 );
 GO
 
@@ -161,9 +166,9 @@ CREATE TABLE [dbo].[RecruitmentStages] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Mark] tinyint  NOT NULL,
     [Comment] nvarchar(max)  NULL,
-    [Stage] tinyint  NOT NULL,
     [CandidateId] int  NOT NULL,
-    [IsCurrent] bit  NOT NULL
+    [IsCurrent] bit  NOT NULL,
+    [StageId] int  NOT NULL
 );
 GO
 
@@ -189,6 +194,14 @@ CREATE TABLE [dbo].[SkillsEvaluations] (
     [Mark] tinyint  NOT NULL,
     [EvaluationId] int  NOT NULL,
     [SkillId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Stage'
+CREATE TABLE [dbo].[Stage] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Priority] int  NOT NULL
 );
 GO
 
@@ -262,39 +275,15 @@ ADD CONSTRAINT [PK_SkillsEvaluations]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Stage'
+ALTER TABLE [dbo].[Stage]
+ADD CONSTRAINT [PK_Stage]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Person_Id] in table 'Users'
-ALTER TABLE [dbo].[Users]
-ADD CONSTRAINT [FK_PersonUser]
-    FOREIGN KEY ([Person_Id])
-    REFERENCES [dbo].[Persons]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
-CREATE INDEX [IX_FK_PersonUser]
-ON [dbo].[Users]
-    ([Person_Id]);
-GO
-
--- Creating foreign key on [Person_Id] in table 'Candidates'
-ALTER TABLE [dbo].[Candidates]
-ADD CONSTRAINT [FK_PersonCandidate]
-    FOREIGN KEY ([Person_Id])
-    REFERENCES [dbo].[Persons]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonCandidate'
-CREATE INDEX [IX_FK_PersonCandidate]
-ON [dbo].[Candidates]
-    ([Person_Id]);
-GO
 
 -- Creating foreign key on [CandidateId] in table 'Documents'
 ALTER TABLE [dbo].[Documents]
@@ -302,27 +291,12 @@ ADD CONSTRAINT [FK_CandidateDocument]
     FOREIGN KEY ([CandidateId])
     REFERENCES [dbo].[Candidates]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CandidateDocument'
 CREATE INDEX [IX_FK_CandidateDocument]
 ON [dbo].[Documents]
-    ([CandidateId]);
-GO
-
--- Creating foreign key on [CandidateId] in table 'Decisions'
-ALTER TABLE [dbo].[Decisions]
-ADD CONSTRAINT [FK_CandidateDecision]
-    FOREIGN KEY ([CandidateId])
-    REFERENCES [dbo].[Candidates]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CandidateDecision'
-CREATE INDEX [IX_FK_CandidateDecision]
-ON [dbo].[Decisions]
     ([CandidateId]);
 GO
 
@@ -332,7 +306,7 @@ ADD CONSTRAINT [FK_EvaluationSkillsEvaluation]
     FOREIGN KEY ([EvaluationId])
     REFERENCES [dbo].[Evaluations]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EvaluationSkillsEvaluation'
@@ -347,7 +321,7 @@ ADD CONSTRAINT [FK_EvaluationSoftSkillsEvaluation]
     FOREIGN KEY ([EvaluationId])
     REFERENCES [dbo].[Evaluations]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EvaluationSoftSkillsEvaluation'
@@ -392,7 +366,7 @@ ADD CONSTRAINT [FK_SkillsEvaluationSkill]
     FOREIGN KEY ([SkillId])
     REFERENCES [dbo].[Skills]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SkillsEvaluationSkill'
@@ -407,13 +381,73 @@ ADD CONSTRAINT [FK_SoftSkillsEvaluationSoftSkill]
     FOREIGN KEY ([SoftSkillId])
     REFERENCES [dbo].[SoftSkills]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SoftSkillsEvaluationSoftSkill'
 CREATE INDEX [IX_FK_SoftSkillsEvaluationSoftSkill]
 ON [dbo].[SoftSkillsEvaluations]
     ([SoftSkillId]);
+GO
+
+-- Creating foreign key on [StageId] in table 'RecruitmentStages'
+ALTER TABLE [dbo].[RecruitmentStages]
+ADD CONSTRAINT [FK_RecruitmentStageStage]
+    FOREIGN KEY ([StageId])
+    REFERENCES [dbo].[Stage]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RecruitmentStageStage'
+CREATE INDEX [IX_FK_RecruitmentStageStage]
+ON [dbo].[RecruitmentStages]
+    ([StageId]);
+GO
+
+-- Creating foreign key on [Person_Id] in table 'Candidates'
+ALTER TABLE [dbo].[Candidates]
+ADD CONSTRAINT [FK_PersonCandidate]
+    FOREIGN KEY ([Person_Id])
+    REFERENCES [dbo].[Persons]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonCandidate'
+CREATE INDEX [IX_FK_PersonCandidate]
+ON [dbo].[Candidates]
+    ([Person_Id]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'Persons'
+ALTER TABLE [dbo].[Persons]
+ADD CONSTRAINT [FK_PersonUser]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
+CREATE INDEX [IX_FK_PersonUser]
+ON [dbo].[Persons]
+    ([User_Id]);
+GO
+
+-- Creating foreign key on [Decision_Id] in table 'Candidates'
+ALTER TABLE [dbo].[Candidates]
+ADD CONSTRAINT [FK_CandidateDecision]
+    FOREIGN KEY ([Decision_Id])
+    REFERENCES [dbo].[Decisions]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CandidateDecision'
+CREATE INDEX [IX_FK_CandidateDecision]
+ON [dbo].[Candidates]
+    ([Decision_Id]);
 GO
 
 -- --------------------------------------------------

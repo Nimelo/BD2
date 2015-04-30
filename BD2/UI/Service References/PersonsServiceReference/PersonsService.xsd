@@ -19,7 +19,7 @@
   <xs:element name="Person" nillable="true" type="tns:Person" />
   <xs:complexType name="Candidate">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Decision" nillable="true" type="tns:ArrayOfDecision" />
+      <xs:element minOccurs="0" name="Decision" nillable="true" type="tns:Decision" />
       <xs:element minOccurs="0" name="Document" nillable="true" type="tns:ArrayOfDocument" />
       <xs:element minOccurs="0" name="Evaluation" nillable="true" type="tns:Evaluation" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
@@ -30,18 +30,11 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Candidate" nillable="true" type="tns:Candidate" />
-  <xs:complexType name="ArrayOfDecision">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Decision" nillable="true" type="tns:Decision" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfDecision" nillable="true" type="tns:ArrayOfDecision" />
   <xs:complexType name="Decision">
     <xs:sequence>
       <xs:element minOccurs="0" name="Answer" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Candidate" nillable="true" type="tns:Candidate" />
       <xs:element minOccurs="0" name="CandidateId" type="xs:int" />
-      <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Type" type="xs:unsignedByte" />
@@ -50,6 +43,18 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Decision" nillable="true" type="tns:Decision" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="Role" type="xs:unsignedByte" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
   <xs:complexType name="Evaluation">
     <xs:sequence>
       <xs:element minOccurs="0" name="Candidate" nillable="true" type="tns:Candidate" />
@@ -75,6 +80,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Mark" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="Skill" nillable="true" type="tns:Skill" />
+      <xs:element minOccurs="0" name="SkillId" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -84,24 +90,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SkillsEvaluation" nillable="true" type="tns:SkillsEvaluation" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Skill" nillable="true" type="tns:Skill" />
-  <xs:complexType name="User">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
-      <xs:element minOccurs="0" name="Role" type="xs:unsignedByte" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="User" nillable="true" type="tns:User" />
   <xs:complexType name="SoftSkillsEvaluation">
     <xs:sequence>
       <xs:element minOccurs="0" name="Evaluation" nillable="true" type="tns:Evaluation" />
@@ -109,6 +102,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Mark" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="SoftSkill" nillable="true" type="tns:SoftSkill" />
+      <xs:element minOccurs="0" name="SoftSkillId" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -118,26 +112,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SoftSkillsEvaluation" nillable="true" type="tns:SoftSkillsEvaluation" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="SoftSkill" nillable="true" type="tns:SoftSkill" />
-  <xs:complexType name="RecruitmentStage">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Candidate" nillable="true" type="tns:Candidate" />
-      <xs:element minOccurs="0" name="CandidateId" type="xs:int" />
-      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="IsCurrent" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Mark" type="xs:unsignedByte" />
-      <xs:element minOccurs="0" name="Stage" type="xs:unsignedByte" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="RecruitmentStage" nillable="true" type="tns:RecruitmentStage" />
   <xs:complexType name="Document">
     <xs:sequence>
       <xs:element minOccurs="0" name="Candidate" nillable="true" type="tns:Candidate" />
@@ -152,6 +131,31 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Document" nillable="true" type="tns:Document" />
+  <xs:complexType name="RecruitmentStage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Candidate" nillable="true" type="tns:Candidate" />
+      <xs:element minOccurs="0" name="CandidateId" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsCurrent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mark" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Stage" nillable="true" type="tns:Stage" />
+      <xs:element minOccurs="0" name="StageId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="RecruitmentStage" nillable="true" type="tns:RecruitmentStage" />
+  <xs:complexType name="Stage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Priority" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Stage" nillable="true" type="tns:Stage" />
   <xs:complexType name="ArrayOfSoftSkillsEvaluation">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="SoftSkillsEvaluation" nillable="true" type="tns:SoftSkillsEvaluation" />

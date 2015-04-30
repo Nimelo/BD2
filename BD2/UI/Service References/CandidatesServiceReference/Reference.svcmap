@@ -30,7 +30,6 @@
     <MetadataFile FileName="CandidatesService1.xsd" MetadataType="Schema" ID="c2845c56-30b1-4de2-a7a0-96c2dfda31b4" SourceId="1" SourceUrl="http://localhost:47521/CandidatesService.svc?xsd=xsd1" />
     <MetadataFile FileName="CandidatesService2.xsd" MetadataType="Schema" ID="3c100219-2bee-43e3-9d76-f252e8bfa0ea" SourceId="1" SourceUrl="http://localhost:47521/CandidatesService.svc?xsd=xsd2" />
     <MetadataFile FileName="CandidatesService3.xsd" MetadataType="Schema" ID="9ba67064-8c61-4956-821a-2bdcb317be4c" SourceId="1" SourceUrl="http://localhost:47521/CandidatesService.svc?xsd=xsd3" />
-    <MetadataFile FileName="CandidatesService4.xsd" MetadataType="Schema" ID="bcf75cd6-30f3-4260-92fb-fdc493e3ec4c" SourceId="1" SourceUrl="http://localhost:47521/CandidatesService.svc?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

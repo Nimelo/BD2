@@ -45,7 +45,7 @@ namespace UI.Components.Detailed
             {
                 try
                 {
-                    this.ViewModel.CurrentId = service.Add(this.ViewModel.Person);
+                    this.ViewModel.CurrentId = service.Save(this.ViewModel.Person);
                     this.CurrentId = this.ViewModel.CurrentId;
                 }
                 catch(Exception e)
@@ -78,7 +78,7 @@ namespace UI.Components.Detailed
             {
                 try
                 {
-                    service.Delete(this.ViewModel.Person);
+                    service.Delete(this.ViewModel.Person.Id);
                 }
                 catch(Exception e)
                 {

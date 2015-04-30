@@ -15,30 +15,39 @@ namespace WCFServices
     public interface ICandidatesService : IBaseService
     {
         [OperationContract]
-        int GetAmountOfRecords(CandidatesStagesEnum stage);
+        int GetCandidateIdByLogin(string login);
+        [OperationContract]
+        int GetAmountOfRecords(int stage);
+
+        [OperationContract]
+        int GetAmountOfAllRecords();
 
         [OperationContract]
         Candidate GetCandidateById(long id);
 
         [OperationContract]
-        List<Candidate> GetCandidatesByPage(int pageNumber, CandidatesStagesEnum stage);
+        Candidate GetCandidateByLogin(string login);
 
         [OperationContract]
-        void Save(Candidate candidate);
+        List<Candidate> GetCandidatesByPage(int pageNumber, int stage);
 
         [OperationContract]
-        void Delete(Candidate candidate);
+        List<Candidate> GetAllCandidatesByPage(int pageNumber);
 
         [OperationContract]
-        void Modify(Candidate candidate);
+        int Save(Candidate candidate);
+
         [OperationContract]
-        int Add(Candidate candidate);
+        void Delete(long candidateId);
 
         [OperationContract]
         List<string> GetNotUsedSkillsNames(Candidate candidate);
 
         [OperationContract]
         List<string> GetNotUsedSoftSkillsNames(Candidate candidate);
+
+        [OperationContract]
+        List<string> GetNotUsedStageNames(Candidate candidate);
 
         [OperationContract]
 
@@ -53,14 +62,25 @@ namespace WCFServices
 
         [OperationContract]
 
+        Candidate GetCandidateByRecruitmentStageId(long recruitmentStageId);
+
+        [OperationContract]
+
+        Candidate GetCandidateBySoftSkillEvaluationId(long softSkillEvaluationId);
+
+        [OperationContract]
+
         void SaveSoftSkill(SoftSkillsEvaluation skillEvaluation);
 
         [OperationContract]
 
         long AddSoftSkill(Candidate candidate, SoftSkillsEvaluation skillEvaluation, string skillName);
-        [OperationContract]
 
-        Candidate GetCandidateBySoftSkillEvaluationId(long softSkillEvaluationId);
+        [OperationContract]
+        long SaveRecriutmentStage(RecruitmentStage rs);
+
+        [OperationContract]
+        void DeleteRecriutmentStage(RecruitmentStage rs);
 
     }
 }

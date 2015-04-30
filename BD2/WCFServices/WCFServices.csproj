@@ -74,6 +74,7 @@
     <Content Include="DecisionsServices.svc" />
     <Content Include="DictionaryService.svc" />
     <Content Include="DocumentsService.svc" />
+    <Content Include="LoginService.svc" />
     <Content Include="PersonsService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -92,12 +93,16 @@
     <Compile Include="DocumentsService.svc.cs">
       <DependentUpon>DocumentsService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ILoginService.cs" />
     <Compile Include="Interfaces\IDictionaryService.cs" />
     <Compile Include="Interfaces\IBaseService.cs" />
     <Compile Include="Interfaces\ICandidatesService.cs" />
     <Compile Include="Interfaces\IDecisionsServices.cs" />
     <Compile Include="Interfaces\IDocumentsService.cs" />
     <Compile Include="Interfaces\IPersonsService.cs" />
+    <Compile Include="LoginService.svc.cs">
+      <DependentUpon>LoginService.svc</DependentUpon>
+    </Compile>
     <Compile Include="PersonsService.svc.cs">
       <DependentUpon>PersonsService.svc</DependentUpon>
     </Compile>

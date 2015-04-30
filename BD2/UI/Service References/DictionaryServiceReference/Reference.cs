@@ -135,6 +135,83 @@ namespace UI.DictionaryServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Stage", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Stage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PriorityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Priority {
+            get {
+                return this.PriorityField;
+            }
+            set {
+                if ((this.PriorityField.Equals(value) != true)) {
+                    this.PriorityField = value;
+                    this.RaisePropertyChanged("Priority");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DictionaryServiceReference.IDictionaryService")]
     public interface IDictionaryService {
@@ -204,6 +281,48 @@ namespace UI.DictionaryServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/DeleteSoftSkill", ReplyAction="http://tempuri.org/IDictionaryService/DeleteSoftSkillResponse")]
         System.Threading.Tasks.Task DeleteSoftSkillAsync(UI.DictionaryServiceReference.SoftSkill skill);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/SaveStage", ReplyAction="http://tempuri.org/IDictionaryService/SaveStageResponse")]
+        int SaveStage(UI.DictionaryServiceReference.Stage stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/SaveStage", ReplyAction="http://tempuri.org/IDictionaryService/SaveStageResponse")]
+        System.Threading.Tasks.Task<int> SaveStageAsync(UI.DictionaryServiceReference.Stage stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/DeleteStage", ReplyAction="http://tempuri.org/IDictionaryService/DeleteStageResponse")]
+        void DeleteStage(UI.DictionaryServiceReference.Stage stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/DeleteStage", ReplyAction="http://tempuri.org/IDictionaryService/DeleteStageResponse")]
+        System.Threading.Tasks.Task DeleteStageAsync(UI.DictionaryServiceReference.Stage stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetAmountOfStages", ReplyAction="http://tempuri.org/IDictionaryService/GetAmountOfStagesResponse")]
+        int GetAmountOfStages();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetAmountOfStages", ReplyAction="http://tempuri.org/IDictionaryService/GetAmountOfStagesResponse")]
+        System.Threading.Tasks.Task<int> GetAmountOfStagesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStagesByPage", ReplyAction="http://tempuri.org/IDictionaryService/GetStagesByPageResponse")]
+        System.Collections.Generic.List<UI.DictionaryServiceReference.Stage> GetStagesByPage(int pageNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStagesByPage", ReplyAction="http://tempuri.org/IDictionaryService/GetStagesByPageResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UI.DictionaryServiceReference.Stage>> GetStagesByPageAsync(int pageNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStageById", ReplyAction="http://tempuri.org/IDictionaryService/GetStageByIdResponse")]
+        UI.DictionaryServiceReference.Stage GetStageById(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStageById", ReplyAction="http://tempuri.org/IDictionaryService/GetStageByIdResponse")]
+        System.Threading.Tasks.Task<UI.DictionaryServiceReference.Stage> GetStageByIdAsync(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStagesNames", ReplyAction="http://tempuri.org/IDictionaryService/GetStagesNamesResponse")]
+        System.Collections.Generic.List<string> GetStagesNames();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStagesNames", ReplyAction="http://tempuri.org/IDictionaryService/GetStagesNamesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetStagesNamesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStagePriorityByStageName", ReplyAction="http://tempuri.org/IDictionaryService/GetStagePriorityByStageNameResponse")]
+        int GetStagePriorityByStageName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictionaryService/GetStagePriorityByStageName", ReplyAction="http://tempuri.org/IDictionaryService/GetStagePriorityByStageNameResponse")]
+        System.Threading.Tasks.Task<int> GetStagePriorityByStageNameAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -319,6 +438,62 @@ namespace UI.DictionaryServiceReference {
         
         public System.Threading.Tasks.Task DeleteSoftSkillAsync(UI.DictionaryServiceReference.SoftSkill skill) {
             return base.Channel.DeleteSoftSkillAsync(skill);
+        }
+        
+        public int SaveStage(UI.DictionaryServiceReference.Stage stage) {
+            return base.Channel.SaveStage(stage);
+        }
+        
+        public System.Threading.Tasks.Task<int> SaveStageAsync(UI.DictionaryServiceReference.Stage stage) {
+            return base.Channel.SaveStageAsync(stage);
+        }
+        
+        public void DeleteStage(UI.DictionaryServiceReference.Stage stage) {
+            base.Channel.DeleteStage(stage);
+        }
+        
+        public System.Threading.Tasks.Task DeleteStageAsync(UI.DictionaryServiceReference.Stage stage) {
+            return base.Channel.DeleteStageAsync(stage);
+        }
+        
+        public int GetAmountOfStages() {
+            return base.Channel.GetAmountOfStages();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetAmountOfStagesAsync() {
+            return base.Channel.GetAmountOfStagesAsync();
+        }
+        
+        public System.Collections.Generic.List<UI.DictionaryServiceReference.Stage> GetStagesByPage(int pageNumber) {
+            return base.Channel.GetStagesByPage(pageNumber);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<UI.DictionaryServiceReference.Stage>> GetStagesByPageAsync(int pageNumber) {
+            return base.Channel.GetStagesByPageAsync(pageNumber);
+        }
+        
+        public UI.DictionaryServiceReference.Stage GetStageById(long id) {
+            return base.Channel.GetStageById(id);
+        }
+        
+        public System.Threading.Tasks.Task<UI.DictionaryServiceReference.Stage> GetStageByIdAsync(long id) {
+            return base.Channel.GetStageByIdAsync(id);
+        }
+        
+        public System.Collections.Generic.List<string> GetStagesNames() {
+            return base.Channel.GetStagesNames();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetStagesNamesAsync() {
+            return base.Channel.GetStagesNamesAsync();
+        }
+        
+        public int GetStagePriorityByStageName(string name) {
+            return base.Channel.GetStagePriorityByStageName(name);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetStagePriorityByStageNameAsync(string name) {
+            return base.Channel.GetStagePriorityByStageNameAsync(name);
         }
     }
 }

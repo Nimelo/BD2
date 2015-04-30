@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WebApp_LoginWebServiceReference_LoginService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:47521/LoginService.svc</Value>
+    </Setting>
+    <Setting Name="WebApp_PersonWebServiceReference_PersonsService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:47521/PersonsService.svc</Value>
+    </Setting>
+    <Setting Name="WebApp_CandidateWebServiceReference_CandidatesService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:47521/CandidatesService.svc</Value>
+    </Setting>
+    <Setting Name="WebApp_DocumentWebServiceReference_DocumentsService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:47521/DocumentsService.svc</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:47521/DictionaryService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:47521/DictionaryService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:47521/DictionaryService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Database" />
+      <xsd:import schemaLocation="http://localhost:47521/DictionaryService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDictionaryService_Ping_InputMessage">
@@ -73,6 +74,48 @@
   <wsdl:message name="IDictionaryService_DeleteSoftSkill_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteSoftSkillResponse" />
   </wsdl:message>
+  <wsdl:message name="IDictionaryService_SaveStage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveStage" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_SaveStage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveStageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_DeleteStage_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStage" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_DeleteStage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetAmountOfStages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfStages" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetAmountOfStages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfStagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStagesByPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStagesByPage" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStagesByPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStagesByPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStageById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStageById" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStageById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStageByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStagesNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStagesNames" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStagesNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStagesNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStagePriorityByStageName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStagePriorityByStageName" />
+  </wsdl:message>
+  <wsdl:message name="IDictionaryService_GetStagePriorityByStageName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStagePriorityByStageNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDictionaryService">
     <wsdl:operation name="Ping">
       <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/Ping" message="tns:IDictionaryService_Ping_InputMessage" />
@@ -117,6 +160,34 @@
     <wsdl:operation name="DeleteSoftSkill">
       <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/DeleteSoftSkill" message="tns:IDictionaryService_DeleteSoftSkill_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/DeleteSoftSkillResponse" message="tns:IDictionaryService_DeleteSoftSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveStage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/SaveStage" message="tns:IDictionaryService_SaveStage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/SaveStageResponse" message="tns:IDictionaryService_SaveStage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/DeleteStage" message="tns:IDictionaryService_DeleteStage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/DeleteStageResponse" message="tns:IDictionaryService_DeleteStage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAmountOfStages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/GetAmountOfStages" message="tns:IDictionaryService_GetAmountOfStages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/GetAmountOfStagesResponse" message="tns:IDictionaryService_GetAmountOfStages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStagesByPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/GetStagesByPage" message="tns:IDictionaryService_GetStagesByPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/GetStagesByPageResponse" message="tns:IDictionaryService_GetStagesByPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStageById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/GetStageById" message="tns:IDictionaryService_GetStageById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/GetStageByIdResponse" message="tns:IDictionaryService_GetStageById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStagesNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/GetStagesNames" message="tns:IDictionaryService_GetStagesNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/GetStagesNamesResponse" message="tns:IDictionaryService_GetStagesNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStagePriorityByStageName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictionaryService/GetStagePriorityByStageName" message="tns:IDictionaryService_GetStagePriorityByStageName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictionaryService/GetStagePriorityByStageNameResponse" message="tns:IDictionaryService_GetStagePriorityByStageName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDictionaryService" type="tns:IDictionaryService">
@@ -213,6 +284,69 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteSoftSkill">
       <soap:operation soapAction="http://tempuri.org/IDictionaryService/DeleteSoftSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveStage">
+      <soap:operation soapAction="http://tempuri.org/IDictionaryService/SaveStage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStage">
+      <soap:operation soapAction="http://tempuri.org/IDictionaryService/DeleteStage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAmountOfStages">
+      <soap:operation soapAction="http://tempuri.org/IDictionaryService/GetAmountOfStages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStagesByPage">
+      <soap:operation soapAction="http://tempuri.org/IDictionaryService/GetStagesByPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStageById">
+      <soap:operation soapAction="http://tempuri.org/IDictionaryService/GetStageById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStagesNames">
+      <soap:operation soapAction="http://tempuri.org/IDictionaryService/GetStagesNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStagePriorityByStageName">
+      <soap:operation soapAction="http://tempuri.org/IDictionaryService/GetStagePriorityByStageName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

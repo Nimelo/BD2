@@ -196,7 +196,7 @@ namespace UI.PersonsServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<UI.PersonsServiceReference.Decision> DecisionField;
+        private UI.PersonsServiceReference.Decision DecisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<UI.PersonsServiceReference.Document> DocumentField;
@@ -224,7 +224,7 @@ namespace UI.PersonsServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<UI.PersonsServiceReference.Decision> Decision {
+        public UI.PersonsServiceReference.Decision Decision {
             get {
                 return this.DecisionField;
             }
@@ -422,6 +422,131 @@ namespace UI.PersonsServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Decision", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Decision : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnswerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UI.PersonsServiceReference.Candidate CandidateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CandidateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReasonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Answer {
+            get {
+                return this.AnswerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
+                    this.AnswerField = value;
+                    this.RaisePropertyChanged("Answer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UI.PersonsServiceReference.Candidate Candidate {
+            get {
+                return this.CandidateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CandidateField, value) != true)) {
+                    this.CandidateField = value;
+                    this.RaisePropertyChanged("Candidate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CandidateId {
+            get {
+                return this.CandidateIdField;
+            }
+            set {
+                if ((this.CandidateIdField.Equals(value) != true)) {
+                    this.CandidateIdField = value;
+                    this.RaisePropertyChanged("CandidateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Reason {
+            get {
+                return this.ReasonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReasonField, value) != true)) {
+                    this.ReasonField = value;
+                    this.RaisePropertyChanged("Reason");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Evaluation", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Evaluation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -515,147 +640,6 @@ namespace UI.PersonsServiceReference {
                 if ((object.ReferenceEquals(this.SoftSkillsEvaluationField, value) != true)) {
                     this.SoftSkillsEvaluationField = value;
                     this.RaisePropertyChanged("SoftSkillsEvaluation");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Decision", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
-    [System.SerializableAttribute()]
-    public partial class Decision : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AnswerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UI.PersonsServiceReference.Candidate CandidateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CandidateIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ReasonField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte TypeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Answer {
-            get {
-                return this.AnswerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
-                    this.AnswerField = value;
-                    this.RaisePropertyChanged("Answer");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UI.PersonsServiceReference.Candidate Candidate {
-            get {
-                return this.CandidateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CandidateField, value) != true)) {
-                    this.CandidateField = value;
-                    this.RaisePropertyChanged("Candidate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CandidateId {
-            get {
-                return this.CandidateIdField;
-            }
-            set {
-                if ((this.CandidateIdField.Equals(value) != true)) {
-                    this.CandidateIdField = value;
-                    this.RaisePropertyChanged("CandidateId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Company {
-            get {
-                return this.CompanyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyField, value) != true)) {
-                    this.CompanyField = value;
-                    this.RaisePropertyChanged("Company");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Reason {
-            get {
-                return this.ReasonField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ReasonField, value) != true)) {
-                    this.ReasonField = value;
-                    this.RaisePropertyChanged("Reason");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((this.TypeField.Equals(value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
                 }
             }
         }
@@ -839,7 +823,10 @@ namespace UI.PersonsServiceReference {
         private byte MarkField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte StageField;
+        private UI.PersonsServiceReference.Stage StageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StageIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -930,14 +917,27 @@ namespace UI.PersonsServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte Stage {
+        public UI.PersonsServiceReference.Stage Stage {
             get {
                 return this.StageField;
             }
             set {
-                if ((this.StageField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.StageField, value) != true)) {
                     this.StageField = value;
                     this.RaisePropertyChanged("Stage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StageId {
+            get {
+                return this.StageIdField;
+            }
+            set {
+                if ((this.StageIdField.Equals(value) != true)) {
+                    this.StageIdField = value;
+                    this.RaisePropertyChanged("StageId");
                 }
             }
         }
@@ -975,6 +975,9 @@ namespace UI.PersonsServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private UI.PersonsServiceReference.Skill SkillField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SkillIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1051,6 +1054,19 @@ namespace UI.PersonsServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SkillId {
+            get {
+                return this.SkillIdField;
+            }
+            set {
+                if ((this.SkillIdField.Equals(value) != true)) {
+                    this.SkillIdField = value;
+                    this.RaisePropertyChanged("SkillId");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1084,6 +1100,9 @@ namespace UI.PersonsServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private UI.PersonsServiceReference.SoftSkill SoftSkillField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SoftSkillIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1160,6 +1179,19 @@ namespace UI.PersonsServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SoftSkillId {
+            get {
+                return this.SoftSkillIdField;
+            }
+            set {
+                if ((this.SoftSkillIdField.Equals(value) != true)) {
+                    this.SoftSkillIdField = value;
+                    this.RaisePropertyChanged("SoftSkillId");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1184,9 +1216,6 @@ namespace UI.PersonsServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UI.PersonsServiceReference.SkillsEvaluation SkillsEvaluationField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1220,19 +1249,6 @@ namespace UI.PersonsServiceReference {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UI.PersonsServiceReference.SkillsEvaluation SkillsEvaluation {
-            get {
-                return this.SkillsEvaluationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SkillsEvaluationField, value) != true)) {
-                    this.SkillsEvaluationField = value;
-                    this.RaisePropertyChanged("SkillsEvaluation");
                 }
             }
         }
@@ -1262,8 +1278,69 @@ namespace UI.PersonsServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Stage", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Stage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UI.PersonsServiceReference.SoftSkillsEvaluation SoftSkillsEvaluationField;
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PriorityField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1302,14 +1379,14 @@ namespace UI.PersonsServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public UI.PersonsServiceReference.SoftSkillsEvaluation SoftSkillsEvaluation {
+        public int Priority {
             get {
-                return this.SoftSkillsEvaluationField;
+                return this.PriorityField;
             }
             set {
-                if ((object.ReferenceEquals(this.SoftSkillsEvaluationField, value) != true)) {
-                    this.SoftSkillsEvaluationField = value;
-                    this.RaisePropertyChanged("SoftSkillsEvaluation");
+                if ((this.PriorityField.Equals(value) != true)) {
+                    this.PriorityField = value;
+                    this.RaisePropertyChanged("Priority");
                 }
             }
         }
@@ -1353,28 +1430,16 @@ namespace UI.PersonsServiceReference {
         System.Threading.Tasks.Task<System.Collections.Generic.List<UI.PersonsServiceReference.Person>> GetPersonByPageAsync(int pageNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Save", ReplyAction="http://tempuri.org/IPersonsService/SaveResponse")]
-        void Save(UI.PersonsServiceReference.Person person);
+        int Save(UI.PersonsServiceReference.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Save", ReplyAction="http://tempuri.org/IPersonsService/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync(UI.PersonsServiceReference.Person person);
+        System.Threading.Tasks.Task<int> SaveAsync(UI.PersonsServiceReference.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Delete", ReplyAction="http://tempuri.org/IPersonsService/DeleteResponse")]
-        void Delete(UI.PersonsServiceReference.Person person);
+        void Delete(long personId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Delete", ReplyAction="http://tempuri.org/IPersonsService/DeleteResponse")]
-        System.Threading.Tasks.Task DeleteAsync(UI.PersonsServiceReference.Person person);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Modify", ReplyAction="http://tempuri.org/IPersonsService/ModifyResponse")]
-        void Modify(UI.PersonsServiceReference.Person person);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Modify", ReplyAction="http://tempuri.org/IPersonsService/ModifyResponse")]
-        System.Threading.Tasks.Task ModifyAsync(UI.PersonsServiceReference.Person person);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Add", ReplyAction="http://tempuri.org/IPersonsService/AddResponse")]
-        int Add(UI.PersonsServiceReference.Person person);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonsService/Add", ReplyAction="http://tempuri.org/IPersonsService/AddResponse")]
-        System.Threading.Tasks.Task<int> AddAsync(UI.PersonsServiceReference.Person person);
+        System.Threading.Tasks.Task DeleteAsync(long personId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1436,36 +1501,20 @@ namespace UI.PersonsServiceReference {
             return base.Channel.GetPersonByPageAsync(pageNumber);
         }
         
-        public void Save(UI.PersonsServiceReference.Person person) {
-            base.Channel.Save(person);
+        public int Save(UI.PersonsServiceReference.Person person) {
+            return base.Channel.Save(person);
         }
         
-        public System.Threading.Tasks.Task SaveAsync(UI.PersonsServiceReference.Person person) {
+        public System.Threading.Tasks.Task<int> SaveAsync(UI.PersonsServiceReference.Person person) {
             return base.Channel.SaveAsync(person);
         }
         
-        public void Delete(UI.PersonsServiceReference.Person person) {
-            base.Channel.Delete(person);
+        public void Delete(long personId) {
+            base.Channel.Delete(personId);
         }
         
-        public System.Threading.Tasks.Task DeleteAsync(UI.PersonsServiceReference.Person person) {
-            return base.Channel.DeleteAsync(person);
-        }
-        
-        public void Modify(UI.PersonsServiceReference.Person person) {
-            base.Channel.Modify(person);
-        }
-        
-        public System.Threading.Tasks.Task ModifyAsync(UI.PersonsServiceReference.Person person) {
-            return base.Channel.ModifyAsync(person);
-        }
-        
-        public int Add(UI.PersonsServiceReference.Person person) {
-            return base.Channel.Add(person);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddAsync(UI.PersonsServiceReference.Person person) {
-            return base.Channel.AddAsync(person);
+        public System.Threading.Tasks.Task DeleteAsync(long personId) {
+            return base.Channel.DeleteAsync(personId);
         }
     }
 }

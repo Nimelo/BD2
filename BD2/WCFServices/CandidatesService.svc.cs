@@ -15,23 +15,15 @@ namespace WCFServices
     // NOTE: In order to launch WCF Test Client for testing this service, please select CandidatesService.svc or CandidatesService.svc.cs at the Solution Explorer and start debugging.
     public class CandidatesService : ICandidatesService
     {
-        public int GetAmountOfRecords(CandidatesStagesEnum stage)
+        public int GetAmountOfRecords(int stage)
         {
             int amount = -1;
             try
             {
                 using(var db = new DatabaseContainer())
                 {
-                    if(stage == CandidatesStagesEnum.AllStages)
-                    {
-                        amount = db.RecruitmentStages
-                             .Where(x => x.Stage == 0).Count();
-                    }
-                    else
-                    {
-                        amount = db.RecruitmentStages
-                             .Where(x => x.Stage == (byte)stage).Count();
-                    }
+                    amount = db.RecruitmentStages.Include("Stage")
+                         .Where(x => x.Stage.Priority == stage).Count();
                 }
             }
             catch(Exception e)
@@ -41,7 +33,23 @@ namespace WCFServices
 
             return amount;
         }
+        public int GetAmountOfAllRecords()
+        {
+            int amount = -1;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    amount = db.Candidates.Count();
+                }
+            }
+            catch(Exception e)
+            {
 
+            }
+
+            return amount;
+        }
         public Candidate GetCandidateById(long id)
         {
             Candidate candidate = null;
@@ -55,6 +63,7 @@ namespace WCFServices
                         .Include("Document")
                         .Include("Decision")
                         .Include("RecruitmentStage")
+                        .Include("RecruitmentStage.Stage")
                         .Include("Evaluation")
                         .Include("Evaluation.SkillsEvaluation")
                         .Include("Evaluation.SkillsEvaluation.Skill")
@@ -72,7 +81,7 @@ namespace WCFServices
             return candidate;
         }
 
-        public List<Candidate> GetCandidatesByPage(int pageNumber, CandidatesStagesEnum stage)
+        public List<Candidate> GetCandidatesByPage(int pageNumber, int stage)
         {
             var returnList = new List<Candidate>();
             if(pageNumber <= 0)
@@ -87,10 +96,14 @@ namespace WCFServices
                         return returnList;
 
                     IQueryable<Candidate> tmp = null;
-                    if(stage == CandidatesStagesEnum.AllStages)
-                    {
-                        tmp = db.Candidates
-                     .Include("Person")
+
+                    tmp = (
+                    ( db.RecruitmentStages
+                    .Include("Candidate")
+                    .Include("Stage")
+                    .Where(x => x.Stage.Priority == stage)
+                    .Select(y => y.Candidate) ) as DbQuery<Candidate> )
+                    .Include("Person")
                     .Include("Document")
                     .Include("Decision")
                     .Include("RecruitmentStage")
@@ -101,29 +114,6 @@ namespace WCFServices
                     .Include("Evaluation.SoftSkillsEvaluation.SoftSkill")
                     .OrderBy(x => x.Id)
                     .Skip(( pageNumber - 1 ) * 10);
-
-                    }
-                    else
-                    {
-                        tmp = (
-                        ( db.RecruitmentStages
-                        .Include("Candidate")
-                        .Where(x => x.Stage == (byte)stage
-                        && x.IsCurrent == true)
-                        .Select(y => y.Candidate) ) as DbQuery<Candidate> )
-                        .Include("Person")
-                        .Include("Document")
-                        .Include("Decision")
-                        .Include("RecruitmentStage")
-                        .Include("Evaluation")
-                        .Include("Evaluation.SkillsEvaluation")
-                        .Include("Evaluation.SkillsEvaluation.Skill")
-                        .Include("Evaluation.SoftSkillsEvaluation")
-                        .Include("Evaluation.SoftSkillsEvaluation.SoftSkill")
-                        .OrderBy(x => x.Id)
-                        .Skip(( pageNumber - 1 ) * 10);
-
-                    }
 
                     tmp = tmp.Take(tmp.Count() >= 10 ? 10 : tmp.Count());
                     return tmp.ToList();
@@ -137,7 +127,7 @@ namespace WCFServices
 
         }
 
-        public void Save(Candidate candidate)
+        public int Save(Candidate candidate)
         {
             try
             {
@@ -145,7 +135,7 @@ namespace WCFServices
                 {
                     db.Candidates.Attach(candidate);
                     db.Entry(candidate).State = System.Data.Entity.EntityState.Modified;
-
+                    db.Entry(candidate.Decision).State = System.Data.Entity.EntityState.Modified;
                     foreach(var doc in candidate.Document)
                     {
                         db.Entry(doc).State = System.Data.Entity.EntityState.Modified;
@@ -168,13 +158,16 @@ namespace WCFServices
                         db.Entry(sse).State = System.Data.Entity.EntityState.Modified;
                     }
 
+                    db.SaveChanges();
+
                 }
             }
             catch(Exception e)
             {
 
-
             }
+
+            return candidate.Id;
         }
 
         public void Delete(Candidate candidate)
@@ -301,7 +294,7 @@ namespace WCFServices
 
                     db.Entry(skillEvaluation).State = System.Data.Entity.EntityState.Added;
                     db.Entry(skillEvaluation.Skill).State = System.Data.Entity.EntityState.Unchanged;
-                    db.SaveChanges();                 
+                    db.SaveChanges();
                 }
             }
             catch(Exception e)
@@ -380,5 +373,195 @@ namespace WCFServices
 
             return candidate;
         }
+
+
+        public List<Candidate> GetAllCandidatesByPage(int pageNumber)
+        {
+            var returnList = new List<Candidate>();
+            if(pageNumber <= 0)
+                return returnList;
+
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+
+                    if(( pageNumber - 1 ) * 10 > this.GetAmountOfAllRecords())
+                        return returnList;
+
+                    IQueryable<Candidate> tmp = null;
+
+                    tmp =
+                     db.Candidates
+                    .Include("Person")
+                    .Include("Document")
+                    .Include("Decision")
+                    .Include("RecruitmentStage")
+                    .Include("RecruitmentStage.Stage")
+                    .Include("Evaluation")
+                    .Include("Evaluation.SkillsEvaluation")
+                    .Include("Evaluation.SkillsEvaluation.Skill")
+                    .Include("Evaluation.SoftSkillsEvaluation")
+                    .Include("Evaluation.SoftSkillsEvaluation.SoftSkill")
+                    .OrderBy(x => x.Id)
+                    .Skip(( pageNumber - 1 ) * 10);
+
+                    tmp = tmp.Take(tmp.Count() >= 10 ? 10 : tmp.Count());
+                    return tmp.ToList();
+
+                }
+            }
+            catch(Exception e)
+            {
+                return returnList;
+            }
+        }
+
+
+        public void Delete(long candidateId)
+        {
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    db.Entry(db.Candidates.Where(x => x.Id == candidateId).First()).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                }
+            }
+            catch(Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public long SaveRecriutmentStage(RecruitmentStage rs)
+        {
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+
+                    rs.Stage = db.Stage.Where(x => x.Name == rs.Stage.Name).First();
+                    db.Entry(rs).State = rs.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return rs.Id;
+        }
+
+        public void DeleteRecriutmentStage(RecruitmentStage rs)
+        {
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    db.Entry(db.RecruitmentStages.Where(x => x.Id == rs.Id).First()).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                }
+            }
+            catch(Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public List<string> GetNotUsedStageNames(Candidate candidate)
+        {
+            List<string> returnList = new List<string>();
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    returnList = db.Stage.Select(x => x.Name)
+                        .Except(candidate.RecruitmentStage
+                                            .Select(x => x.Stage.Name))
+                                            .ToList();
+                }
+            }
+            catch(Exception e)
+            {
+                return returnList;
+            }
+
+            return returnList;
+        }
+
+
+        public Candidate GetCandidateByRecruitmentStageId(long recruitmentStageId)
+        {
+            Candidate candidate = null;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+
+                    candidate = this.GetCandidateById(db.RecruitmentStages
+                                                        .Where(x => x.Id == recruitmentStageId).First().CandidateId);
+
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return candidate;
+        }
+
+        public Candidate GetCandidateByLogin(string login)
+        {
+            Candidate candidate = null;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+
+                  int id =   db.Users
+                    .Include("Person")
+                    .Where(u => u.Login == login)
+                    .First()
+                    .Person.Id; 
+                    candidate = this.GetCandidateById(
+                        db.Candidates
+                        .Include("Person")
+                        .Where(x=> x.Person.Id == id)
+                                                    
+                        .First().Id);
+
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return candidate;
+        }
+
+        public int GetCandidateIdByLogin(string login)
+        {
+            int id = 0;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                  id = db.Users.Include("Person").Include("Person.Candidate").Where(x => x.Login == login).First().Person.Candidate.Id;
+                }
+            }
+            catch(Exception e)
+            {
+                
+            }
+
+            return id;  
+        }
+
     }
 }

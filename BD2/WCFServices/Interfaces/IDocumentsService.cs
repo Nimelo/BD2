@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,6 +13,15 @@ namespace WCFServices
     public interface IDocumentsService
     {
         [OperationContract]
-        void DoWork();
+        Document GetDocumentById(long id);
+
+        [OperationContract]
+        int SaveDocument(Document document, int candidateId, byte type);
+
+        [OperationContract]
+
+        void DeleteDocumenyById(long id);
+
+
     }
 }

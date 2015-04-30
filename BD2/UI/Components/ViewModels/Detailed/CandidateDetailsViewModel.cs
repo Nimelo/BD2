@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using UI.CandidatesServiceReference;
 using UI.Classes;
+using UI.Classes.Configurations;
 using UI.Classes.ListsDataDevelopers;
 using UI.Classes.Templates;
 using UI.Components.Detailed;
@@ -24,14 +25,20 @@ namespace UI.Components.ViewModels.Detailed
 
         public CandidateDetailsViewModel()
         {
+
             this.FakeDocumentsListDataDeveloper = new FakeDocumentsListDataDeveloper();
-            this.FakeSkillsListDataDeveloper = new FakeSkillsListDataDeveloper();
-            this.FakeSoftSkillsListDataDeveloper = new FakeSoftSkillsListDataDeveloper();
+            this.FakeSkillsEvaluationListDataDeveloper = new FakeSkillsEvaluationListDataDeveloper();
+            this.FakeSoftSkillsEvaluationListDataDeveloper = new FakeSoftSkillsEvaluationListDataDeveloper();
+            this.FakeRecruitmentStageListDataDeveloper = new FakeRecruitmentStageListDataDeveloper();
 
-
-            this.DocumentsDataContext = new BasicListViewModel<DocumentListViewTemplate>(this.FakeDocumentsListDataDeveloper, this.SkillEvaluationContextClick);
-            this.SoftSkillsDataContext = new BasicListViewModel<SoftSkillEvaluationListViewTemplate>(this.FakeSoftSkillsListDataDeveloper, this.SoftSkillEvaluationContextClick);
-            this.SkillsDataContext = new BasicListViewModel<SkillEvaluationListViewTemplate>(this.FakeSkillsListDataDeveloper, this.SkillEvaluationContextClick);
+            this.DocumentsDataContext = new BasicListViewModel<DocumentListViewTemplate>(this.FakeDocumentsListDataDeveloper,
+                            new BasicListConfiguration(false, true), this.DocumentClick);
+            this.SoftSkillsEvaluationDataContext = new BasicListViewModel<SoftSkillEvaluationListViewTemplate>(this.FakeSoftSkillsEvaluationListDataDeveloper,
+                            new BasicListConfiguration(), this.SoftSkillEvaluationContextClick);
+            this.SkillsEvaluationListDataContext = new BasicListViewModel<SkillEvaluationListViewTemplate>(this.FakeSkillsEvaluationListDataDeveloper,
+                            new BasicListConfiguration(), this.SkillEvaluationContextClick);
+            this.RecruitmentStageDataContext = new BasicListViewModel<RecruitmentStageListViewTemplate>(this.FakeRecruitmentStageListDataDeveloper,
+                            new BasicListConfiguration(), this.StageContextClick);
 
         }
         #endregion
@@ -89,17 +96,22 @@ namespace UI.Components.ViewModels.Detailed
 
         #region SoftSkills
 
-        public FakeSoftSkillsListDataDeveloper FakeSoftSkillsListDataDeveloper { get; set; }
-        public BasicListViewModel<SoftSkillEvaluationListViewTemplate> SoftSkillsDataContext { get; set; }
+        public FakeSoftSkillsEvaluationListDataDeveloper FakeSoftSkillsEvaluationListDataDeveloper { get; set; }
+        public BasicListViewModel<SoftSkillEvaluationListViewTemplate> SoftSkillsEvaluationDataContext { get; set; }
 
         #endregion
 
         #region Skills
-        public FakeSkillsListDataDeveloper FakeSkillsListDataDeveloper { get; set; }
-        public BasicListViewModel<SkillEvaluationListViewTemplate> SkillsDataContext { get; set; }
+        public FakeSkillsEvaluationListDataDeveloper FakeSkillsEvaluationListDataDeveloper { get; set; }
+        public BasicListViewModel<SkillEvaluationListViewTemplate> SkillsEvaluationListDataContext { get; set; }
 
         #endregion
 
+        #region RecruitmentStages
+        public FakeRecruitmentStageListDataDeveloper FakeRecruitmentStageListDataDeveloper { get; set; }
+
+        public BasicListViewModel<RecruitmentStageListViewTemplate> RecruitmentStageDataContext { get; set; }
+        #endregion
         #endregion
 
         #endregion
@@ -108,46 +120,91 @@ namespace UI.Components.ViewModels.Detailed
 
         private void SkillEvaluationContextClick(object obj)
         {
-            if(obj != null)
+            if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.Readonly)
             {
-                long id = (long)obj.GetType().GetField("Id").GetValue(obj);
-                WindowManager.DisplayEditableWindow(new SkillEvaluation(this.Candidate), DetailsWindowModes.Readonly, id);
+                if(( (object[])obj )[1] != null)
+                {
+                    long id = (long)( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]);
+                    WindowManager.DisplayEditableWindow(new SkillEvaluation(this.Candidate), DetailsWindowModes.Readonly, id);
+                }
             }
-            else
+            else if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.New)
             {
                 WindowManager.DisplayEditableWindow(new SkillEvaluation(this.Candidate), DetailsWindowModes.New);
             }
         }
-
+        private void StageContextClick(object obj)
+        {
+            if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.Readonly)
+            {
+                if(( (object[])obj )[1] != null)
+                {
+                    long id = (long)( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]);
+                    WindowManager.DisplayEditableWindow(new RecruitmentStageDetails(this.Candidate), DetailsWindowModes.Readonly, new BasicDetailsControlConfiguration(true,false, false, true), id);
+                }
+            }
+            else if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.New)
+            {
+                WindowManager.DisplayEditableWindow(new RecruitmentStageDetails(this.Candidate), DetailsWindowModes.New, new BasicDetailsControlConfiguration(true, false, false, true));
+            }
+        }
         private void SoftSkillEvaluationContextClick(object obj)
         {
-            if(obj != null)
+            if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.Readonly)
             {
-                long id = (long)obj.GetType().GetField("Id").GetValue(obj);
-                WindowManager.DisplayEditableWindow(new SoftSkillEvaluation(this.Candidate), DetailsWindowModes.Readonly, id);
+                if(( (object[])obj )[1] != null)
+                {
+                    long id = (long)( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]);
+                    WindowManager.DisplayEditableWindow(new SoftSkillEvaluation(this.Candidate), DetailsWindowModes.Readonly, id);
+                }
             }
-            else
+            else if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.New)
             {
                 WindowManager.DisplayEditableWindow(new SoftSkillEvaluation(this.Candidate), DetailsWindowModes.New);
+            }
+        }
+
+        private void DocumentClick(object obj)
+        {
+            if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.Readonly)
+            {
+                if(( (object[])obj )[1] != null)
+                {
+                    long id = (long)( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]);
+
+                    using(var service = new DocumentServiceReference.DocumentsServiceClient())
+                    {
+
+                        DocumentServiceReference.Document doc = service.GetDocumentById(id);
+
+                        string path = System.IO.Path.GetTempPath() + System.IO.Path.GetTempFileName() + doc.Extension;
+                        System.IO.File.WriteAllBytes(path, doc.File);
+
+                        System.Diagnostics.Process.Start(path);
+                    }
+                }
             }
         }
         #endregion
 
         public override void Refresh()
         {
+
             this.FakeDocumentsListDataDeveloper.InsertData(this.Candidate.Document);
-            this.FakeSkillsListDataDeveloper.InsertData(this.Candidate.Evaluation.SkillsEvaluation);
-            this.FakeSoftSkillsListDataDeveloper.InsertData(this.Candidate.Evaluation.SoftSkillsEvaluation);
+            this.FakeSkillsEvaluationListDataDeveloper.InsertData(this.Candidate.Evaluation.SkillsEvaluation);
+            this.FakeSoftSkillsEvaluationListDataDeveloper.InsertData(this.Candidate.Evaluation.SoftSkillsEvaluation);
+            this.FakeRecruitmentStageListDataDeveloper.InsertData(this.Candidate.RecruitmentStage);
 
             this.ChangeContentDataBackgroundOperation(() =>
-                {                 
+                {
                     this.DocumentsDataContext.Refresh();
-                    this.SoftSkillsDataContext.Refresh();
-                    this.SkillsDataContext.Refresh();
+                    this.SoftSkillsEvaluationDataContext.Refresh();
+                    this.SkillsEvaluationListDataContext.Refresh();
+                    this.RecruitmentStageDataContext.Refresh();
                 });
-           
+
         }
-        
+
         private void ChangeContentDataBackgroundOperation(Action work)
         {
             TaskManager.DoBackgroundWork(() =>
@@ -158,5 +215,6 @@ namespace UI.Components.ViewModels.Detailed
             }
             );
         }
+
     }
 }

@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using UI.Classes;
+using UI.Classes.Configurations;
 using UI.Classes.ListsDataDevelopers;
 using UI.Classes.Templates;
 using UI.Components.Enums;
@@ -34,6 +35,7 @@ namespace UI.Components.ViewModels
         public List<TemplateClass> DisplayCollection { get; set; }
 
         #region Ctors
+
         public BasicListViewModel(AbstractListDataDeveloper dd, AbstractDetailsComponent detailsClass)
         {
             this.DisplayCollection = new List<TemplateClass>();
@@ -44,9 +46,26 @@ namespace UI.Components.ViewModels
             this.AmountOfPages = (int)Math.Ceiling((double)this.DataDeveloper.GetAmountOfRecords() / 10);
             this.DisplayCollection = TemplateConverter.Convert<TemplateClass>(this.DataDeveloper.LoadData(1));
 
+            this.DetailsConfiguration = new BasicDetailsControlConfiguration();
+            this.Configuration = new BasicListConfiguration();
+
+        }
+        public BasicListViewModel(AbstractListDataDeveloper dd, AbstractDetailsComponent detailsClass, BasicListConfiguration conf, BasicDetailsControlConfiguration detailsConf)
+        {
+            this.DisplayCollection = new List<TemplateClass>();
+            this.DetailsControl = detailsClass;
+            this.DataDeveloper = dd;
+
+            this.ActualPage = 1;
+            this.AmountOfPages = (int)Math.Ceiling((double)this.DataDeveloper.GetAmountOfRecords() / 10);
+            this.DisplayCollection = TemplateConverter.Convert<TemplateClass>(this.DataDeveloper.LoadData(1));
+
+            this.DetailsConfiguration = detailsConf;
+
+            this.Configuration = conf;
         }
 
-        public BasicListViewModel(AbstractListDataDeveloper dd, Action<object> click = null)
+        public BasicListViewModel(AbstractListDataDeveloper dd, BasicListConfiguration conf, Action<object> click = null)
         {
             this.DisplayCollection = new List<TemplateClass>();
             this.DataDeveloper = dd;
@@ -57,6 +76,11 @@ namespace UI.Components.ViewModels
 
             if(click != null)
                 this._contextMenuCommand = new RelayCommand(click);
+
+            this.DetailsConfiguration = new BasicDetailsControlConfiguration();
+
+            this.Configuration = conf;
+
         }
 
 
@@ -65,8 +89,34 @@ namespace UI.Components.ViewModels
         #region Delegate
         public delegate void MenuClick(object parameter);
         #endregion
+
         #region Properites and Fields
 
+        private TemplateClass selectedItem;
+
+        public TemplateClass SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                selectedItem = value;
+                this.Notify("SelectedItem");
+            }
+        }
+
+        private BasicListConfiguration configuration;
+
+        public BasicListConfiguration Configuration
+        {
+            get { return configuration; }
+            set
+            {
+                configuration = value;
+                this.Notify("Configuration");
+            }
+        }
+
+        private BasicDetailsControlConfiguration DetailsConfiguration { get; set; }
         public AbstractDetailsComponent DetailsControl { get; set; }
         public AbstractListDataDeveloper DataDeveloper { get; set; }
 
@@ -131,15 +181,19 @@ namespace UI.Components.ViewModels
 
         public virtual void ContextMenuClick(object obj)
         {
-            if(obj != null)
+            if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.Readonly)
             {
-                long id = (long)obj.GetType().GetField("Id").GetValue(obj);
-                WindowManager.DisplayEditableWindow(this.DetailsControl, DetailsWindowModes.Readonly, id);
+                if(( (object[])obj )[1] != null)
+                {
+                    long id = (long)( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]);
+                    WindowManager.DisplayEditableWindow(this.DetailsControl, DetailsWindowModes.Readonly, this.DetailsConfiguration, id);
+                }
             }
-            else
+            else if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.New)
             {
-                WindowManager.DisplayEditableWindow(this.DetailsControl, DetailsWindowModes.New);
+                WindowManager.DisplayEditableWindow(this.DetailsControl, DetailsWindowModes.New, this.DetailsConfiguration);
             }
+
         }
 
         public virtual void NavigationClick(object obj)
@@ -185,8 +239,13 @@ namespace UI.Components.ViewModels
         {
             if(pageNumber <= 0
                     || pageNumber > this.AmountOfPages)
+            {
+                this.DisplayCollection.Clear();
+                this.Notify("DisplayCollection");
                 return;
+            }
 
+            this.DisplayCollection.Clear();
             this.DisplayCollection = TemplateConverter.Convert<TemplateClass>(this.DataDeveloper.LoadData(pageNumber));
             this.Notify("DisplayCollection");
 

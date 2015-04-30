@@ -17,6 +17,21 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -93,18 +108,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\AppCommon.cs" />
+    <Compile Include="Classes\Configurations\BasicListConfiguration.cs" />
+    <Compile Include="Classes\Configurations\BasicDetailsControlConfiguration.cs" />
     <Compile Include="Classes\ListsDataDevelopers\DocumentsListDataDeveloper.cs" />
     <Compile Include="Classes\ListsDataDevelopers\FakeAbstractListDataDeveloper.cs" />
     <Compile Include="Classes\ListsDataDevelopers\FakeSoftSkillsListDataDeveloper.cs" />
     <Compile Include="Classes\ListsDataDevelopers\FakeSkillsListDataDeveloper.cs" />
     <Compile Include="Classes\ListsDataDevelopers\FakeDocumentsListDataDeveloper.cs" />
     <Compile Include="Classes\ListsDataDevelopers\CandidateListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\FakeStageListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\StageListDataDeveloper.cs" />
+    <Compile Include="Classes\ListsDataDevelopers\SoftSkillsListDataDeveloper.cs" />
     <Compile Include="Classes\ListsDataDevelopers\SkillsListDataDeveloper.cs" />
+    <Compile Include="Classes\Templates\RecruitmentStageListViewTemplate.cs" />
+    <Compile Include="Classes\Templates\SoftSkillListViewTemplate.cs" />
     <Compile Include="Classes\Templates\SkillListViewTemplate.cs" />
     <Compile Include="Classes\Templates\SoftSkillEvaluationListViewTemplate.cs" />
     <Compile Include="Classes\Templates\SkillEvaluationListViewTemplate.cs" />
     <Compile Include="Classes\Templates\DocumentListViewTemplate.cs" />
     <Compile Include="Classes\Templates\CandidateListViewTemplate.cs" />
+    <Compile Include="Classes\Templates\StageListViewTemplate.cs" />
+    <Compile Include="Classes\UserAccessAttachedProperty.cs" />
+    <Compile Include="Components\Detailed\RecruitmentStageDetails.xaml.cs">
+      <DependentUpon>RecruitmentStageDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Detailed\StageDetails.xaml.cs">
+      <DependentUpon>StageDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Detailed\SoftSkillDetails.xaml.cs">
+      <DependentUpon>SoftSkillDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\Detailed\SkillDetails.xaml.cs">
       <DependentUpon>SkillDetails.xaml</DependentUpon>
     </Compile>
@@ -120,17 +154,35 @@
     <Compile Include="Components\Detailed\PersonUserDetails.xaml.cs">
       <DependentUpon>PersonUserDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\LoginComponent.xaml.cs">
+      <DependentUpon>LoginComponent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ViewModels\AbstractDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\Detailed\RecruitmentStageDetailsViewMode.cs" />
+    <Compile Include="Components\ViewModels\Detailed\SoftSkillDetailsViewModel.cs" />
     <Compile Include="Components\ViewModels\Detailed\SkillDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\Detailed\StageDetailsViewModel.cs" />
     <Compile Include="Components\ViewModels\Detailed\SoftSkillEvaluationDetailsViewModel.cs" />
     <Compile Include="Components\ViewModels\Detailed\SkillEvaluationDetailsViewModel.cs" />
     <Compile Include="Components\ViewModels\Detailed\PersonDetailsViewModel.cs" />
+    <Compile Include="Components\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Converters\MultiValueConverter.cs" />
     <Compile Include="Service References\CandidatesServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\DictionaryServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DocumentServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LoginServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -175,6 +227,18 @@
     </Compile>
     <Compile Include="Template.cs" />
     <Compile Include="ViewModels\AdministratorWindowViewModel.cs" />
+    <Page Include="Components\Detailed\RecruitmentStageDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\Detailed\StageDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\Detailed\SoftSkillDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Components\Detailed\SkillDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -192,6 +256,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Components\Detailed\PersonUserDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\LoginComponent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +310,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Database.Candidate.datasource" />
@@ -263,9 +332,6 @@
     <None Include="Service References\CandidatesServiceReference\CandidatesService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CandidatesServiceReference\CandidatesService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\CandidatesServiceReference\UI.CandidatesServiceReference.Candidate.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -279,11 +345,40 @@
     <None Include="Service References\DictionaryServiceReference\DictionaryService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\DictionaryServiceReference\DictionaryService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\DictionaryServiceReference\UI.DictionaryServiceReference.Skill.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\DictionaryServiceReference\UI.DictionaryServiceReference.SoftSkill.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DictionaryServiceReference\UI.DictionaryServiceReference.Stage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocumentServiceReference\DocumentsService.wsdl" />
+    <None Include="Service References\DocumentServiceReference\DocumentsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DocumentServiceReference\DocumentsService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DocumentServiceReference\DocumentsService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DocumentServiceReference\UI.DocumentServiceReference.Document.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LoginServiceReference\LoginService.wsdl" />
+    <None Include="Service References\LoginServiceReference\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginServiceReference\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginServiceReference\LoginService2.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PersonsServiceReference\PersonsService.wsdl" />
     <None Include="Service References\PersonsServiceReference\PersonsService.xsd">
@@ -324,6 +419,31 @@
     <Content Include="DLL\Xceed.Wpf.Toolkit.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\LoginServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\LoginServiceReference\configuration.svcinfo" />
+    <None Include="Service References\LoginServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\LoginServiceReference\LoginService.disco" />
+    <None Include="Service References\DocumentServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\DocumentServiceReference\configuration.svcinfo" />
+    <None Include="Service References\DocumentServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\DocumentServiceReference\DocumentsService.disco" />
+    <Resource Include="Resources\leftArrow.png" />
+    <Resource Include="Resources\refresh2.png" />
+    <Resource Include="Resources\rightArrow.png" />
+    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\1429125553_settings-24-128.png" />
+    <Resource Include="Resources\1429125557_plus-24-128.png" />
+    <Resource Include="Resources\delete.png" />
+    <Resource Include="Resources\locker.png" />
+    <Resource Include="Resources\refresh.png" />
+    <Resource Include="Resources\save.png" />
+    <Resource Include="Resources\NewEdit.bmp" />
     <None Include="Service References\DictionaryServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -353,6 +473,8 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CandidatesServiceReference\" />
     <WCFMetadataStorage Include="Service References\DictionaryServiceReference\" />
+    <WCFMetadataStorage Include="Service References\DocumentServiceReference\" />
+    <WCFMetadataStorage Include="Service References\LoginServiceReference\" />
     <WCFMetadataStorage Include="Service References\PersonsServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -360,6 +482,23 @@
       <Project>{a8396f10-7169-4908-b434-a9edda667676}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

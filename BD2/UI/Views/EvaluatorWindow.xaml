@@ -15,43 +15,42 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
+            <RowDefinition Height="auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="File"
-                      Command="{Binding MenuCommand}">
-            </MenuItem>
             <MenuItem Header="Dictionaries">
                 <MenuItem Header="Skills"
                           Command="{Binding MenuCommand}"
-                          CommandParameter="{x:Static commonEnums:DictionaryTypesEnum.Skills}">
-
-                </MenuItem>
-
+                          CommandParameter="{x:Static commonEnums:DictionaryTypesEnum.Skills}" />
                 <MenuItem Header="Soft Skills"
-                          Command="{Binding MenuCommand}">
+                          Command="{Binding MenuCommand}"
+                          CommandParameter="{x:Static commonEnums:DictionaryTypesEnum.SoftSkills}" />
 
-                </MenuItem>
+                <MenuItem Header="Stages"
+                          Command="{Binding MenuCommand}"
+                          CommandParameter="{x:Static commonEnums:DictionaryTypesEnum.Stages}" />
             </MenuItem>
         </Menu>
-
-        <DockPanel Grid.Row="1">
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label>Stage:</Label>
+                <ComboBox IsEnabled="{Binding IsEnabled}"
+                          ItemsSource="{Binding Names}"
+                          SelectedItem="{Binding Priority, Mode=TwoWay}"
+                          Width="150"></ComboBox>
+            </StackPanel>
+        </StackPanel>
+        <DockPanel Grid.Row="2">
             <TabControl>
                 <TabItem Header="All">
                     <components:BasicList   DataContext="{Binding AllCandidatesViewModel}" />
                 </TabItem>
 
-                <TabItem Header="Stage 0">
-                    <components:BasicList   DataContext="{Binding StageZeroCandidatesViewModel}" />                  
+                <TabItem Header="Stage X">
+                    <components:BasicList   DataContext="{Binding StageCandidatesViewModel}" />                  
                 </TabItem>
                 
-                <TabItem Header="Stage 1">
-                    <components:BasicList   DataContext="{Binding StageOneCandidatesViewModel}" />
-                </TabItem>
-
-                <TabItem Header="Stage 2">
-                    <components:BasicList   DataContext="{Binding StageTwoCandidatesViewModel}" />
-                </TabItem>
 
             </TabControl>
         </DockPanel>

@@ -12,7 +12,6 @@ namespace Database
     using System;
     using System.Runtime.Serialization;
     using System.Collections.Generic;
-    using System.Linq;
     
     [DataContract(IsReference = true)]
     [KnownType(typeof(SkillsEvaluation))]
@@ -23,8 +22,8 @@ namespace Database
     {
         public Evaluation()
         {
-            this.SkillsEvaluation = new HashSet<SkillsEvaluation>().ToList();
-            this.SoftSkillsEvaluation = new HashSet<SoftSkillsEvaluation>().ToList();
+            this.SkillsEvaluation = new HashSet<SkillsEvaluation>();
+            this.SoftSkillsEvaluation = new HashSet<SoftSkillsEvaluation>();
         }
     
     	[DataMember]
@@ -33,9 +32,9 @@ namespace Database
         public bool IsEvaluated { get; set; }
     
     	[DataMember]
-        public virtual List<SkillsEvaluation> SkillsEvaluation { get; set; }
+        public virtual ICollection<SkillsEvaluation> SkillsEvaluation { get; set; }
     	[DataMember]
-        public virtual List<SoftSkillsEvaluation> SoftSkillsEvaluation { get; set; }
+        public virtual ICollection<SoftSkillsEvaluation> SoftSkillsEvaluation { get; set; }
     	[DataMember]
         public virtual Candidate Candidate { get; set; }
     }

@@ -8,7 +8,7 @@ using UI.CandidatesServiceReference;
 
 namespace UI.Classes.ListsDataDevelopers
 {
-    public class FakeSkillsListDataDeveloper : FakeAbstractListDataDeveloper<SkillsEvaluation>
+    public class FakeSkillsEvaluationListDataDeveloper : FakeAbstractListDataDeveloper<SkillsEvaluation>
     {
        
     }

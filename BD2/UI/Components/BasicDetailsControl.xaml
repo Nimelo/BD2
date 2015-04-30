@@ -6,14 +6,30 @@
              xmlns:enums="clr-namespace:UI.Components.Enums"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:converters="clr-namespace:UI.Converters"
+             xmlns:access="clr-namespace:UI.Classes"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="600">
     <UserControl.Resources>
-        <Image x:Key="editNewImage"
-               Source="Resources/edit_new.png" />
+        <ResourceDictionary>
+            <BitmapImage x:Key="NewEdit"
+                         UriSource="/UI;component/Resources/edit_new.png"></BitmapImage>
 
-        <converters:InvertedBoolenConverter x:Key="InvertedBooleanConverter" />
+            <BitmapImage x:Key="Save"
+                         UriSource="/UI;component/Resources/save.png"></BitmapImage>
+
+            <BitmapImage x:Key="Delete"
+                         UriSource="/UI;component/Resources/delete.png"></BitmapImage>
+
+            <BitmapImage x:Key="Refresh"
+                         UriSource="/UI;component/Resources/refresh.png"></BitmapImage>
+
+            <BitmapImage x:Key="Close"
+                         UriSource="/UI;component/Resources/close.png"></BitmapImage>
+            <converters:InvertedBoolenConverter x:Key="InvertedBooleanConverter" />
+        </ResourceDictionary>
+
+
 
     </UserControl.Resources>
 
@@ -28,7 +44,7 @@
         </xctk:BusyIndicator.BusyContentTemplate>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="8*" />
             </Grid.RowDefinitions>
 
@@ -44,53 +60,125 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal">
                             <Button Margin="5,5,5,5"
+                                    Visibility="{Binding Configuration.IsEnableEdit}"
                                     Command="{Binding MenuCommand}"
-                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Edit}">
+                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Edit}"
+                                    access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator">
                                 <StackPanel>
-                                    <Image Source="Resources/edit_new.png" />
-                                    <TextBlock>Edit</TextBlock>
+                                    <Image Source="{ StaticResource ResourceKey=NewEdit}"
+                                           Width="70"
+                                           Height="70" />
+                                    <Label HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           Content="Edit"></Label>
                                 </StackPanel>
                             </Button>
 
                             <Button Margin="5,5,5,5"
-                                    Content="Close"
                                     Grid.Column="1"
+                                    Visibility="{Binding Configuration.IsEnableClose}"
                                     Command="{Binding MenuCommand}"
-                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Close}"></Button>
-                            
-                            <Button Margin="5,5,5,5"
-                                    Content="Delete"
-                                    Grid.Column="1"
-                                    IsEnabled="{Binding DeleteEnabled}"
-                                    Command="{Binding MenuCommand}"
-                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Delete}"></Button>
+                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Close}"
+                                    access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator">
+                                <StackPanel>
+                                    <Image Source="{ StaticResource ResourceKey=Close}"
+                                           Width="70"
+                                           Height="70" />
+                                    <Label HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           Content="Close"></Label>
+                                </StackPanel>
+                            </Button>
 
                             <Button Margin="5,5,5,5"
-                                    Content="Refresh"
+                                    Grid.Column="1"
+                                    Visibility="{Binding Configuration.IsEnableDelete}"
+                                    Command="{Binding MenuCommand}"
+                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Delete}"
+                                    access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator">
+                                <StackPanel>
+                                    <Image Source="{ StaticResource ResourceKey=Delete}"
+                                           Width="70"
+                                           Height="70" />
+                                    <Label HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           Content="Delete"></Label>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Margin="5,5,5,5"
                                     Grid.Column="1"
                                     Command="{Binding MenuCommand}"
-                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Refresh}"></Button>
+                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Refresh}"
+                                    access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator">
+                                <StackPanel>
+                                    <Image Source="{ StaticResource ResourceKey=Refresh}"
+                                           Width="70"
+                                           Height="70" />
+                                    <Label HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           Content="Refresh"></Label>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Edit"
                          IsSelected="{Binding IsSelectedEdit}"
-                        
                          Visibility="{Binding IsEdit}">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Margin="5,5,5,5"
-                                Content="Save"
-                                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"
-                                Command="{Binding MenuCommand}"
-                                CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Save}"></Button>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Margin="5,5,5,5"
+                                    Visibility="{Binding Configuration.IsEnableSave}"
+                                    Command="{Binding MenuCommand}"
+                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Save}"
+                                    access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator">
+                                <StackPanel>
+                                    <Image Source="{StaticResource ResourceKey=Save}"
+                                           Width="70"
+                                           Height="70" />
+                                    <Label HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           Content="Save"></Label>
+                                </StackPanel>
+                            </Button>
 
-                        <Button Margin="5,5,5,5"
-                                Content="Close"
-                                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"
-                                Command="{Binding MenuCommand}"
-                                CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Close}"></Button>
-
-                    </StackPanel>
+                            <Button Margin="5,5,5,5"
+                                    Visibility="{Binding Configuration.IsEnableClose}"
+                                    Command="{Binding MenuCommand}"
+                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Close}"
+                                    access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator">
+                                <StackPanel>
+                                    <Image Source="{ StaticResource ResourceKey=Close}"
+                                           Width="70"
+                                           Height="70" />
+                                    <Label HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           Content="Close"></Label>
+                                </StackPanel>
+                            </Button>
+                            <Button Margin="5,5,5,5"
+                                    Grid.Column="1"
+                                    Visibility="{Binding Configuration.IsEnableRefresh}"
+                                    Command="{Binding MenuCommand}"
+                                    CommandParameter="{x:Static enums:DetailsWindowButtonsEnum.Refresh}"
+                                    access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator">
+                                <StackPanel>
+                                    <Image Source="{ StaticResource ResourceKey=Refresh}"
+                                           Width="70"
+                                           Height="70" />
+                                    <Label HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           Content="Refresh"></Label>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
                 </TabItem>
             </TabControl>
 

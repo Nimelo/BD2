@@ -34,8 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PasswordHash">
+      <HintPath>..\packages\PasswordHash.1.1\lib\net40\PasswordHash.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -46,17 +50,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dictionaries\DocumentTypesDictionary.cs" />
+    <Compile Include="Dictionaries\RecruitmentStageMarkDictionary.cs" />
     <Compile Include="Dictionaries\SoftSkillMarkDictionary.cs" />
     <Compile Include="Dictionaries\SkillMarkDictionary.cs" />
+    <Compile Include="Dictionaries\DecisionTypesDictionary.cs" />
     <Compile Include="Dictionaries\UserRolesDictionary.cs" />
+    <Compile Include="Encryption.cs" />
     <Compile Include="Enums\CandidatesStagesEnum.cs" />
+    <Compile Include="Enums\DecisionTypesEnum.cs" />
     <Compile Include="Enums\DictionaryTypesEnum.cs" />
     <Compile Include="Enums\DocumentTypesEnum.cs" />
+    <Compile Include="Enums\RecruitmentStageMarkEnum.cs" />
     <Compile Include="Enums\SoftSkillsMarkEnum.cs" />
     <Compile Include="Enums\SkillsMarkEnum.cs" />
+    <Compile Include="Enums\UserAccess.cs" />
     <Compile Include="Enums\UserRolesEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

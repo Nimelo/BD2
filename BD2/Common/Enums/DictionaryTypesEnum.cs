@@ -9,6 +9,7 @@ namespace Common.Enums
     public enum DictionaryTypesEnum
     {
         Skills,
-        SoftSkills
+        SoftSkills,
+        Stages
     }
 }

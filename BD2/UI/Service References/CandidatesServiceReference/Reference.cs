@@ -23,7 +23,7 @@ namespace UI.CandidatesServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<UI.CandidatesServiceReference.Decision> DecisionField;
+        private UI.CandidatesServiceReference.Decision DecisionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<UI.CandidatesServiceReference.Document> DocumentField;
@@ -51,7 +51,7 @@ namespace UI.CandidatesServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<UI.CandidatesServiceReference.Decision> Decision {
+        public UI.CandidatesServiceReference.Decision Decision {
             get {
                 return this.DecisionField;
             }
@@ -124,6 +124,115 @@ namespace UI.CandidatesServiceReference {
                 if ((object.ReferenceEquals(this.RecruitmentStageField, value) != true)) {
                     this.RecruitmentStageField = value;
                     this.RaisePropertyChanged("RecruitmentStage");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Decision", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Decision : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnswerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UI.CandidatesServiceReference.Candidate CandidateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReasonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Answer {
+            get {
+                return this.AnswerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
+                    this.AnswerField = value;
+                    this.RaisePropertyChanged("Answer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UI.CandidatesServiceReference.Candidate Candidate {
+            get {
+                return this.CandidateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CandidateField, value) != true)) {
+                    this.CandidateField = value;
+                    this.RaisePropertyChanged("Candidate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Reason {
+            get {
+                return this.ReasonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReasonField, value) != true)) {
+                    this.ReasonField = value;
+                    this.RaisePropertyChanged("Reason");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
                 }
             }
         }
@@ -422,147 +531,6 @@ namespace UI.CandidatesServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Decision", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
-    [System.SerializableAttribute()]
-    public partial class Decision : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AnswerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UI.CandidatesServiceReference.Candidate CandidateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CandidateIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CompanyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ReasonField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte TypeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Answer {
-            get {
-                return this.AnswerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
-                    this.AnswerField = value;
-                    this.RaisePropertyChanged("Answer");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UI.CandidatesServiceReference.Candidate Candidate {
-            get {
-                return this.CandidateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CandidateField, value) != true)) {
-                    this.CandidateField = value;
-                    this.RaisePropertyChanged("Candidate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CandidateId {
-            get {
-                return this.CandidateIdField;
-            }
-            set {
-                if ((this.CandidateIdField.Equals(value) != true)) {
-                    this.CandidateIdField = value;
-                    this.RaisePropertyChanged("CandidateId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Company {
-            get {
-                return this.CompanyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CompanyField, value) != true)) {
-                    this.CompanyField = value;
-                    this.RaisePropertyChanged("Company");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Reason {
-            get {
-                return this.ReasonField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ReasonField, value) != true)) {
-                    this.ReasonField = value;
-                    this.RaisePropertyChanged("Reason");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((this.TypeField.Equals(value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Document", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Document : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -730,7 +698,10 @@ namespace UI.CandidatesServiceReference {
         private byte MarkField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte StageField;
+        private UI.CandidatesServiceReference.Stage StageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StageIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -821,14 +792,27 @@ namespace UI.CandidatesServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte Stage {
+        public UI.CandidatesServiceReference.Stage Stage {
             get {
                 return this.StageField;
             }
             set {
-                if ((this.StageField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.StageField, value) != true)) {
                     this.StageField = value;
                     this.RaisePropertyChanged("Stage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StageId {
+            get {
+                return this.StageIdField;
+            }
+            set {
+                if ((this.StageIdField.Equals(value) != true)) {
+                    this.StageIdField = value;
+                    this.RaisePropertyChanged("StageId");
                 }
             }
         }
@@ -1324,6 +1308,83 @@ namespace UI.CandidatesServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Stage", Namespace="http://schemas.datacontract.org/2004/07/Database", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Stage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PriorityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Priority {
+            get {
+                return this.PriorityField;
+            }
+            set {
+                if ((this.PriorityField.Equals(value) != true)) {
+                    this.PriorityField = value;
+                    this.RaisePropertyChanged("Priority");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CandidatesServiceReference.ICandidatesService")]
     public interface ICandidatesService {
@@ -1335,10 +1396,16 @@ namespace UI.CandidatesServiceReference {
         System.Threading.Tasks.Task PingAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfRecords", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfRecordsResponse")]
-        int GetAmountOfRecords(Common.Enums.CandidatesStagesEnum stage);
+        int GetAmountOfRecords(int stage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfRecords", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfRecordsResponse")]
-        System.Threading.Tasks.Task<int> GetAmountOfRecordsAsync(Common.Enums.CandidatesStagesEnum stage);
+        System.Threading.Tasks.Task<int> GetAmountOfRecordsAsync(int stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfAllRecords", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfAllRecordsResponse")]
+        int GetAmountOfAllRecords();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfAllRecords", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfAllRecordsResponse")]
+        System.Threading.Tasks.Task<int> GetAmountOfAllRecordsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateById", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateByIdResponse")]
         UI.CandidatesServiceReference.Candidate GetCandidateById(long id);
@@ -1347,34 +1414,28 @@ namespace UI.CandidatesServiceReference {
         System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateByIdAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidatesByPage", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidatesByPageResponse")]
-        System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPage(int pageNumber, Common.Enums.CandidatesStagesEnum stage);
+        System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPage(int pageNumber, int stage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidatesByPage", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidatesByPageResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageAsync(int pageNumber, Common.Enums.CandidatesStagesEnum stage);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageAsync(int pageNumber, int stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAllCandidatesByPage", ReplyAction="http://tempuri.org/ICandidatesService/GetAllCandidatesByPageResponse")]
+        System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetAllCandidatesByPage(int pageNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAllCandidatesByPage", ReplyAction="http://tempuri.org/ICandidatesService/GetAllCandidatesByPageResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetAllCandidatesByPageAsync(int pageNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Save", ReplyAction="http://tempuri.org/ICandidatesService/SaveResponse")]
-        void Save(UI.CandidatesServiceReference.Candidate candidate);
+        int Save(UI.CandidatesServiceReference.Candidate candidate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Save", ReplyAction="http://tempuri.org/ICandidatesService/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync(UI.CandidatesServiceReference.Candidate candidate);
+        System.Threading.Tasks.Task<int> SaveAsync(UI.CandidatesServiceReference.Candidate candidate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Delete", ReplyAction="http://tempuri.org/ICandidatesService/DeleteResponse")]
-        void Delete(UI.CandidatesServiceReference.Candidate candidate);
+        void Delete(long candidateId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Delete", ReplyAction="http://tempuri.org/ICandidatesService/DeleteResponse")]
-        System.Threading.Tasks.Task DeleteAsync(UI.CandidatesServiceReference.Candidate candidate);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Modify", ReplyAction="http://tempuri.org/ICandidatesService/ModifyResponse")]
-        void Modify(UI.CandidatesServiceReference.Candidate candidate);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Modify", ReplyAction="http://tempuri.org/ICandidatesService/ModifyResponse")]
-        System.Threading.Tasks.Task ModifyAsync(UI.CandidatesServiceReference.Candidate candidate);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Add", ReplyAction="http://tempuri.org/ICandidatesService/AddResponse")]
-        int Add(UI.CandidatesServiceReference.Candidate candidate);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/Add", ReplyAction="http://tempuri.org/ICandidatesService/AddResponse")]
-        System.Threading.Tasks.Task<int> AddAsync(UI.CandidatesServiceReference.Candidate candidate);
+        System.Threading.Tasks.Task DeleteAsync(long candidateId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNames", ReplyAction="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNamesResponse")]
         System.Collections.Generic.List<string> GetNotUsedSkillsNames(UI.CandidatesServiceReference.Candidate candidate);
@@ -1387,6 +1448,12 @@ namespace UI.CandidatesServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNames", ReplyAction="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNamesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetNotUsedSoftSkillsNamesAsync(UI.CandidatesServiceReference.Candidate candidate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetNotUsedStageNames", ReplyAction="http://tempuri.org/ICandidatesService/GetNotUsedStageNamesResponse")]
+        System.Collections.Generic.List<string> GetNotUsedStageNames(UI.CandidatesServiceReference.Candidate candidate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetNotUsedStageNames", ReplyAction="http://tempuri.org/ICandidatesService/GetNotUsedStageNamesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetNotUsedStageNamesAsync(UI.CandidatesServiceReference.Candidate candidate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/SaveSkill", ReplyAction="http://tempuri.org/ICandidatesService/SaveSkillResponse")]
         void SaveSkill(UI.CandidatesServiceReference.SkillsEvaluation skillEvaluation);
@@ -1406,6 +1473,20 @@ namespace UI.CandidatesServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateBySkillEvaluationId", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateBySkillEvaluationIdResponse")]
         System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateBySkillEvaluationIdAsync(long skillEvaluationId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateByRecruitmentStageId", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateByRecruitmentStageIdResponse")]
+        UI.CandidatesServiceReference.Candidate GetCandidateByRecruitmentStageId(long recruitmentStageId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateByRecruitmentStageId", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateByRecruitmentStageIdResponse")]
+        System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateByRecruitmentStageIdAsync(long recruitmentStageId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationIdResponse" +
+            "")]
+        UI.CandidatesServiceReference.Candidate GetCandidateBySoftSkillEvaluationId(long softSkillEvaluationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationIdResponse" +
+            "")]
+        System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateBySoftSkillEvaluationIdAsync(long softSkillEvaluationId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/SaveSoftSkill", ReplyAction="http://tempuri.org/ICandidatesService/SaveSoftSkillResponse")]
         void SaveSoftSkill(UI.CandidatesServiceReference.SoftSkillsEvaluation skillEvaluation);
         
@@ -1418,13 +1499,17 @@ namespace UI.CandidatesServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/AddSoftSkill", ReplyAction="http://tempuri.org/ICandidatesService/AddSoftSkillResponse")]
         System.Threading.Tasks.Task<long> AddSoftSkillAsync(UI.CandidatesServiceReference.Candidate candidate, UI.CandidatesServiceReference.SoftSkillsEvaluation skillEvaluation, string skillName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationIdResponse" +
-            "")]
-        UI.CandidatesServiceReference.Candidate GetCandidateBySoftSkillEvaluationId(long softSkillEvaluationId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/SaveRecriutmentStage", ReplyAction="http://tempuri.org/ICandidatesService/SaveRecriutmentStageResponse")]
+        long SaveRecriutmentStage(UI.CandidatesServiceReference.RecruitmentStage rs);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationIdResponse" +
-            "")]
-        System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateBySoftSkillEvaluationIdAsync(long softSkillEvaluationId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/SaveRecriutmentStage", ReplyAction="http://tempuri.org/ICandidatesService/SaveRecriutmentStageResponse")]
+        System.Threading.Tasks.Task<long> SaveRecriutmentStageAsync(UI.CandidatesServiceReference.RecruitmentStage rs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/DeleteRecriutmentStage", ReplyAction="http://tempuri.org/ICandidatesService/DeleteRecriutmentStageResponse")]
+        void DeleteRecriutmentStage(UI.CandidatesServiceReference.RecruitmentStage rs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/DeleteRecriutmentStage", ReplyAction="http://tempuri.org/ICandidatesService/DeleteRecriutmentStageResponse")]
+        System.Threading.Tasks.Task DeleteRecriutmentStageAsync(UI.CandidatesServiceReference.RecruitmentStage rs);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1462,12 +1547,20 @@ namespace UI.CandidatesServiceReference {
             return base.Channel.PingAsync();
         }
         
-        public int GetAmountOfRecords(Common.Enums.CandidatesStagesEnum stage) {
+        public int GetAmountOfRecords(int stage) {
             return base.Channel.GetAmountOfRecords(stage);
         }
         
-        public System.Threading.Tasks.Task<int> GetAmountOfRecordsAsync(Common.Enums.CandidatesStagesEnum stage) {
+        public System.Threading.Tasks.Task<int> GetAmountOfRecordsAsync(int stage) {
             return base.Channel.GetAmountOfRecordsAsync(stage);
+        }
+        
+        public int GetAmountOfAllRecords() {
+            return base.Channel.GetAmountOfAllRecords();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetAmountOfAllRecordsAsync() {
+            return base.Channel.GetAmountOfAllRecordsAsync();
         }
         
         public UI.CandidatesServiceReference.Candidate GetCandidateById(long id) {
@@ -1478,44 +1571,36 @@ namespace UI.CandidatesServiceReference {
             return base.Channel.GetCandidateByIdAsync(id);
         }
         
-        public System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPage(int pageNumber, Common.Enums.CandidatesStagesEnum stage) {
+        public System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPage(int pageNumber, int stage) {
             return base.Channel.GetCandidatesByPage(pageNumber, stage);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageAsync(int pageNumber, Common.Enums.CandidatesStagesEnum stage) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageAsync(int pageNumber, int stage) {
             return base.Channel.GetCandidatesByPageAsync(pageNumber, stage);
         }
         
-        public void Save(UI.CandidatesServiceReference.Candidate candidate) {
-            base.Channel.Save(candidate);
+        public System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetAllCandidatesByPage(int pageNumber) {
+            return base.Channel.GetAllCandidatesByPage(pageNumber);
         }
         
-        public System.Threading.Tasks.Task SaveAsync(UI.CandidatesServiceReference.Candidate candidate) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetAllCandidatesByPageAsync(int pageNumber) {
+            return base.Channel.GetAllCandidatesByPageAsync(pageNumber);
+        }
+        
+        public int Save(UI.CandidatesServiceReference.Candidate candidate) {
+            return base.Channel.Save(candidate);
+        }
+        
+        public System.Threading.Tasks.Task<int> SaveAsync(UI.CandidatesServiceReference.Candidate candidate) {
             return base.Channel.SaveAsync(candidate);
         }
         
-        public void Delete(UI.CandidatesServiceReference.Candidate candidate) {
-            base.Channel.Delete(candidate);
+        public void Delete(long candidateId) {
+            base.Channel.Delete(candidateId);
         }
         
-        public System.Threading.Tasks.Task DeleteAsync(UI.CandidatesServiceReference.Candidate candidate) {
-            return base.Channel.DeleteAsync(candidate);
-        }
-        
-        public void Modify(UI.CandidatesServiceReference.Candidate candidate) {
-            base.Channel.Modify(candidate);
-        }
-        
-        public System.Threading.Tasks.Task ModifyAsync(UI.CandidatesServiceReference.Candidate candidate) {
-            return base.Channel.ModifyAsync(candidate);
-        }
-        
-        public int Add(UI.CandidatesServiceReference.Candidate candidate) {
-            return base.Channel.Add(candidate);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddAsync(UI.CandidatesServiceReference.Candidate candidate) {
-            return base.Channel.AddAsync(candidate);
+        public System.Threading.Tasks.Task DeleteAsync(long candidateId) {
+            return base.Channel.DeleteAsync(candidateId);
         }
         
         public System.Collections.Generic.List<string> GetNotUsedSkillsNames(UI.CandidatesServiceReference.Candidate candidate) {
@@ -1532,6 +1617,14 @@ namespace UI.CandidatesServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetNotUsedSoftSkillsNamesAsync(UI.CandidatesServiceReference.Candidate candidate) {
             return base.Channel.GetNotUsedSoftSkillsNamesAsync(candidate);
+        }
+        
+        public System.Collections.Generic.List<string> GetNotUsedStageNames(UI.CandidatesServiceReference.Candidate candidate) {
+            return base.Channel.GetNotUsedStageNames(candidate);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetNotUsedStageNamesAsync(UI.CandidatesServiceReference.Candidate candidate) {
+            return base.Channel.GetNotUsedStageNamesAsync(candidate);
         }
         
         public void SaveSkill(UI.CandidatesServiceReference.SkillsEvaluation skillEvaluation) {
@@ -1558,6 +1651,22 @@ namespace UI.CandidatesServiceReference {
             return base.Channel.GetCandidateBySkillEvaluationIdAsync(skillEvaluationId);
         }
         
+        public UI.CandidatesServiceReference.Candidate GetCandidateByRecruitmentStageId(long recruitmentStageId) {
+            return base.Channel.GetCandidateByRecruitmentStageId(recruitmentStageId);
+        }
+        
+        public System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateByRecruitmentStageIdAsync(long recruitmentStageId) {
+            return base.Channel.GetCandidateByRecruitmentStageIdAsync(recruitmentStageId);
+        }
+        
+        public UI.CandidatesServiceReference.Candidate GetCandidateBySoftSkillEvaluationId(long softSkillEvaluationId) {
+            return base.Channel.GetCandidateBySoftSkillEvaluationId(softSkillEvaluationId);
+        }
+        
+        public System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateBySoftSkillEvaluationIdAsync(long softSkillEvaluationId) {
+            return base.Channel.GetCandidateBySoftSkillEvaluationIdAsync(softSkillEvaluationId);
+        }
+        
         public void SaveSoftSkill(UI.CandidatesServiceReference.SoftSkillsEvaluation skillEvaluation) {
             base.Channel.SaveSoftSkill(skillEvaluation);
         }
@@ -1574,12 +1683,20 @@ namespace UI.CandidatesServiceReference {
             return base.Channel.AddSoftSkillAsync(candidate, skillEvaluation, skillName);
         }
         
-        public UI.CandidatesServiceReference.Candidate GetCandidateBySoftSkillEvaluationId(long softSkillEvaluationId) {
-            return base.Channel.GetCandidateBySoftSkillEvaluationId(softSkillEvaluationId);
+        public long SaveRecriutmentStage(UI.CandidatesServiceReference.RecruitmentStage rs) {
+            return base.Channel.SaveRecriutmentStage(rs);
         }
         
-        public System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateBySoftSkillEvaluationIdAsync(long softSkillEvaluationId) {
-            return base.Channel.GetCandidateBySoftSkillEvaluationIdAsync(softSkillEvaluationId);
+        public System.Threading.Tasks.Task<long> SaveRecriutmentStageAsync(UI.CandidatesServiceReference.RecruitmentStage rs) {
+            return base.Channel.SaveRecriutmentStageAsync(rs);
+        }
+        
+        public void DeleteRecriutmentStage(UI.CandidatesServiceReference.RecruitmentStage rs) {
+            base.Channel.DeleteRecriutmentStage(rs);
+        }
+        
+        public System.Threading.Tasks.Task DeleteRecriutmentStageAsync(UI.CandidatesServiceReference.RecruitmentStage rs) {
+            return base.Channel.DeleteRecriutmentStageAsync(rs);
         }
     }
 }

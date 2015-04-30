@@ -9,6 +9,7 @@ using UI.Classes;
 using UI.Classes.ListsDataDevelopers;
 using UI.Classes.Templates;
 using UI.Components.Detailed;
+using UI.Components.Enums;
 using UI.Components.ViewModels;
 using UI.Managers;
 
@@ -34,26 +35,27 @@ namespace UI.ViewModels
         #region Ctors
         public AdministratorWindowViewModel()
         {
-            this.BasicListViewModel = new BasicListViewModel<PersonListViewTemplate>(new PersonListDataDeveloper(), new PersonUserDetails());
+            this.BasicListViewModel = new BasicListViewModel<PersonListViewTemplate>(new PersonListDataDeveloper(),new Classes.Configurations.BasicListConfiguration(), this.DetailsClick);
         }
 
         #endregion
 
-        #region Commands
-        ICommand _menuCommand;
-        public ICommand MenuCommand
+        private void DetailsClick(object obj)
         {
-            get
+            if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.Readonly)
             {
-                return _menuCommand ??
-                    ( _menuCommand = new RelayCommand(MenuClick) );
+                if(( (object[])obj )[1] != null)
+                {
+                    long id = (long)( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]);
+                    WindowManager.DisplayEditableWindow(new PersonUserDetails(), DetailsWindowModes.Readonly, id);
+                }
+            }
+            else if((DetailsWindowModes)( (object[])obj )[0] == DetailsWindowModes.New)
+            {
+                WindowManager.DisplayEditableWindow(new PersonUserDetails(), DetailsWindowModes.New);
             }
         }
 
-        private void MenuClick(object obj)
-        {
-            WindowManager.DisplayEditableWindow(new PersonUserDetails(), Components.Enums.DetailsWindowModes.New);
-        }
-        #endregion
+       
     }
 }

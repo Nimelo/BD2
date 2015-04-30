@@ -117,6 +117,26 @@ namespace UI.Converters
                         x
                       )));
             }
+            else if(type == typeof(DictionaryServiceReference.Stage))
+            {
+                collection.ForEach(x => templateCollection.Add(
+                  new Tuple<int, object>(
+                      ( (DictionaryServiceReference.Stage)x ).Id,
+                        x
+                      )));
+            }
+            else if(type == typeof(CandidatesServiceReference.RecruitmentStage))
+            {
+                collection.ForEach(x => templateCollection.Add(
+                   new Tuple<int, object>(
+                       ( (CandidatesServiceReference.RecruitmentStage)x ).Id,
+                       new
+                       {
+                           ( (CandidatesServiceReference.RecruitmentStage)x ).Mark,
+                           ( (CandidatesServiceReference.RecruitmentStage)x ).Stage.Name
+                       })
+                       ));
+            }
             else
             {
                 return returnList;

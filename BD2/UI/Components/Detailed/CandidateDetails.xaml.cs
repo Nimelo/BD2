@@ -25,6 +25,7 @@ namespace UI.Components.Detailed
     {
         public CandidateDetails()
         {
+            
             InitializeComponent();
             this.ViewModel = new CandidateDetailsViewModel();
             this.DataContext = this.ViewModel;
@@ -101,6 +102,7 @@ namespace UI.Components.Detailed
 
         public override void Refresh()
         {
+            this.Load();
             this.ViewModel.Refresh();           
         }
     }

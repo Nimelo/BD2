@@ -55,6 +55,7 @@ namespace WCFServices
             {
                 using(var db = new DatabaseContainer())
                 {
+
                     db.Entry(skill).State = skill.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -142,9 +143,9 @@ namespace WCFServices
             {
                 using(var db = new DatabaseContainer())
                 {
-                      var tmp = db.Skills.OrderBy(x=> x.Id).Skip((pageNumber - 1) * 10);
+                    var tmp = db.Skills.OrderBy(x => x.Id).Skip(( pageNumber - 1 ) * 10);
 
-                    returnList = tmp.Take(tmp.Count() >= 10 ? 10:tmp.Count()).ToList();
+                    returnList = tmp.Take(tmp.Count() >= 10 ? 10 : tmp.Count()).ToList();
                 }
             }
             catch(Exception e)
@@ -215,6 +216,146 @@ namespace WCFServices
             }
 
             return skill;
+        }
+
+
+        public int SaveStage(Stage stage)
+        {
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    if(stage.Id == 0)
+                    {
+                        stage.Priority = db.Stage.Count() == 0 ? 1 : db.Stage.Max(x => x.Priority) + 1;
+                    }
+
+                    db.Entry(stage).State = stage.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return stage.Id;
+        }
+
+        public void DeleteStage(Stage stage)
+        {
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    db.Entry(db.Stage.Where(x => x.Id == stage.Id).First()).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+        }
+
+        public int GetAmountOfStages()
+        {
+            int amount = 0;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    amount = db.Stage.Count();
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+            return amount;
+        }
+
+        public List<Stage> GetStagesByPage(int pageNumber)
+        {
+            List<Stage> returnList = new List<Stage>();
+            if(pageNumber <= 0)
+                return returnList;
+
+            if(( pageNumber - 1 ) * 10 > this.GetAmountOfSoftSkills())
+                return returnList;
+
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    var tmp = db.Stage.OrderBy(x => x.Id).Skip(( pageNumber - 1 ) * 10);
+
+                    returnList = tmp.Take(tmp.Count() >= 10 ? 10 : tmp.Count()).ToList();
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return returnList;
+        }
+
+
+        public Stage GetStageById(long id)
+        {
+            Stage stage = null;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    stage = db.Stage.Where(x => x.Id == id).First();
+                }
+            }
+            catch(Exception e)
+            {
+
+                throw;
+            }
+
+            return stage;
+        }
+
+
+        public List<string> GetStagesNames()
+        {
+            List<string> returnList = new List<string>();
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    returnList = db.Stage.ToList().Select(x => x.Name).ToList();
+                }
+            }
+            catch(Exception e)
+            {
+                return returnList;
+            }
+
+            return returnList;
+        }
+
+        public int GetStagePriorityByStageName(string name)
+        {
+            int returnValue = -1;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    returnValue = db.Stage.Where(x => x.Name == name).First().Priority;
+                }
+            }
+            catch(Exception e)
+            {
+                return returnValue;
+            }
+
+            return returnValue;
         }
     }
 }

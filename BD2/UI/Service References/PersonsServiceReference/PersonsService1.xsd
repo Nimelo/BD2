@@ -60,45 +60,21 @@
   </xs:element>
   <xs:element name="SaveResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveResult" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Delete">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="person" nillable="true" type="q4:Person" />
+        <xs:element minOccurs="0" name="personId" type="xs:long" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteResponse">
     <xs:complexType>
       <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Modify">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="person" nillable="true" type="q5:Person" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ModifyResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Add">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="person" nillable="true" type="q6:Person" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AddResult" type="xs:int" />
-      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

@@ -26,10 +26,6 @@ namespace Database
         public string Answer { get; set; }
     	[DataMember]
         public string Reason { get; set; }
-    	[DataMember]
-        public int CandidateId { get; set; }
-    	[DataMember]
-        public string Company { get; set; }
     
     	[DataMember]
         public virtual Candidate Candidate { get; set; }

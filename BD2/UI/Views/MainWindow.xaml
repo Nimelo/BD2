@@ -4,22 +4,25 @@
         xmlns:converters="clr-namespace:UI.Converters"
         xmlns:classes="clr-namespace:UI.Classes"
         xmlns:views="clr-namespace:UI.Views"
-        Title="MainWindow"
+        xmlns:components="clr-namespace:UI.Components"
+        Title="BD2"
         Height="350"
         Width="525">
     <Grid>
-        <TabControl>
-            <TabItem Header="Administrator">
-                <views:AdministratorWindow >
-                    
-                </views:AdministratorWindow>
-            </TabItem>
+        <Border BorderBrush="Black"
+               BorderThickness="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                <components:LoginComponent DataContext="{Binding LoginViewModel}">
+
+                </components:LoginComponent>
+                <Button Command="{Binding LoginInCommand}"
+                        Content="Log In"></Button>
             
-            <TabItem Header="Evaluator">
-                <views:EvaluatorWindow >
-                    
-                </views:EvaluatorWindow>
-            </TabItem>
-        </TabControl>
+        </StackPanel>
+        </Border>
     </Grid>
 </Window>

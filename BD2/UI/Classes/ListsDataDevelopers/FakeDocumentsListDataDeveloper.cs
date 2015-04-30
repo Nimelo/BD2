@@ -10,6 +10,6 @@ namespace UI.Classes.ListsDataDevelopers
 {
     public class FakeDocumentsListDataDeveloper : FakeAbstractListDataDeveloper<Document>
     {
-       
+
     }
 }

@@ -1,0 +1,37 @@
+﻿@model WebApp.CandidateWebServiceReference.Candidate
+
+@{
+    ViewBag.Title = "Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Documents</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Extension</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in @Model.Document)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Extension
+                </td>
+                <td>
+                    @{Common.Dictionaries.DocumentTypesDictionary.Dictionary[item.Type].ToString();
+                     
+                           }
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

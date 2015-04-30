@@ -14,18 +14,17 @@ namespace Database
     using System.Collections.Generic;
     
     [DataContract(IsReference = true)]
-    [KnownType(typeof(Person))]
     [KnownType(typeof(Document))]
-    [KnownType(typeof(Decision))]
     [KnownType(typeof(Evaluation))]
     [KnownType(typeof(RecruitmentStage))]
+    [KnownType(typeof(Person))]
+    [KnownType(typeof(Decision))]
     
     public partial class Candidate
     {
         public Candidate()
         {
             this.Document = new HashSet<Document>();
-            this.Decision = new HashSet<Decision>();
             this.RecruitmentStage = new HashSet<RecruitmentStage>();
         }
     
@@ -33,14 +32,14 @@ namespace Database
         public int Id { get; set; }
     
     	[DataMember]
-        public virtual Person Person { get; set; }
-    	[DataMember]
         public virtual ICollection<Document> Document { get; set; }
-    	[DataMember]
-        public virtual ICollection<Decision> Decision { get; set; }
     	[DataMember]
         public virtual Evaluation Evaluation { get; set; }
     	[DataMember]
         public virtual ICollection<RecruitmentStage> RecruitmentStage { get; set; }
+    	[DataMember]
+        public virtual Person Person { get; set; }
+    	[DataMember]
+        public virtual Decision Decision { get; set; }
     }
 }

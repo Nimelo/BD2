@@ -1,0 +1,53 @@
+﻿@model WebApp.PersonWebServiceReference.Person
+@{
+    ViewBag.Title = "Register";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.SurName)
+                @Html.TextBoxFor(m => m.SurName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Pesel)
+                @Html.TextBoxFor(m => m.Pesel)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Address)
+                @Html.TextBoxFor(m => m.Address)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Mail)
+                @Html.TextBoxFor(m => m.Mail)
+            </li>
+
+            <li>
+                @Html.LabelFor(m => m.User.Password)
+                @Html.PasswordFor(m => m.User.Password)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

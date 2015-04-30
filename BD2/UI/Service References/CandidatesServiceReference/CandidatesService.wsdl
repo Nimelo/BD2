@@ -4,9 +4,8 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Common.Enums" />
-      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Database" />
-      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Database" />
+      <xsd:import schemaLocation="http://localhost:47521/CandidatesService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ICandidatesService_Ping_InputMessage">
@@ -21,6 +20,12 @@
   <wsdl:message name="ICandidatesService_GetAmountOfRecords_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAmountOfRecordsResponse" />
   </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAmountOfAllRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfAllRecords" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAmountOfAllRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfAllRecordsResponse" />
+  </wsdl:message>
   <wsdl:message name="ICandidatesService_GetCandidateById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCandidateById" />
   </wsdl:message>
@@ -32,6 +37,12 @@
   </wsdl:message>
   <wsdl:message name="ICandidatesService_GetCandidatesByPage_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCandidatesByPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAllCandidatesByPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCandidatesByPage" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAllCandidatesByPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCandidatesByPageResponse" />
   </wsdl:message>
   <wsdl:message name="ICandidatesService_Save_InputMessage">
     <wsdl:part name="parameters" element="tns:Save" />
@@ -45,18 +56,6 @@
   <wsdl:message name="ICandidatesService_Delete_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteResponse" />
   </wsdl:message>
-  <wsdl:message name="ICandidatesService_Modify_InputMessage">
-    <wsdl:part name="parameters" element="tns:Modify" />
-  </wsdl:message>
-  <wsdl:message name="ICandidatesService_Modify_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyResponse" />
-  </wsdl:message>
-  <wsdl:message name="ICandidatesService_Add_InputMessage">
-    <wsdl:part name="parameters" element="tns:Add" />
-  </wsdl:message>
-  <wsdl:message name="ICandidatesService_Add_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddResponse" />
-  </wsdl:message>
   <wsdl:message name="ICandidatesService_GetNotUsedSkillsNames_InputMessage">
     <wsdl:part name="parameters" element="tns:GetNotUsedSkillsNames" />
   </wsdl:message>
@@ -68,6 +67,12 @@
   </wsdl:message>
   <wsdl:message name="ICandidatesService_GetNotUsedSoftSkillsNames_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNotUsedSoftSkillsNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetNotUsedStageNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotUsedStageNames" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetNotUsedStageNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotUsedStageNamesResponse" />
   </wsdl:message>
   <wsdl:message name="ICandidatesService_SaveSkill_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveSkill" />
@@ -87,6 +92,18 @@
   <wsdl:message name="ICandidatesService_GetCandidateBySkillEvaluationId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCandidateBySkillEvaluationIdResponse" />
   </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateByRecruitmentStageId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateByRecruitmentStageId" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateByRecruitmentStageId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateByRecruitmentStageIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateBySoftSkillEvaluationId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateBySoftSkillEvaluationId" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateBySoftSkillEvaluationId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateBySoftSkillEvaluationIdResponse" />
+  </wsdl:message>
   <wsdl:message name="ICandidatesService_SaveSoftSkill_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveSoftSkill" />
   </wsdl:message>
@@ -99,11 +116,17 @@
   <wsdl:message name="ICandidatesService_AddSoftSkill_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddSoftSkillResponse" />
   </wsdl:message>
-  <wsdl:message name="ICandidatesService_GetCandidateBySoftSkillEvaluationId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetCandidateBySoftSkillEvaluationId" />
+  <wsdl:message name="ICandidatesService_SaveRecriutmentStage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRecriutmentStage" />
   </wsdl:message>
-  <wsdl:message name="ICandidatesService_GetCandidateBySoftSkillEvaluationId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetCandidateBySoftSkillEvaluationIdResponse" />
+  <wsdl:message name="ICandidatesService_SaveRecriutmentStage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRecriutmentStageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_DeleteRecriutmentStage_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecriutmentStage" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_DeleteRecriutmentStage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecriutmentStageResponse" />
   </wsdl:message>
   <wsdl:portType name="ICandidatesService">
     <wsdl:operation name="Ping">
@@ -114,6 +137,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecords" message="tns:ICandidatesService_GetAmountOfRecords_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecordsResponse" message="tns:ICandidatesService_GetAmountOfRecords_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAmountOfAllRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfAllRecords" message="tns:ICandidatesService_GetAmountOfAllRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfAllRecordsResponse" message="tns:ICandidatesService_GetAmountOfAllRecords_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetCandidateById">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateById" message="tns:ICandidatesService_GetCandidateById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateByIdResponse" message="tns:ICandidatesService_GetCandidateById_OutputMessage" />
@@ -121,6 +148,10 @@
     <wsdl:operation name="GetCandidatesByPage">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPage" message="tns:ICandidatesService_GetCandidatesByPage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPageResponse" message="tns:ICandidatesService_GetCandidatesByPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCandidatesByPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAllCandidatesByPage" message="tns:ICandidatesService_GetAllCandidatesByPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetAllCandidatesByPageResponse" message="tns:ICandidatesService_GetAllCandidatesByPage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Save">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Save" message="tns:ICandidatesService_Save_InputMessage" />
@@ -130,14 +161,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Delete" message="tns:ICandidatesService_Delete_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/DeleteResponse" message="tns:ICandidatesService_Delete_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Modify">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Modify" message="tns:ICandidatesService_Modify_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/ModifyResponse" message="tns:ICandidatesService_Modify_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Add">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/Add" message="tns:ICandidatesService_Add_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/AddResponse" message="tns:ICandidatesService_Add_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetNotUsedSkillsNames">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNames" message="tns:ICandidatesService_GetNotUsedSkillsNames_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNamesResponse" message="tns:ICandidatesService_GetNotUsedSkillsNames_OutputMessage" />
@@ -145,6 +168,10 @@
     <wsdl:operation name="GetNotUsedSoftSkillsNames">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNames" message="tns:ICandidatesService_GetNotUsedSoftSkillsNames_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNamesResponse" message="tns:ICandidatesService_GetNotUsedSoftSkillsNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotUsedStageNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedStageNames" message="tns:ICandidatesService_GetNotUsedStageNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetNotUsedStageNamesResponse" message="tns:ICandidatesService_GetNotUsedStageNames_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SaveSkill">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/SaveSkill" message="tns:ICandidatesService_SaveSkill_InputMessage" />
@@ -158,6 +185,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySkillEvaluationId" message="tns:ICandidatesService_GetCandidateBySkillEvaluationId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySkillEvaluationIdResponse" message="tns:ICandidatesService_GetCandidateBySkillEvaluationId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateByRecruitmentStageId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateByRecruitmentStageId" message="tns:ICandidatesService_GetCandidateByRecruitmentStageId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateByRecruitmentStageIdResponse" message="tns:ICandidatesService_GetCandidateByRecruitmentStageId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateBySoftSkillEvaluationId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId" message="tns:ICandidatesService_GetCandidateBySoftSkillEvaluationId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationIdResponse" message="tns:ICandidatesService_GetCandidateBySoftSkillEvaluationId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveSoftSkill">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/SaveSoftSkill" message="tns:ICandidatesService_SaveSoftSkill_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/SaveSoftSkillResponse" message="tns:ICandidatesService_SaveSoftSkill_OutputMessage" />
@@ -166,9 +201,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/AddSoftSkill" message="tns:ICandidatesService_AddSoftSkill_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/AddSoftSkillResponse" message="tns:ICandidatesService_AddSoftSkill_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetCandidateBySoftSkillEvaluationId">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId" message="tns:ICandidatesService_GetCandidateBySoftSkillEvaluationId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationIdResponse" message="tns:ICandidatesService_GetCandidateBySoftSkillEvaluationId_OutputMessage" />
+    <wsdl:operation name="SaveRecriutmentStage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/SaveRecriutmentStage" message="tns:ICandidatesService_SaveRecriutmentStage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/SaveRecriutmentStageResponse" message="tns:ICandidatesService_SaveRecriutmentStage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecriutmentStage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/DeleteRecriutmentStage" message="tns:ICandidatesService_DeleteRecriutmentStage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/DeleteRecriutmentStageResponse" message="tns:ICandidatesService_DeleteRecriutmentStage_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICandidatesService" type="tns:ICandidatesService">
@@ -184,6 +223,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAmountOfRecords">
       <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetAmountOfRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAmountOfAllRecords">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetAmountOfAllRecords" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -209,6 +257,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllCandidatesByPage">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetAllCandidatesByPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Save">
       <soap:operation soapAction="http://tempuri.org/ICandidatesService/Save" style="document" />
       <wsdl:input>
@@ -227,24 +284,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Modify">
-      <soap:operation soapAction="http://tempuri.org/ICandidatesService/Modify" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Add">
-      <soap:operation soapAction="http://tempuri.org/ICandidatesService/Add" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetNotUsedSkillsNames">
       <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetNotUsedSkillsNames" style="document" />
       <wsdl:input>
@@ -256,6 +295,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetNotUsedSoftSkillsNames">
       <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetNotUsedSoftSkillsNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotUsedStageNames">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetNotUsedStageNames" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -290,6 +338,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateByRecruitmentStageId">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateByRecruitmentStageId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidateBySoftSkillEvaluationId">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SaveSoftSkill">
       <soap:operation soapAction="http://tempuri.org/ICandidatesService/SaveSoftSkill" style="document" />
       <wsdl:input>
@@ -308,8 +374,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetCandidateBySoftSkillEvaluationId">
-      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateBySoftSkillEvaluationId" style="document" />
+    <wsdl:operation name="SaveRecriutmentStage">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/SaveRecriutmentStage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecriutmentStage">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/DeleteRecriutmentStage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

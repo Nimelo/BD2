@@ -14,7 +14,11 @@ namespace UI.Classes.ListsDataDevelopers
             List<object> returnList;
             using(var service = new CandidatesServiceReference.CandidatesServiceClient())
             {
-                returnList = service.GetCandidatesByPage(pageNumber, (CandidatesStagesEnum)this.Parameter).Cast<object>().ToList();
+                if((int)this.Parameter == -1)
+                    returnList = service.GetAllCandidatesByPage(pageNumber).Cast<object>().ToList();
+                else
+                    returnList = service.GetCandidatesByPage(pageNumber, (int)this.Parameter).Cast<object>().ToList();
+
             }
             return returnList;
         }
@@ -29,7 +33,11 @@ namespace UI.Classes.ListsDataDevelopers
             int returnValue;
             using(var service = new CandidatesServiceReference.CandidatesServiceClient())
             {
-                returnValue = service.GetAmountOfRecords((CandidatesStagesEnum)this.Parameter);
+                if((int)this.Parameter == -1)
+                    returnValue = service.GetAmountOfAllRecords();
+                else
+                    returnValue = service.GetAmountOfRecords((int)this.Parameter);
+
             }
 
             return returnValue;
@@ -42,10 +50,10 @@ namespace UI.Classes.ListsDataDevelopers
 
         public CandidateListDataDeveloper()
         {
-            this.Parameter = CandidatesStagesEnum.AllStages;
+            this.Parameter = -1;
         }
 
-        public CandidateListDataDeveloper(CandidatesStagesEnum parameter)
+        public CandidateListDataDeveloper(int parameter)
         {
             this.Parameter = parameter;
         }

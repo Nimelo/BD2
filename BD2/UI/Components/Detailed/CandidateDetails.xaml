@@ -16,7 +16,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Name"
                                Width="70"></Label>
-                        <TextBox IsEnabled="{Binding IsEnabled}"
+                        <TextBox IsEnabled="False"
                                  Text="{Binding Candidate.Person.Name}"
                                  Width="150"></TextBox>
 
@@ -25,7 +25,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="SurName"
                                Width="70"></Label>
-                        <TextBox IsEnabled="{Binding IsEnabled}"
+                        <TextBox IsEnabled="False"
                                  Text="{Binding Candidate.Person.SurName}"
                                  Width="150"></TextBox>
                     </StackPanel>
@@ -33,7 +33,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Pesel"
                                Width="70"></Label>
-                        <TextBox IsEnabled="{Binding IsEnabled}"
+                        <TextBox IsEnabled="False"
                                  Text="{Binding Candidate.Person.Pesel}"
                                  Width="150"></TextBox>
 
@@ -41,14 +41,14 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Phone"
                                Width="70"></Label>
-                        <TextBox IsEnabled="{Binding IsEnabled}"
+                        <TextBox IsEnabled="False"
                                  Text="{Binding Candidate.Person.Phone}"
                                  Width="150"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Address"
                                Width="70"></Label>
-                        <TextBox IsEnabled="{Binding IsEnabled}"
+                        <TextBox IsEnabled="False"
                                  Text="{Binding Candidate.Person.Address}"
                                  Width="150"></TextBox>
 
@@ -56,7 +56,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Mail"
                                Width="70"></Label>
-                        <TextBox IsEnabled="{Binding IsEnabled}"
+                        <TextBox IsEnabled="False"
                                  Text="{Binding Candidate.Person.Mail}"
                                  Width="150"></TextBox>
                     </StackPanel>
@@ -69,33 +69,56 @@
 
             </TabItem>
 
-            <TabItem Header="Evaluation"
-                     IsSelected="{Binding IsEvaluationTabSelected}">
+            <TabItem Header="Evaluation">
                 <TabControl>
                     <TabItem Header="SoftSkills">
-                        <components:BasicList DataContext="{Binding SoftSkillsDataContext}" />
+                        <components:BasicList DataContext="{Binding SoftSkillsEvaluationDataContext}" />
 
                     </TabItem>
-                    
+
                     <TabItem Header="Skills">
-                        <components:BasicList DataContext="{Binding SkillsDataContext}" />
+                        <components:BasicList DataContext="{Binding SkillsEvaluationListDataContext}" />
                     </TabItem>
                 </TabControl>
-               
+
             </TabItem>
 
-            <TabItem Header="Documents"
-                     IsSelected="{Binding IsDocumentsTabSelected}">
+            <TabItem Header="Documents">
                 <components:BasicList DataContext="{Binding DocumentsDataContext}" />
             </TabItem>
 
-            <TabItem Header="Decisions">
+            <TabItem Header="Decision">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="70"
+                               Content="Type"></Label>
+                        <ComboBox Width="150"
+                                  IsEnabled="{Binding IsEnabled}"
+                                  ItemsSource="{Binding Source={x:Static dictionaries:DecisionTypesDictionary.Dictionary}}"
+                                  SelectedIndex="{Binding  Candidate.Decision.Type}"
+                                  DisplayMemberPath="Value"></ComboBox>
 
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Answer"
+                               Width="70"></Label>
+                        <TextBox IsEnabled="{Binding IsEnabled}"
+                                 Text="{Binding Candidate.Decision.Answer}"
+                                 Width="150"></TextBox>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Reason"
+                               Width="70"></Label>
+                        <TextBox IsEnabled="{Binding IsEnabled}"
+                                 Text="{Binding Candidate.Decision.Reason}"
+                                 Width="150"></TextBox>
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
 
             <TabItem Header="Stages">
-
-
+                <components:BasicList DataContext="{Binding RecruitmentStageDataContext}" />
             </TabItem>
         </TabControl>
     </Grid>

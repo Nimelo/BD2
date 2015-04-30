@@ -23,14 +23,13 @@ namespace WCFServices
         List<Person> GetPersonByPage(int pageNumber);
 
         [OperationContract]
-        void Save(Person person);
+        int Save(Person person);
 
         [OperationContract]
-        void Delete(Person person);
+        int SaveC(Person person);
 
         [OperationContract]
-        void Modify(Person person);
-        [OperationContract]
-        int Add(Person person);
+        void Delete(long personId);
+
     }
 }

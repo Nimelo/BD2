@@ -1,0 +1,61 @@
+﻿@model WebApp.DocumentWebServiceReference.Document
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using(Html.BeginForm("Edit", "Document", FormMethod.Post,
+      new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit Document</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.File)
+                <input id="input-1" type="file" class="file" name="file1">
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Type)
+                @{
+
+    List<object> nL = new List<object>();
+
+
+    foreach(var item in Common.Dictionaries.DocumentTypesDictionary.Dictionary.Keys)
+    {
+        nL.Add(new
+            {
+                Value = item,
+                Text = Common.Dictionaries.DocumentTypesDictionary.Dictionary[item]
+            });
+    }
+
+                }
+
+                @Html.DropDownListFor(m => m.Type, new SelectList(Common.Dictionaries.DocumentTypesDictionary.Dictionary, "Key", "Value"));
+
+
+
+            </li>
+
+        </ol>
+        <input type="submit" value="Create" />
+    </fieldset>
+}
+
+<div>
+    <span class="label-danger"> @Html.ActionLink("Back to List", "Index")</span>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

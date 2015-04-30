@@ -14,8 +14,8 @@ namespace Database
     using System.Collections.Generic;
     
     [DataContract(IsReference = true)]
-    [KnownType(typeof(User))]
     [KnownType(typeof(Candidate))]
+    [KnownType(typeof(User))]
     
     public partial class Person
     {
@@ -35,8 +35,8 @@ namespace Database
         public string Pesel { get; set; }
     
     	[DataMember]
-        public virtual User User { get; set; }
-    	[DataMember]
         public virtual Candidate Candidate { get; set; }
+    	[DataMember]
+        public virtual User User { get; set; }
     }
 }

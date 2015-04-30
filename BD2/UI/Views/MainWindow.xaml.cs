@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.Views;
+using UI.ViewModels;
+using UI.Classes;
+using UI.Components.ViewModels;
 
 namespace UI
 {
@@ -22,8 +26,36 @@ namespace UI
     {
         public MainWindow()
         {
+            this.MainWindowViewModel = new MainWindowViewModel();
+            this.MainWindowViewModel.Event += MainWindowViewModel_Event;
             InitializeComponent();
-          //  this.DataContext = new MainWindowViewModel();
+            this.DataContext = this.MainWindowViewModel;
         }
+
+        void MainWindowViewModel_Event(Common.Enums.UserAccess access)
+        {
+            switch(access)
+            {
+                case Common.Enums.UserAccess.Administrator:
+                    this.Content = new AdministratorWindow();
+                    this.DataContext = new AdministratorWindowViewModel();
+                    break;
+                case Common.Enums.UserAccess.Evaluator:
+                    this.Content = new EvaluatorWindow();
+                    this.DataContext = new EvaluatorWindowViewModel();
+                    break;
+                case Common.Enums.UserAccess.Intern:
+                    this.Content = new EvaluatorWindow();
+                    this.DataContext = new EvaluatorWindowViewModel();
+                    break;
+                default:
+                    break;
+            }
+
+            AppCommon.LoggedUserAccess = access;
+        }
+
+        public MainWindowViewModel MainWindowViewModel { get; set; }
+
     }
 }

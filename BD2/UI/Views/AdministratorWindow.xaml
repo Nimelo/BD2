@@ -12,17 +12,7 @@
 
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
-            <MenuItem Header="Add New Person"
-                      Command="{Binding MenuCommand}">
-                
-            </MenuItem>
-        </Menu>
-        <components:BasicList Grid.Row="1"
+        <components:BasicList 
             DataContext="{Binding BasicListViewModel}"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch">

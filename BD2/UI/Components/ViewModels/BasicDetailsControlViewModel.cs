@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using UI.Classes;
+using UI.Classes.Configurations;
 using UI.Components.Enums;
 using UI.Managers;
 
@@ -88,7 +89,7 @@ namespace UI.Components.ViewModels
 
         #region Ctors
 
-        public BasicDetailsControlViewModel(AbstractDetailsComponent uc, DetailsWindowModes mode, long id, bool DeleteEnabled = true)
+        public BasicDetailsControlViewModel(AbstractDetailsComponent uc, DetailsWindowModes mode, long id, BasicDetailsControlConfiguration configuration)
         {
             this.ContentControl = uc;
             this.ActualMode = mode;
@@ -98,12 +99,25 @@ namespace UI.Components.ViewModels
             this.CurrentId = id;
             this.CurrentMode = mode;
             this.DeleteEnabled = DeleteEnabled;
+            this.Configuration = configuration;
 
         }
 
         #endregion
 
         #region Properties and Fields
+
+        private BasicDetailsControlConfiguration basicDetailsControlConfiguration;
+
+        public BasicDetailsControlConfiguration Configuration
+        {
+            get { return basicDetailsControlConfiguration; }
+            set
+            {
+                basicDetailsControlConfiguration = value;
+                this.Notify("Configuration");
+            }
+        }
 
         public long CurrentId { get; set; }
 

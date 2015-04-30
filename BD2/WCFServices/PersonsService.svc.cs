@@ -26,11 +26,9 @@ namespace WCFServices
                 {
                     person = db.Persons.Include("User")
                         .Include("Candidate")
-                        .Include("Candidate.Evaluation")
-                        .Include("Candidate.RecruitmentStage")
-                        .Include("Candidate.Evaluation.SoftSkillsEvaluation")
-                        .Include("Candidate.Evaluation.SkillsEvaluation")
                         .Where(x => x.Id == id).Single();
+
+                    person.User.Password = string.Empty;
                 }
             }
             catch(Exception e)
@@ -57,10 +55,6 @@ namespace WCFServices
 
                     var tmp = db.Persons.Include("User")
                         .Include("Candidate")
-                        .Include("Candidate.Evaluation")
-                        .Include("Candidate.RecruitmentStage")
-                        .Include("Candidate.Evaluation.SoftSkillsEvaluation")
-                        .Include("Candidate.Evaluation.SkillsEvaluation")
                         .OrderBy(x => x.Id).Skip(( pageNumber - 1 ) * 10);
                     tmp = tmp.Take(tmp.Count() >= 10 ? 10 : tmp.Count());
                     return tmp.ToList();
@@ -95,147 +89,172 @@ namespace WCFServices
 
 
 
-
-        public void Save(Person person)
+        public int Save(Person person)
         {
-            using(var db = new DatabaseContainer())
+            try
             {
-                try
+                using(var db = new DatabaseContainer())
                 {
-                    db.Persons.Attach(person);
-                    db.Entry(person).State = System.Data.Entity.EntityState.Modified;
-                    db.Users.Attach(person.User);
-                    db.Entry(person.User).State = System.Data.Entity.EntityState.Modified;
+                    System.Data.Entity.EntityState state = person.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
+
+                    db.Entry(person).State = state;
+                    db.Entry(person.User).State = state;
+
+                    if(state == System.Data.Entity.EntityState.Added)
+                    {
+                        person.User.Password = Common.Encryption.Encrypt(person.User.Password);
+                    }
+                    else
+                    {
+                        if(person.User.Password != string.Empty)
+                        {
+                            person.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
+                        }
+                    }
 
                     if((UserRolesEnum)person.User.Role == UserRolesEnum.Candidate)
                     {
                         if(person.Candidate == null)
                         {
-                            db.Candidates.Attach(person.Candidate = new Candidate()
-                            {
-                                RecruitmentStage = new List<RecruitmentStage>()
-                                {     
-                                    new RecruitmentStage(){
-                                    Mark = 0,
-                                    Stage = 0,
-                                    IsCurrent = true
-                                    }
-                                },
-
-                                Evaluation = new Evaluation()
+                            db.Entry(new Candidate()
                                 {
-                                    IsEvaluated = false
-                                }
-                            });
+                                    Person = person,
+                                    Evaluation = new Evaluation(),
+                                    Decision = new Decision()
+                                    {
+                                        Type = (byte)DecisionTypesEnum.DuringEvaluation
+                                    }
 
-                            db.Entry(person.Candidate).State = System.Data.Entity.EntityState.Added;
-                            db.Entry(person.Candidate.Evaluation).State = System.Data.Entity.EntityState.Added;
-                            db.Entry(person.Candidate.RecruitmentStage.First()).State = System.Data.Entity.EntityState.Added;
+                                }).State = System.Data.Entity.EntityState.Added;
+                        }
+                        else
+                        {
+                            db.Entry(person.Candidate).State = state;
                         }
                     }
                     else
                     {
-
                         if(person.Candidate != null)
                         {
-                            db.RecruitmentStages.RemoveRange(db.RecruitmentStages.Where(x => x.CandidateId == person.Candidate.Id));
+                            Candidate c = db.Candidates
+                                            .Include("Evaluation")
+                                            .Include("Decision").Where(x => x.Id == person.Candidate.Id).First();
+                         
+                            db.Entry(c.Evaluation).State = System.Data.Entity.EntityState.Deleted;
 
-                            db.Evaluations.Attach(db.Evaluations.Include("Candidate").Where(x=> x.Candidate.Id == person.Candidate.Id).First());
-                            db.Entry(person.Candidate.Evaluation).State = System.Data.Entity.EntityState.Deleted;
+                            db.Entry(c.Decision).State = System.Data.Entity.EntityState.Deleted;
 
-                            db.Candidates.Attach(person.Candidate);
-                            db.Entry(person.Candidate).State = System.Data.Entity.EntityState.Deleted;
+                            db.Entry(c).State = System.Data.Entity.EntityState.Deleted;
                         }
                     }
 
                     db.SaveChanges();
                 }
-                catch(Exception e)
-                {
-
-                }
             }
+            catch(Exception e)
+            {
+
+            }
+
+            return person.Id;
         }
 
-        public void Delete(Person person)
+        public int SaveC(Person person)
         {
-            using(var db = new DatabaseContainer())
+            try
             {
-                try
+                person.User.Role = (byte)UserRolesEnum.Candidate;
+                using(var db = new DatabaseContainer())
                 {
-                    db.Persons.Attach(person);
-                    db.Users.Remove(person.User);
-                    db.Persons.Remove(person);
+                    System.Data.Entity.EntityState state = person.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
 
-                    if(person.Candidate != null)
+                    db.Entry(person).State = state;
+                    db.Entry(person.User).State = state;
+
+                    if(state == System.Data.Entity.EntityState.Added)
                     {
-                        db.Candidates.Attach(person.Candidate);
-                        db.Evaluations.Remove(person.Candidate.Evaluation);
-                        db.RecruitmentStages.RemoveRange(person.Candidate.RecruitmentStage);
-                        db.Candidates.Remove(person.Candidate);
+                        person.User.Password = Common.Encryption.Encrypt(person.User.Password);
                     }
-
-                    
-
-                    db.SaveChanges();
-                }
-                catch(Exception e)
-                {
-
-                }
-
-
-            }
-        }
-
-        public void Modify(Person person)
-        {
-            this.Save(person);
-        }
-
-        public int Add(Person person)
-        {
-            using(var db = new DatabaseContainer())
-            {
-                try
-                {
-                    db.Persons.Attach(person);
-                    db.Entry(person).State = System.Data.Entity.EntityState.Added;
-                    db.Users.Attach(person.User);
-                    db.Entry(person.User).State = System.Data.Entity.EntityState.Added;
+                    else
+                    {
+                        if(person.User.Password != string.Empty)
+                        {
+                            person.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
+                        }
+                    }
 
                     if((UserRolesEnum)person.User.Role == UserRolesEnum.Candidate)
                     {
-                        db.Candidates.Attach(person.Candidate = new Candidate()
+                        if(person.Candidate == null)
+                        {
+                            db.Entry(new Candidate()
                             {
-                                RecruitmentStage = new List<RecruitmentStage>()
-                                {     
-                                    new RecruitmentStage(){
-                                    Mark = 0,
-                                    Stage = 0,
-                                    IsCurrent = true
-                                    }
-                                },
-
-                                Evaluation = new Evaluation()
+                                Person = person,
+                                Evaluation = new Evaluation(),
+                                Decision = new Decision()
                                 {
-                                    IsEvaluated = false
+                                    Type = (byte)DecisionTypesEnum.DuringEvaluation
                                 }
-                            });
-                        db.Entry(person.Candidate).State = System.Data.Entity.EntityState.Added;
-                        db.Entry(person.Candidate.Evaluation).State = System.Data.Entity.EntityState.Added;
-                        db.Entry(person.Candidate.RecruitmentStage.First()).State = System.Data.Entity.EntityState.Added;
+
+                            }).State = System.Data.Entity.EntityState.Added;
+                        }
+                        else
+                        {
+                            db.Entry(person.Candidate).State = state;
+                        }
+                    }
+                    else
+                    {
+                        if(person.Candidate != null)
+                        {
+                            Candidate c = db.Candidates
+                                            .Include("Evaluation")
+                                            .Include("Decision").Where(x => x.Id == person.Candidate.Id).First();
+
+                            db.Entry(c.Evaluation).State = System.Data.Entity.EntityState.Deleted;
+
+                            db.Entry(c.Decision).State = System.Data.Entity.EntityState.Deleted;
+
+                            db.Entry(c).State = System.Data.Entity.EntityState.Deleted;
+                        }
                     }
 
                     db.SaveChanges();
-
-                }
-                catch(Exception e)
-                {
-
                 }
             }
+            catch(Exception e)
+            {
+
+            }
+
             return person.Id;
+        }
+        public void Delete(long personId)
+        {
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    Person p = db.Persons
+                        .Include("User")
+                        .Include("Candidate")
+                        .Include("Candidate.Evaluation")
+                        .Include("Candidate.Decision")
+                        .Where(x => x.Id == personId).First();
+
+                    db.Entry(p.Candidate.Evaluation).State = System.Data.Entity.EntityState.Deleted;
+                    db.Entry(p.Candidate.Decision).State = System.Data.Entity.EntityState.Deleted;
+                    db.Entry(p.Candidate).State = System.Data.Entity.EntityState.Deleted;
+                    db.Entry(p.User).State = System.Data.Entity.EntityState.Deleted;
+                    db.Entry(p).State = System.Data.Entity.EntityState.Deleted;
+
+                    db.SaveChanges();
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
         }
     }
 }
