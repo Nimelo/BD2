@@ -170,14 +170,14 @@ namespace UI.Components.ViewModels.Detailed
             {
                 if(( (object[])obj )[1] != null)
                 {
-                    long id = (long)( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]);
+                    long id = Convert.ToInt64(( (object[])obj )[1].GetType().GetField("Id").GetValue(( (object[])obj )[1]));
 
                     using(var service = new DocumentServiceReference.DocumentsServiceClient())
                     {
 
                         DocumentServiceReference.Document doc = service.GetDocumentById(id);
 
-                        string path = System.IO.Path.GetTempPath() + System.IO.Path.GetTempFileName() + doc.Extension;
+                        string path = System.IO.Path.Combine( System.IO.Path.GetTempPath(), System.IO.Path.GetTempFileName() + doc.Extension);
                         System.IO.File.WriteAllBytes(path, doc.File);
 
                         System.Diagnostics.Process.Start(path);
