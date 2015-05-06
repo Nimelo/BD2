@@ -107,6 +107,7 @@ namespace UI.Components.Detailed
                 case UI.Components.Enums.DetailsWindowModes.Readonly:
                     this.ViewModel.IsEnabled = false;
                     this.Load();
+                    this.ViewModel.Names = new List<string>() { this.ViewModel.SoftSkillsEvaluation.SoftSkill.Name };
                     break;
                 case UI.Components.Enums.DetailsWindowModes.Edit:
                     this.ViewModel.IsEnabled = true;

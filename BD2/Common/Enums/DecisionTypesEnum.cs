@@ -10,6 +10,7 @@ namespace Common.Enums
     {
         Approved,
         Rejected,
-        DuringEvaluation
+        DuringEvaluation,
+        Confirmed
     }
 }

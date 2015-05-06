@@ -1395,11 +1395,23 @@ namespace UI.CandidatesServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBaseService/Ping", ReplyAction="http://tempuri.org/IBaseService/PingResponse")]
         System.Threading.Tasks.Task PingAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateIdByLogin", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateIdByLoginResponse")]
+        int GetCandidateIdByLogin(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateIdByLogin", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateIdByLoginResponse")]
+        System.Threading.Tasks.Task<int> GetCandidateIdByLoginAsync(string login);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfRecords", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfRecordsResponse")]
         int GetAmountOfRecords(int stage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfRecords", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfRecordsResponse")]
         System.Threading.Tasks.Task<int> GetAmountOfRecordsAsync(int stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfRecordsDecisionType", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfRecordsDecisionTypeResponse")]
+        int GetAmountOfRecordsDecisionType(byte decisionType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfRecordsDecisionType", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfRecordsDecisionTypeResponse")]
+        System.Threading.Tasks.Task<int> GetAmountOfRecordsDecisionTypeAsync(byte decisionType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAmountOfAllRecords", ReplyAction="http://tempuri.org/ICandidatesService/GetAmountOfAllRecordsResponse")]
         int GetAmountOfAllRecords();
@@ -1413,11 +1425,23 @@ namespace UI.CandidatesServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateById", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateByIdResponse")]
         System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateByIdAsync(long id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateByLogin", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateByLoginResponse")]
+        UI.CandidatesServiceReference.Candidate GetCandidateByLogin(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidateByLogin", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidateByLoginResponse")]
+        System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateByLoginAsync(string login);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidatesByPage", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidatesByPageResponse")]
         System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPage(int pageNumber, int stage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidatesByPage", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidatesByPageResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageAsync(int pageNumber, int stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidatesByPageDecisionType", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidatesByPageDecisionTypeResponse")]
+        System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPageDecisionType(int pageNumber, byte stage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetCandidatesByPageDecisionType", ReplyAction="http://tempuri.org/ICandidatesService/GetCandidatesByPageDecisionTypeResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageDecisionTypeAsync(int pageNumber, byte stage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICandidatesService/GetAllCandidatesByPage", ReplyAction="http://tempuri.org/ICandidatesService/GetAllCandidatesByPageResponse")]
         System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetAllCandidatesByPage(int pageNumber);
@@ -1547,12 +1571,28 @@ namespace UI.CandidatesServiceReference {
             return base.Channel.PingAsync();
         }
         
+        public int GetCandidateIdByLogin(string login) {
+            return base.Channel.GetCandidateIdByLogin(login);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetCandidateIdByLoginAsync(string login) {
+            return base.Channel.GetCandidateIdByLoginAsync(login);
+        }
+        
         public int GetAmountOfRecords(int stage) {
             return base.Channel.GetAmountOfRecords(stage);
         }
         
         public System.Threading.Tasks.Task<int> GetAmountOfRecordsAsync(int stage) {
             return base.Channel.GetAmountOfRecordsAsync(stage);
+        }
+        
+        public int GetAmountOfRecordsDecisionType(byte decisionType) {
+            return base.Channel.GetAmountOfRecordsDecisionType(decisionType);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetAmountOfRecordsDecisionTypeAsync(byte decisionType) {
+            return base.Channel.GetAmountOfRecordsDecisionTypeAsync(decisionType);
         }
         
         public int GetAmountOfAllRecords() {
@@ -1571,12 +1611,28 @@ namespace UI.CandidatesServiceReference {
             return base.Channel.GetCandidateByIdAsync(id);
         }
         
+        public UI.CandidatesServiceReference.Candidate GetCandidateByLogin(string login) {
+            return base.Channel.GetCandidateByLogin(login);
+        }
+        
+        public System.Threading.Tasks.Task<UI.CandidatesServiceReference.Candidate> GetCandidateByLoginAsync(string login) {
+            return base.Channel.GetCandidateByLoginAsync(login);
+        }
+        
         public System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPage(int pageNumber, int stage) {
             return base.Channel.GetCandidatesByPage(pageNumber, stage);
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageAsync(int pageNumber, int stage) {
             return base.Channel.GetCandidatesByPageAsync(pageNumber, stage);
+        }
+        
+        public System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetCandidatesByPageDecisionType(int pageNumber, byte stage) {
+            return base.Channel.GetCandidatesByPageDecisionType(pageNumber, stage);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate>> GetCandidatesByPageDecisionTypeAsync(int pageNumber, byte stage) {
+            return base.Channel.GetCandidatesByPageDecisionTypeAsync(pageNumber, stage);
         }
         
         public System.Collections.Generic.List<UI.CandidatesServiceReference.Candidate> GetAllCandidatesByPage(int pageNumber) {

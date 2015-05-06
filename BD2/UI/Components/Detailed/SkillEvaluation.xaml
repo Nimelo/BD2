@@ -16,7 +16,7 @@
                        Width="70"></Label>
                 <ComboBox IsEnabled="{Binding IsEnabled}"
                          ItemsSource="{Binding Names}"
-                         SelectedValue="{Binding SkillsEvaluation.Skill.Name}"
+                         SelectedItem="{Binding SkillsEvaluation.Skill.Name}"
                          Width="150"></ComboBox>
 
             </StackPanel>

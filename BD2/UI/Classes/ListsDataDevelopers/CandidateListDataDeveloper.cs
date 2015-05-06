@@ -11,15 +11,23 @@ namespace UI.Classes.ListsDataDevelopers
     {
         public override List<object> LoadData(int pageNumber)
         {
-            List<object> returnList;
+            List<object> returnList = new List<object>();
             using(var service = new CandidatesServiceReference.CandidatesServiceClient())
             {
-                if((int)this.Parameter == -1)
+                
+                if(this.Parameter.GetType() == typeof(int))
+                {
+                    if((int)this.Parameter == -1)
                     returnList = service.GetAllCandidatesByPage(pageNumber).Cast<object>().ToList();
-                else
-                    returnList = service.GetCandidatesByPage(pageNumber, (int)this.Parameter).Cast<object>().ToList();
-
+                    else
+                        returnList = service.GetCandidatesByPage(pageNumber, (int)this.Parameter).Cast<object>().ToList();
+                }
+                   
+                else if(this.Parameter.GetType() == typeof(byte))
+                    returnList = service.GetCandidatesByPageDecisionType(pageNumber, (byte)this.Parameter).Cast<object>().ToList();
+                
             }
+
             return returnList;
         }
 
@@ -33,10 +41,22 @@ namespace UI.Classes.ListsDataDevelopers
             int returnValue;
             using(var service = new CandidatesServiceReference.CandidatesServiceClient())
             {
-                if((int)this.Parameter == -1)
-                    returnValue = service.GetAmountOfAllRecords();
-                else
+
+                if(this.Parameter.GetType() == typeof(int))
+                {
+                    if((int)this.Parameter == -1)
+                        returnValue = service.GetAmountOfAllRecords();
+                    else
                     returnValue = service.GetAmountOfRecords((int)this.Parameter);
+                }
+                else if(this.Parameter.GetType() == typeof(byte))
+                {
+                    returnValue = service.GetAmountOfRecordsDecisionType((byte)this.Parameter);
+                }
+                else
+                {
+                    returnValue = 0;
+                }
 
             }
 
@@ -53,7 +73,7 @@ namespace UI.Classes.ListsDataDevelopers
             this.Parameter = -1;
         }
 
-        public CandidateListDataDeveloper(int parameter)
+        public CandidateListDataDeveloper(object parameter)
         {
             this.Parameter = parameter;
         }

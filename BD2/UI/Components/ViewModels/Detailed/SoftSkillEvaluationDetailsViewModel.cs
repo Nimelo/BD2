@@ -60,7 +60,7 @@ namespace UI.Components.ViewModels.Detailed
         public void InitializeSkillsNames()
         {
             using(var service = new CandidatesServiceReference.CandidatesServiceClient())
-            {
+            {               
                 this.Names = service.GetNotUsedSoftSkillsNames(this.Candidate);
             }
         }

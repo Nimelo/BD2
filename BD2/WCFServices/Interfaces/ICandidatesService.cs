@@ -20,6 +20,9 @@ namespace WCFServices
         int GetAmountOfRecords(int stage);
 
         [OperationContract]
+        int GetAmountOfRecordsDecisionType(byte decisionType);
+
+        [OperationContract]
         int GetAmountOfAllRecords();
 
         [OperationContract]
@@ -31,6 +34,8 @@ namespace WCFServices
         [OperationContract]
         List<Candidate> GetCandidatesByPage(int pageNumber, int stage);
 
+        [OperationContract]
+        List<Candidate> GetCandidatesByPageDecisionType(int pageNumber, byte stage);
         [OperationContract]
         List<Candidate> GetAllCandidatesByPage(int pageNumber);
 

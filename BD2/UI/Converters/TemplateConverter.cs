@@ -70,11 +70,23 @@ namespace UI.Converters
             }
             else if(type == typeof(CandidatesServiceReference.Document))
             {
-                collection.ForEach(x => templateCollection.Add(
-                    new Tuple<int, object>(
-                        ( (CandidatesServiceReference.Document)x ).Id,
-                        x)
-                        ));
+                
+                collection.ForEach(x =>
+                    
+                    {     string Type = ( (CandidatesServiceReference.Document)x ).Type.ToString();
+                    templateCollection.Add(
+                new Tuple<int, object>(
+                    (
+                    (CandidatesServiceReference.Document)x ).Id,
+                    new
+                    {
+                        ( (CandidatesServiceReference.Document)x ).Name,
+                        ( (CandidatesServiceReference.Document)x ).Extension,
+                        Type
+                    }
+                    )
+                    );
+                    });
                      
             }
             else if(type == typeof(CandidatesServiceReference.SkillsEvaluation))

@@ -14,6 +14,7 @@ namespace Common.Dictionaries
                   {(byte)DecisionTypesEnum.Approved, "Approved"},
                   {(byte)DecisionTypesEnum.Rejected, "Rejected"},
                   {(byte)DecisionTypesEnum.DuringEvaluation, "During Evaluation"},
+                  {(byte)DecisionTypesEnum.Confirmed, "Confirmed"}
         };
         public static Dictionary<byte, string> Dictionary
         {

@@ -97,6 +97,8 @@ namespace WCFServices
                 {
                     System.Data.Entity.EntityState state = person.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
 
+                    if(db.Users.Where(x => x.Login == person.User.Login).Count() != 0)
+                        throw new Exception();
                     db.Entry(person).State = state;
                     db.Entry(person.User).State = state;
 
@@ -106,9 +108,13 @@ namespace WCFServices
                     }
                     else
                     {
-                        if(person.User.Password != string.Empty)
+                        if(person.User.Password == string.Empty)
                         {
                             person.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
+                        }
+                        else
+                        {
+                            person.User.Password = Common.Encryption.Encrypt(person.User.Password);
                         }
                     }
 

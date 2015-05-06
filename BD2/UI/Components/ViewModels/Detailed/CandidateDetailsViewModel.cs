@@ -195,6 +195,8 @@ namespace UI.Components.ViewModels.Detailed
             this.FakeSoftSkillsEvaluationListDataDeveloper.InsertData(this.Candidate.Evaluation.SoftSkillsEvaluation);
             this.FakeRecruitmentStageListDataDeveloper.InsertData(this.Candidate.RecruitmentStage);
 
+            this.Candidate.Document = new List<Document>();
+
             this.ChangeContentDataBackgroundOperation(() =>
                 {
                     this.DocumentsDataContext.Refresh();
@@ -203,6 +205,7 @@ namespace UI.Components.ViewModels.Detailed
                     this.RecruitmentStageDataContext.Refresh();
                 });
 
+            
         }
 
         private void ChangeContentDataBackgroundOperation(Action work)

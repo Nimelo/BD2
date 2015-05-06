@@ -50,8 +50,22 @@
                 <TabItem Header="Stage X">
                     <components:BasicList   DataContext="{Binding StageCandidatesViewModel}" />                  
                 </TabItem>
-                
 
+                <TabItem Header="Confirmed">
+                    <components:BasicList   DataContext="{Binding ConfirmedCandidatesViewModel}" />
+                </TabItem>
+
+                <TabItem Header="Rejected">
+                    <components:BasicList   DataContext="{Binding RejectedCandidatesViewModel}" />
+                </TabItem>
+
+                <TabItem Header="During evaluation">
+                    <components:BasicList   DataContext="{Binding DECandidatesViewModel}" />
+                </TabItem>
+
+                <TabItem Header="Approved">
+                    <components:BasicList   DataContext="{Binding ApprovedCandidatesViewModel}" />
+                </TabItem>
             </TabControl>
         </DockPanel>
 

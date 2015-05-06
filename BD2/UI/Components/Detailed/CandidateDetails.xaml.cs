@@ -45,6 +45,7 @@ namespace UI.Components.Detailed
             {
                 try
                 {
+                    this.ViewModel.Candidate.Document = null;
                     service.Save(this.ViewModel.Candidate);
                 }
                 catch(Exception e)

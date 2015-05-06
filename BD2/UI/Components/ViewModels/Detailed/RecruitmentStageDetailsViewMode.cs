@@ -20,7 +20,7 @@ namespace UI.Components.ViewModels.Detailed
             set
             {
                 recruitmentStage = value;
-                this.Notify("SkillsEvaluation");
+                this.Notify("RecruitmentStage");
             }
         }
 

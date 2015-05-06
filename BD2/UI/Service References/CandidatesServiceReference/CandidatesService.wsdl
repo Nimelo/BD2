@@ -14,11 +14,23 @@
   <wsdl:message name="ICandidatesService_Ping_OutputMessage">
     <wsdl:part name="parameters" element="tns:PingResponse" />
   </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateIdByLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateIdByLogin" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateIdByLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateIdByLoginResponse" />
+  </wsdl:message>
   <wsdl:message name="ICandidatesService_GetAmountOfRecords_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAmountOfRecords" />
   </wsdl:message>
   <wsdl:message name="ICandidatesService_GetAmountOfRecords_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAmountOfRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAmountOfRecordsDecisionType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfRecordsDecisionType" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetAmountOfRecordsDecisionType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmountOfRecordsDecisionTypeResponse" />
   </wsdl:message>
   <wsdl:message name="ICandidatesService_GetAmountOfAllRecords_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAmountOfAllRecords" />
@@ -32,11 +44,23 @@
   <wsdl:message name="ICandidatesService_GetCandidateById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCandidateByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateByLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateByLogin" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidateByLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidateByLoginResponse" />
+  </wsdl:message>
   <wsdl:message name="ICandidatesService_GetCandidatesByPage_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCandidatesByPage" />
   </wsdl:message>
   <wsdl:message name="ICandidatesService_GetCandidatesByPage_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCandidatesByPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidatesByPageDecisionType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidatesByPageDecisionType" />
+  </wsdl:message>
+  <wsdl:message name="ICandidatesService_GetCandidatesByPageDecisionType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCandidatesByPageDecisionTypeResponse" />
   </wsdl:message>
   <wsdl:message name="ICandidatesService_GetAllCandidatesByPage_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCandidatesByPage" />
@@ -133,9 +157,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/Ping" message="tns:ICandidatesService_Ping_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBaseService/PingResponse" message="tns:ICandidatesService_Ping_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateIdByLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateIdByLogin" message="tns:ICandidatesService_GetCandidateIdByLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateIdByLoginResponse" message="tns:ICandidatesService_GetCandidateIdByLogin_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAmountOfRecords">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecords" message="tns:ICandidatesService_GetAmountOfRecords_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecordsResponse" message="tns:ICandidatesService_GetAmountOfRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAmountOfRecordsDecisionType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecordsDecisionType" message="tns:ICandidatesService_GetAmountOfRecordsDecisionType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfRecordsDecisionTypeResponse" message="tns:ICandidatesService_GetAmountOfRecordsDecisionType_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAmountOfAllRecords">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAmountOfAllRecords" message="tns:ICandidatesService_GetAmountOfAllRecords_InputMessage" />
@@ -145,9 +177,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateById" message="tns:ICandidatesService_GetCandidateById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateByIdResponse" message="tns:ICandidatesService_GetCandidateById_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateByLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateByLogin" message="tns:ICandidatesService_GetCandidateByLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidateByLoginResponse" message="tns:ICandidatesService_GetCandidateByLogin_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetCandidatesByPage">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPage" message="tns:ICandidatesService_GetCandidatesByPage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPageResponse" message="tns:ICandidatesService_GetCandidatesByPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidatesByPageDecisionType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPageDecisionType" message="tns:ICandidatesService_GetCandidatesByPageDecisionType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICandidatesService/GetCandidatesByPageDecisionTypeResponse" message="tns:ICandidatesService_GetCandidatesByPageDecisionType_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllCandidatesByPage">
       <wsdl:input wsaw:Action="http://tempuri.org/ICandidatesService/GetAllCandidatesByPage" message="tns:ICandidatesService_GetAllCandidatesByPage_InputMessage" />
@@ -221,8 +261,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateIdByLogin">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateIdByLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAmountOfRecords">
       <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetAmountOfRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAmountOfRecordsDecisionType">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetAmountOfRecordsDecisionType" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -248,8 +306,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCandidateByLogin">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidateByLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetCandidatesByPage">
       <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidatesByPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCandidatesByPageDecisionType">
+      <soap:operation soapAction="http://tempuri.org/ICandidatesService/GetCandidatesByPageDecisionType" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

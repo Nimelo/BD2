@@ -33,6 +33,25 @@ namespace WCFServices
 
             return amount;
         }
+
+        public int GetAmountOfRecordsDecisionType(byte decisionType)
+        {
+            int amount = -1;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    amount = db.Decisions
+                         .Where(x => x.Type == decisionType).Count();
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return amount;
+        }
         public int GetAmountOfAllRecords()
         {
             int amount = -1;
@@ -127,6 +146,48 @@ namespace WCFServices
 
         }
 
+        public List<Candidate> GetCandidatesByPageDecisionType(int pageNumber, byte decisionType)
+        {
+            var returnList = new List<Candidate>();
+            if(pageNumber <= 0)
+                return returnList;
+
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+
+                    if(( pageNumber - 1 ) * 10 > this.GetAmountOfRecords(decisionType))
+                        return returnList;
+
+                    IQueryable<Candidate> tmp = null;
+
+                    tmp = (
+                    ( db.Decisions.Include("Candidate").Where(x => x.Type == decisionType)                 
+                    .Select(y => y.Candidate) as DbQuery<Candidate> ) 
+                    .Include("Person")
+                    .Include("Document")
+                    .Include("Decision")
+                    .Include("RecruitmentStage")
+                    .Include("Evaluation")
+                    .Include("Evaluation.SkillsEvaluation")
+                    .Include("Evaluation.SkillsEvaluation.Skill")
+                    .Include("Evaluation.SoftSkillsEvaluation")
+                    .Include("Evaluation.SoftSkillsEvaluation.SoftSkill")
+                    .OrderBy(x => x.Id)
+                    .Skip(( pageNumber - 1 ) * 10));
+
+                    tmp = tmp.Take(tmp.Count() >= 10 ? 10 : tmp.Count());
+                    return tmp.ToList();
+
+                }
+            }
+            catch(Exception e)
+            {
+                return returnList;
+            }
+
+        }
         public int Save(Candidate candidate)
         {
             try
@@ -136,10 +197,6 @@ namespace WCFServices
                     db.Candidates.Attach(candidate);
                     db.Entry(candidate).State = System.Data.Entity.EntityState.Modified;
                     db.Entry(candidate.Decision).State = System.Data.Entity.EntityState.Modified;
-                    foreach(var doc in candidate.Document)
-                    {
-                        db.Entry(doc).State = System.Data.Entity.EntityState.Modified;
-                    }
 
                     foreach(var rs in candidate.RecruitmentStage)
                     {

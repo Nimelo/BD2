@@ -73,6 +73,15 @@ namespace UI.ViewModels
 
         public BasicListViewModel<CandidateListViewTemplate> StageCandidatesViewModel { get; set; }
 
+        public BasicListViewModel<CandidateListViewTemplate> ConfirmedCandidatesViewModel { get; set; }
+
+        public BasicListViewModel<CandidateListViewTemplate> RejectedCandidatesViewModel { get; set; }
+
+        public BasicListViewModel<CandidateListViewTemplate> DECandidatesViewModel { get; set; }
+
+        public BasicListViewModel<CandidateListViewTemplate> ApprovedCandidatesViewModel { get; set; }
+
+
         #endregion
 
         #region Ctors
@@ -85,6 +94,18 @@ namespace UI.ViewModels
                             new BasicListConfiguration(false, true), new BasicDetailsControlConfiguration(true, false, true, false));
             this.StageCandidatesViewModel = new BasicListViewModel<CandidateListViewTemplate>(this.DD, new CandidateDetails(),
                             new BasicListConfiguration(false, true), new BasicDetailsControlConfiguration(true, false, true, false));
+
+            this.ConfirmedCandidatesViewModel = new BasicListViewModel<CandidateListViewTemplate>(new CandidateListDataDeveloper((byte)Common.Enums.DecisionTypesEnum.Confirmed), new CandidateDetails(),
+                           new BasicListConfiguration(false, true), new BasicDetailsControlConfiguration(true, false, true, false));
+
+            this.RejectedCandidatesViewModel = new BasicListViewModel<CandidateListViewTemplate>(new CandidateListDataDeveloper((byte)Common.Enums.DecisionTypesEnum.Rejected), new CandidateDetails(),
+                           new BasicListConfiguration(false, true), new BasicDetailsControlConfiguration(true, false, true, false));
+
+            this.DECandidatesViewModel = new BasicListViewModel<CandidateListViewTemplate>(new CandidateListDataDeveloper((byte)Common.Enums.DecisionTypesEnum.DuringEvaluation), new CandidateDetails(),
+                           new BasicListConfiguration(false, true), new BasicDetailsControlConfiguration(true, false, true, false));
+
+            this.ApprovedCandidatesViewModel = new BasicListViewModel<CandidateListViewTemplate>(new CandidateListDataDeveloper((byte)Common.Enums.DecisionTypesEnum.Approved), new CandidateDetails(),
+                           new BasicListConfiguration(false, true), new BasicDetailsControlConfiguration(true, false, true, false));
 
         }
 
