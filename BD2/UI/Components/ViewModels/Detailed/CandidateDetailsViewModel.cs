@@ -195,7 +195,7 @@ namespace UI.Components.ViewModels.Detailed
             this.FakeSoftSkillsEvaluationListDataDeveloper.InsertData(this.Candidate.Evaluation.SoftSkillsEvaluation);
             this.FakeRecruitmentStageListDataDeveloper.InsertData(this.Candidate.RecruitmentStage);
 
-            this.Candidate.Document = new List<Document>();
+            //this.Candidate.Document = new List<Document>();
 
             this.ChangeContentDataBackgroundOperation(() =>
                 {

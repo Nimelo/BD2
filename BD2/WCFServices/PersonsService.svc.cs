@@ -119,8 +119,18 @@ namespace WCFServices
                 {
                     System.Data.Entity.EntityState state = person.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
 
-                    if(db.Users.Where(x => x.Login == person.User.Login).Count() != 0)
-                        throw new Exception();
+                    if(state == System.Data.Entity.EntityState.Modified)
+                    {
+                        if(this.GetPersonById(person.Id).User.Login != person.User.Login)
+                            if(db.Users.Where(x => x.Login == person.User.Login).Count() != 0)
+                                throw new Exception();
+                    }
+                    else
+                    {
+                        if(db.Users.Where(x => x.Login == person.User.Login).Count() != 0)
+                            throw new Exception();
+                    }
+
                     db.Entry(person).State = state;
                     db.Entry(person.User).State = state;
 
@@ -195,34 +205,57 @@ namespace WCFServices
                 using(var db = new DatabaseContainer())
                 {
                     System.Data.Entity.EntityState state = person.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
-
+                    Person p = null;
                     if(state == System.Data.Entity.EntityState.Modified)
                     {
                         if(this.GetPersonById(person.Id).User.Login != person.User.Login)
                             if(db.Users.Where(x => x.Login == person.User.Login).Count() != 0)
                                 throw new Exception();
+
+                        p = db.Persons.Include("User").Where(x => x.Id == person.Id).Single();
+                        p.Mail = person.Mail;
+                        p.Name = person.Name;
+                        p.Pesel = person.Pesel;
+                        p.Phone = person.Phone;
+                        p.SurName = person.SurName;
+                        p.User.Login = person.Pesel;
                     }
 
+                    if(person.Candidate == null)
+                    {
+                        db.Entry(new Candidate()
+                        {
+                            Person = person,
+                            Evaluation = new Evaluation(),
+                            Decision = new Decision()
+                            {
+                                Type = (byte)DecisionTypesEnum.DuringEvaluation
+                            }
 
+                        }).State = System.Data.Entity.EntityState.Added;
+                    }
 
-                    Person p = db.Persons.Include("User").Where(x => x.Id == person.Id).Single();
-                    p.Mail = person.Mail;
-                    p.Name = person.Name;
-                    p.Pesel = person.Pesel;
-                    p.Phone = person.Phone;
-                    p.SurName = person.SurName;
-                    p.User.Login = person.Pesel;
-                    
                     if(person.User.Password == string.Empty || person.User.Password == null)
                     {
-                        p.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
+                        if(state == System.Data.Entity.EntityState.Modified)
+                         p.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
+
+                         person.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
                     }
                     else
                     {
+                        if(state == System.Data.Entity.EntityState.Modified)
                         p.User.Password = Common.Encryption.Encrypt(person.User.Password);
+                        person.User.Password = Common.Encryption.Encrypt(person.User.Password);
                     }
 
-                    db.Entry(p).State = System.Data.Entity.EntityState.Modified;            
+                     if(state == System.Data.Entity.EntityState.Added)
+                     {
+                         db.Entry(person).State = System.Data.Entity.EntityState.Added;
+                         db.Entry(person.User).State = System.Data.Entity.EntityState.Added; 
+                     }
+                     else
+                         db.Entry(p).State = System.Data.Entity.EntityState.Modified;            
 
                     db.SaveChanges();
                 }

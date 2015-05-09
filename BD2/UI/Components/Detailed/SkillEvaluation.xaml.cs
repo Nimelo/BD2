@@ -35,6 +35,7 @@ namespace UI.Components.Detailed
             InitializeComponent();
             this.ViewModel = new SkillEvaluationDetailsViewModel();
             this.ViewModel.Candidate = candidate;
+            this.ViewModel.Candidate.Document.Clear();
             this.DataContext = this.ViewModel;
         }
 
@@ -63,6 +64,7 @@ namespace UI.Components.Detailed
             {
                 try
                 {
+                    this.ViewModel.SkillsEvaluation.Evaluation = null;
                     service.SaveSkill(this.ViewModel.SkillsEvaluation);
                 }
                 catch(Exception e)

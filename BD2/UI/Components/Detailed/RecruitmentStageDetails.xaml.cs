@@ -64,6 +64,7 @@ namespace UI.Components.Detailed
             {
                 try
                 {
+                    this.ViewModel.RecruitmentStage.Candidate = null;
                    this.CurrentId = service.SaveRecriutmentStage(this.ViewModel.RecruitmentStage);
                 }
                 catch(Exception e)

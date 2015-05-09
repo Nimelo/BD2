@@ -241,6 +241,7 @@ namespace UI.Components.ViewModels
                     || pageNumber > this.AmountOfPages)
             {
                 this.DisplayCollection.Clear();
+                this.DisplayCollection = new List<TemplateClass>();
                 this.Notify("DisplayCollection");
                 return;
             }

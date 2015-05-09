@@ -63,6 +63,7 @@ namespace UI.Components.ViewModels.Detailed
         {
             using(var service = new CandidatesServiceReference.CandidatesServiceClient())
             {
+                this.Candidate.Document = null;
                 this.Names = service.GetNotUsedSkillsNames(this.Candidate);
             }
         }

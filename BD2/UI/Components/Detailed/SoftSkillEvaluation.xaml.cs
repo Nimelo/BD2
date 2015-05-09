@@ -63,6 +63,7 @@ namespace UI.Components.Detailed
             {
                 try
                 {
+                    this.ViewModel.SoftSkillsEvaluation.Evaluation = null;
                     service.SaveSoftSkill(this.ViewModel.SoftSkillsEvaluation);
                 }
                 catch(Exception e)

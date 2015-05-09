@@ -64,6 +64,8 @@ namespace UI.Components.ViewModels.Detailed
         {
             using(var service = new CandidatesServiceReference.CandidatesServiceClient())
             {
+                this.Candidate.Document = null;
+                this.Candidate.Evaluation = null;
                 this.Names = service.GetNotUsedStageNames(this.Candidate);
             }
         }
