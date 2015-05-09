@@ -13,6 +13,12 @@
   <wsdl:message name="IPersonsService_Ping_OutputMessage">
     <wsdl:part name="parameters" element="tns:PingResponse" />
   </wsdl:message>
+  <wsdl:message name="IPersonsService_GerPersonByLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GerPersonByLogin" />
+  </wsdl:message>
+  <wsdl:message name="IPersonsService_GerPersonByLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GerPersonByLoginResponse" />
+  </wsdl:message>
   <wsdl:message name="IPersonsService_GetAmountOfRecords_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAmountOfRecords" />
   </wsdl:message>
@@ -54,6 +60,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBaseService/Ping" message="tns:IPersonsService_Ping_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBaseService/PingResponse" message="tns:IPersonsService_Ping_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GerPersonByLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPersonsService/GerPersonByLogin" message="tns:IPersonsService_GerPersonByLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPersonsService/GerPersonByLoginResponse" message="tns:IPersonsService_GerPersonByLogin_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAmountOfRecords">
       <wsdl:input wsaw:Action="http://tempuri.org/IPersonsService/GetAmountOfRecords" message="tns:IPersonsService_GetAmountOfRecords_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPersonsService/GetAmountOfRecordsResponse" message="tns:IPersonsService_GetAmountOfRecords_OutputMessage" />
@@ -79,10 +89,19 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IPersonsService/DeleteResponse" message="tns:IPersonsService_Delete_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IPersonsService" type="tns:IPersonsService">
+  <wsdl:binding name="Default2" type="tns:IPersonsService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Ping">
       <soap:operation soapAction="http://tempuri.org/IBaseService/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GerPersonByLogin">
+      <soap:operation soapAction="http://tempuri.org/IPersonsService/GerPersonByLogin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -146,7 +165,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PersonsService">
-    <wsdl:port name="BasicHttpBinding_IPersonsService" binding="tns:BasicHttpBinding_IPersonsService">
+    <wsdl:port name="Default2" binding="tns:Default2">
       <soap:address location="http://localhost:47521/PersonsService.svc" />
     </wsdl:port>
   </wsdl:service>

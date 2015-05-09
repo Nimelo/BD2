@@ -39,7 +39,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IDocumentsService/DeleteDocumenyByIdResponse" message="tns:IDocumentsService_DeleteDocumenyById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IDocumentsService" type="tns:IDocumentsService">
+  <wsdl:binding name="Default" type="tns:IDocumentsService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetDocumentById">
       <soap:operation soapAction="http://tempuri.org/IDocumentsService/GetDocumentById" style="document" />
@@ -70,7 +70,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DocumentsService">
-    <wsdl:port name="BasicHttpBinding_IDocumentsService" binding="tns:BasicHttpBinding_IDocumentsService">
+    <wsdl:port name="Default" binding="tns:Default">
       <soap:address location="http://localhost:47521/DocumentsService.svc" />
     </wsdl:port>
   </wsdl:service>

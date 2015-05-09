@@ -14,6 +14,9 @@ namespace WCFServices
     public interface IPersonsService : IBaseService
     {
         [OperationContract]
+        Person GerPersonByLogin(string login);
+
+        [OperationContract]
         int GetAmountOfRecords();
 
         [OperationContract]

@@ -26,10 +26,12 @@ namespace WebApp.PersonWebServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_IPersonsService", Namespace="http://tempuri.org/")]
+    [System.Web.Services.WebServiceBindingAttribute(Name="Default2", Namespace="http://tempuri.org/")]
     public partial class PersonsService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback PingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GerPersonByLoginOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetAmountOfRecordsOperationCompleted;
         
@@ -85,6 +87,9 @@ namespace WebApp.PersonWebServiceReference {
         public event PingCompletedEventHandler PingCompleted;
         
         /// <remarks/>
+        public event GerPersonByLoginCompletedEventHandler GerPersonByLoginCompleted;
+        
+        /// <remarks/>
         public event GetAmountOfRecordsCompletedEventHandler GetAmountOfRecordsCompleted;
         
         /// <remarks/>
@@ -125,6 +130,36 @@ namespace WebApp.PersonWebServiceReference {
             if ((this.PingCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PingCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IPersonsService/GerPersonByLogin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Person GerPersonByLogin([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string login) {
+            object[] results = this.Invoke("GerPersonByLogin", new object[] {
+                        login});
+            return ((Person)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GerPersonByLoginAsync(string login) {
+            this.GerPersonByLoginAsync(login, null);
+        }
+        
+        /// <remarks/>
+        public void GerPersonByLoginAsync(string login, object userState) {
+            if ((this.GerPersonByLoginOperationCompleted == null)) {
+                this.GerPersonByLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGerPersonByLoginOperationCompleted);
+            }
+            this.InvokeAsync("GerPersonByLogin", new object[] {
+                        login}, this.GerPersonByLoginOperationCompleted, userState);
+        }
+        
+        private void OnGerPersonByLoginOperationCompleted(object arg) {
+            if ((this.GerPersonByLoginCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GerPersonByLoginCompleted(this, new GerPersonByLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1921,6 +1956,32 @@ namespace WebApp.PersonWebServiceReference {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
     public delegate void PingCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void GerPersonByLoginCompletedEventHandler(object sender, GerPersonByLoginCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GerPersonByLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GerPersonByLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Person Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Person)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]

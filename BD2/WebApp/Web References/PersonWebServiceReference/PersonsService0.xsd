@@ -11,6 +11,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GerPersonByLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GerPersonByLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="GerPersonByLoginResult" nillable="true" type="q1:Person" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAmountOfRecords">
     <xs:complexType>
       <xs:sequence />
@@ -33,7 +47,7 @@
   <xs:element name="GetPersonByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="GetPersonByIdResult" nillable="true" type="q1:Person" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="GetPersonByIdResult" nillable="true" type="q2:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -47,14 +61,14 @@
   <xs:element name="GetPersonByPageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="GetPersonByPageResult" nillable="true" type="q2:ArrayOfPerson" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="GetPersonByPageResult" nillable="true" type="q3:ArrayOfPerson" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Save">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="person" nillable="true" type="q3:Person" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="person" nillable="true" type="q4:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -68,7 +82,7 @@
   <xs:element name="SaveC">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="person" nillable="true" type="q4:Person" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Database" minOccurs="0" name="person" nillable="true" type="q5:Person" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

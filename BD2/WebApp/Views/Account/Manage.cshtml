@@ -1,31 +1,53 @@
-﻿@model WebApp.Models.LocalPasswordModel
+﻿@model WebApp.PersonWebServiceReference.Person
 @{
-    ViewBag.Title = "Manage Account";
+    ViewBag.Title = "Manage";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
+    <h2>Manage your accounts</h2>
 </hgroup>
 
-<p class="message-success">@ViewBag.StatusMessage</p>
-
-<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
-
-@if (ViewBag.HasLocalPassword)
+@using(Html.BeginForm())
 {
-    @Html.Partial("_ChangePasswordPartial")
-}
-else
-{ 
-    @Html.Partial("_SetPasswordPartial")
-}
+    @Html.ValidationSummary()
 
-<section id="externalLogins">
-    @Html.Action("RemoveExternalLogins")
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.SurName)
+                @Html.TextBoxFor(m => m.SurName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Pesel)
+                @Html.TextBoxFor(m => m.Pesel)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Address)
+                @Html.TextBoxFor(m => m.Address)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Mail)
+                @Html.TextBoxFor(m => m.Mail)
+            </li>
 
-    <h3>Add an external login</h3>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+            <li>
+                @Html.LabelFor(m => m.User.Password)
+                @Html.PasswordFor(m => m.User.Password)
+            </li>
+        </ol>
+        <input type="submit" value="Change" />
+    </fieldset>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -106,12 +106,61 @@ namespace WebApp.Controllers
 
         public ActionResult Manage()
         {
-
+            PersonWebServiceReference.Person p = null;
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+            using(var service = new PersonWebServiceReference.PersonsService())
+            {
+                p = service.GerPersonByLogin(this.GetLogin());
+            }
+            return View(p);
         }
 
-   
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Manage(PersonWebServiceReference.Person model)
+        {
+            int Id = 0;
+            bool something = false;
+            model.User.Role = (byte)Common.Enums.UserRolesEnum.Candidate;
+            model.User.Login = model.Pesel;
+             using(var service = new PersonWebServiceReference.PersonsService())
+            {
+                model.Id =  service.GerPersonByLogin(this.GetLogin()).Id;
+                model.IdSpecified = true;
+                model.User.Id = service.GerPersonByLogin(this.GetLogin()).User.Id;
+                model.User.IdSpecified = true;
+            }
+
+            using(var service = new PersonWebServiceReference.PersonsService())
+            {
+                service.SaveC(model, out Id, out something);
+            }
+
+            if(Id != 0)
+            {
+                // Attempt to register the user
+                try
+                {
+                    FormsAuthentication.SetAuthCookie(model.User.Login, true);
+                    return RedirectToAction("Index", "Home");
+                }
+                catch(MembershipCreateUserException e)
+                {
+                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                }
+            }
+            ModelState.AddModelError("", "Fields cannot be empty or Pesel is already in use!");
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
+        private string GetLogin()
+        {
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+            return ticket.Name;
+        }
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

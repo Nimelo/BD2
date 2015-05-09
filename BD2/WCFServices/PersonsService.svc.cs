@@ -39,6 +39,28 @@ namespace WCFServices
             return person;
         }
 
+        public Person GerPersonByLogin(string login)
+        {
+            Person person = null;
+            try
+            {
+                using(var db = new DatabaseContainer())
+                {
+                    person = db.Persons.Include("User")
+                        .Include("Candidate")
+                        .Where(x => x.User.Login == login).Single();
+
+                    person.User.Password = string.Empty;
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return person;
+        }
+
         public List<Person> GetPersonByPage(int pageNumber)
         {
             var returnList = new List<Person>();
@@ -174,63 +196,40 @@ namespace WCFServices
                 {
                     System.Data.Entity.EntityState state = person.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
 
-                    db.Entry(person).State = state;
-                    db.Entry(person.User).State = state;
-
-                    if(state == System.Data.Entity.EntityState.Added)
+                    if(state == System.Data.Entity.EntityState.Modified)
                     {
-                        person.User.Password = Common.Encryption.Encrypt(person.User.Password);
+                        if(this.GetPersonById(person.Id).User.Login != person.User.Login)
+                            if(db.Users.Where(x => x.Login == person.User.Login).Count() != 0)
+                                throw new Exception();
+                    }
+
+
+
+                    Person p = db.Persons.Include("User").Where(x => x.Id == person.Id).Single();
+                    p.Mail = person.Mail;
+                    p.Name = person.Name;
+                    p.Pesel = person.Pesel;
+                    p.Phone = person.Phone;
+                    p.SurName = person.SurName;
+                    p.User.Login = person.Pesel;
+                    
+                    if(person.User.Password == string.Empty || person.User.Password == null)
+                    {
+                        p.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
                     }
                     else
                     {
-                        if(person.User.Password != string.Empty)
-                        {
-                            person.User.Password = db.Users.Where(x => x.Id == person.User.Id).First().Password;
-                        }
+                        p.User.Password = Common.Encryption.Encrypt(person.User.Password);
                     }
 
-                    if((UserRolesEnum)person.User.Role == UserRolesEnum.Candidate)
-                    {
-                        if(person.Candidate == null)
-                        {
-                            db.Entry(new Candidate()
-                            {
-                                Person = person,
-                                Evaluation = new Evaluation(),
-                                Decision = new Decision()
-                                {
-                                    Type = (byte)DecisionTypesEnum.DuringEvaluation
-                                }
-
-                            }).State = System.Data.Entity.EntityState.Added;
-                        }
-                        else
-                        {
-                            db.Entry(person.Candidate).State = state;
-                        }
-                    }
-                    else
-                    {
-                        if(person.Candidate != null)
-                        {
-                            Candidate c = db.Candidates
-                                            .Include("Evaluation")
-                                            .Include("Decision").Where(x => x.Id == person.Candidate.Id).First();
-
-                            db.Entry(c.Evaluation).State = System.Data.Entity.EntityState.Deleted;
-
-                            db.Entry(c.Decision).State = System.Data.Entity.EntityState.Deleted;
-
-                            db.Entry(c).State = System.Data.Entity.EntityState.Deleted;
-                        }
-                    }
+                    db.Entry(p).State = System.Data.Entity.EntityState.Modified;            
 
                     db.SaveChanges();
                 }
             }
             catch(Exception e)
             {
-
+                return 0;
             }
 
             return person.Id;
