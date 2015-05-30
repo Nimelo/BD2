@@ -72,6 +72,7 @@
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Preview"
+                                  ToolTip="Opens details window to preview object."
                                   Visibility="{Binding Configuration.IsEnablePreview}"
                                   Command="{Binding ContextMenuCommand}"
                                   access:UserAccessAttachedProperty.UserAccessType="Administrator,Evaluator,Intern">
@@ -90,6 +91,7 @@
 
                         </MenuItem>
                         <MenuItem Header="New"
+                                  ToolTip="Opens details window to create new object."
                                   Visibility="{Binding Configuration.IsEnableNew}"
                                   Command="{Binding ContextMenuCommand}">
                             <MenuItem.CommandParameter>                               
@@ -111,14 +113,17 @@
                 <Label Content="{Binding AmountOfPages}"></Label>
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding NavigationCommand}"
+                            ToolTip="Refresh list."
                             CommandParameter="{x:Static enums:ListsButtonEnum.Refresh}">
                         <Image Source="{StaticResource Refresh2}" />
                     </Button>
                     <Button Command="{Binding NavigationCommand}"
+                            ToolTip="Previous page."
                             CommandParameter="{x:Static enums:ListsButtonEnum.Previous}">
                         <Image Source="{StaticResource LeftArrow}" />
                     </Button>
                     <Button Command="{Binding NavigationCommand}"
+                            ToolTip="Next page."
                             CommandParameter="{x:Static enums:ListsButtonEnum.Next}">
                         <Image Source="{StaticResource RightArrow}" />
                     </Button>

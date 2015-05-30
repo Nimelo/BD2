@@ -11,7 +11,8 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        ToolTip="Name of soft skill.">
                 <Label Content="Name"
                        Width="70"></Label>
                 <TextBox IsEnabled="{Binding IsEnabled}"

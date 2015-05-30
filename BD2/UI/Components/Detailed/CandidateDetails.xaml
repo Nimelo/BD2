@@ -10,10 +10,11 @@
                                      d:DesignWidth="300">
     <Grid>
         <TabControl>
-            <TabItem Header="PersonDetails">
+            <TabItem Header="PersonDetails" ToolTip="Basic information about person.">
 
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Candidate's first name.">
                         <Label Content="Name"
                                Width="70"></Label>
                         <TextBox IsEnabled="False"
@@ -22,7 +23,8 @@
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Candidate's surname.">
                         <Label Content="SurName"
                                Width="70"></Label>
                         <TextBox IsEnabled="False"
@@ -30,7 +32,8 @@
                                  Width="150"></TextBox>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Candidate's PESEL.">
                         <Label Content="Pesel"
                                Width="70"></Label>
                         <TextBox IsEnabled="False"
@@ -38,14 +41,16 @@
                                  Width="150"></TextBox>
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Candidate's phone number.">
                         <Label Content="Phone"
                                Width="70"></Label>
                         <TextBox IsEnabled="False"
                                  Text="{Binding Candidate.Person.Phone}"
                                  Width="150"></TextBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Candidate's address">
                         <Label Content="Address"
                                Width="70"></Label>
                         <TextBox IsEnabled="False"
@@ -53,7 +58,8 @@
                                  Width="150"></TextBox>
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Candidate's e-mail.">
                         <Label Content="Mail"
                                Width="70"></Label>
                         <TextBox IsEnabled="False"
@@ -69,27 +75,33 @@
 
             </TabItem>
 
-            <TabItem Header="Evaluation">
+            <TabItem Header="Evaluation"
+                     ToolTip="Candidate's informations about evaluation.">
                 <TabControl>
-                    <TabItem Header="SoftSkills">
+                    <TabItem Header="SoftSkills"
+                             ToolTip="Candidate's soft skills evaluations.">
                         <components:BasicList DataContext="{Binding SoftSkillsEvaluationDataContext}" />
 
                     </TabItem>
 
-                    <TabItem Header="Skills">
+                    <TabItem Header="Skills"
+                             ToolTip="Candidate's hard skills evaluations.">
                         <components:BasicList DataContext="{Binding SkillsEvaluationListDataContext}" />
                     </TabItem>
                 </TabControl>
 
             </TabItem>
 
-            <TabItem Header="Documents">
+            <TabItem Header="Documents"
+                     ToolTip="Candidate's attached documents.">
                 <components:BasicList DataContext="{Binding DocumentsDataContext}" />
             </TabItem>
 
-            <TabItem Header="Decision">
+            <TabItem Header="Decision"
+                     ToolTip="Decisions about candidate.">
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Type of decision.">
                         <Label Width="70"
                                Content="Type"></Label>
                         <ComboBox Width="150"
@@ -99,7 +111,8 @@
                                   DisplayMemberPath="Value"></ComboBox>
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Answer for decision.">
                         <Label Content="Answer"
                                Width="70"></Label>
                         <TextBox IsEnabled="{Binding IsEnabled}"
@@ -107,7 +120,8 @@
                                  Width="150"></TextBox>
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Reason of decision.">
                         <Label Content="Reason"
                                Width="70"></Label>
                         <TextBox IsEnabled="{Binding IsEnabled}"
@@ -117,7 +131,8 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Stages">
+            <TabItem Header="Stages"
+                     ToolTip="Candidate's stages in evaluation.">
                 <components:BasicList DataContext="{Binding RecruitmentStageDataContext}" />
             </TabItem>
         </TabControl>

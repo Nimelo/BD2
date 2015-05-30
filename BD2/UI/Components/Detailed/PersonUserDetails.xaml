@@ -10,9 +10,10 @@
                                      d:DesignWidth="300">
     <Grid>
         <TabControl>
-            <TabItem Header="PersonDetails">
-
-                <StackPanel Orientation="Vertical">
+            <TabItem Header="PersonDetails"
+                     ToolTip="Basic informations about person.">
+                <StackPanel Orientation="Vertical"
+                            ToolTip="It's first name of person.">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Name"
                                Width="70"></Label>
@@ -22,7 +23,8 @@
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="It's surname of person.">
                         <Label Content="SurName"
                                Width="70"></Label>
                         <TextBox IsEnabled="{Binding IsEnabled}"
@@ -30,7 +32,8 @@
                                  Width="150"></TextBox>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="It's PESEL.">
                         <Label Content="Pesel"
                                Width="70"></Label>
                         <TextBox IsEnabled="{Binding IsEnabled}"
@@ -38,14 +41,16 @@
                                  Width="150"></TextBox>
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="It's phone number. It should contains atleast 9 digits.">
                         <Label Content="Phone"
                                Width="70"></Label>
                         <TextBox IsEnabled="{Binding IsEnabled}"
                                  Text="{Binding Person.Phone}"
                                  Width="150"></TextBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="It's address for corespondency.">
                         <Label Content="Address"
                                Width="70"></Label>
                         <TextBox IsEnabled="{Binding IsEnabled}"
@@ -53,39 +58,39 @@
                                  Width="150"></TextBox>
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="E-mail.">
                         <Label Content="Mail"
                                Width="70"></Label>
                         <TextBox IsEnabled="{Binding IsEnabled}"
                                  Text="{Binding Person.Mail}"
                                  Width="150"></TextBox>
                     </StackPanel>
-
-
-
-
                 </StackPanel>
-
-
             </TabItem>
 
-            <TabItem Header="AccountDetails">
+            <TabItem Header="AccountDetails"
+                     ToolTip="Details about account. Roles and credentials.">
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Login.">
                         <Label Width="50"
                                Content="Login"></Label>
                         <TextBox Width="150"
                                  IsEnabled="{Binding IsEnabled}"
                                  Text="{Binding Person.User.Login}"></TextBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Password.">
                         <Label Width="50"
-                               Content="Password"></Label>
+                               Content="Password"
+                               ></Label>
                         <TextBox Width="150"
                                  IsEnabled="{Binding IsEnabled}"
                                  Text="{Binding Person.User.Password}"></TextBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                ToolTip="Permision in system.">
                         <Label Width="50"
                                Content="Role"></Label>
                         <ComboBox Width="150"

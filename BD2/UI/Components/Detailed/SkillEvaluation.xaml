@@ -11,7 +11,8 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        ToolTip="Name of skill.">
                 <Label Content="Name"
                        Width="70"></Label>
                 <ComboBox IsEnabled="{Binding IsEnabled}"
@@ -21,7 +22,8 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        ToolTip="Mark for current skill.">
                 <Label Content="Mark"
                        Width="70"></Label>
                 <ComboBox Width="150"

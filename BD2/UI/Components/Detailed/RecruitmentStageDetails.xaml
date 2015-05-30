@@ -11,7 +11,8 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        ToolTip="Name of stage.">
                 <Label Content="Stage Name"
                        Width="70"></Label>
                 <ComboBox IsEnabled="{Binding IsEnabled}"
@@ -21,7 +22,8 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        ToolTip="Mark for current stage.">
                 <Label Content="Mark"
                        Width="70"></Label>
                 <ComboBox Width="150"
@@ -32,7 +34,8 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        ToolTip="Commenet to stage.">
                 <Label Content="Comment"
                        Width="70"></Label>
                 <TextBox Width="150"
